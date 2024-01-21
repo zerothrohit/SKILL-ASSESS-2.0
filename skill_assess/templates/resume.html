@@ -1,527 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Assess</title>
 
-    <link rel="stylesheet" href="../static/css/resume.css">
-	 
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Skill Assess</title>
+
+	<link rel="stylesheet" href="../static/css/resume.css">
+
 </head>
+
 <body>
 
 
 
-<!-- UPLOAD RESUME SECTION -->
-<h1 class="t-1"> Enter your details   </h1>
-<br>
-<h3 class="t-1">To begin a mock interview.</h3>
-
-
-<div class="gaint-container"> 
-
-<div class="upload-section">
+	<!-- UPLOAD RESUME SECTION -->
+	<h1 class="t-1"> Enter your details </h1>
 	<br>
-	<div class="drop-zone" id="drop-zone">
-		<p>Drag and drop your resume here</p>
-		<p>Or click to choose a file</p>
-		<input type="file" class="file-upload" id="resume-upload" accept=".pdf, .doc, .docx">
-		
+	<h3 class="t-1">To begin a mock interview.</h3>
+
+	<form action="/resume_upload" method="POST">
+	{% csrf_token %}
+		<div class="gaint-container">
+
+			<div class="upload-section">
+				<br>
+				<div class="drop-zone" id="drop-zone">
+					<p>Drag and drop your resume here</p>
+					<p>Or click to choose a file</p>
+					<input type="file" class="file-upload" id="resume-upload" name="resume" accept=".pdf, .doc, .docx">
+
+				</div>
+				<script>
+
+				</script>
+				<p>Allowed file formats: PDF, DOC, DOCX</p>
+
+				<br><br>
+				<div class="custom-select">
+					<label for="round-type">Select Round Type:</label>
+					<select id="round-type" name="round">
+						<option value="technical">Technical Round</option>
+						<option value="hr">HR Round</option>
+					</select>
+				</div>
+
+				<br><br><br><br>
+
+				<!-- Add the job title and description text boxes within a grey container -->
+				<div class="grey-container">
+					<label for="job-title">Job Title:</label>
+					<input type="text" id="job-title" name="job-title" placeholder="Enter job title">
+					<br><br><br><br>
+
+					<label for="job-description">Job Description:</label><br><br>
+					<textarea id="job-description" name="job-description"
+						placeholder="Enter job description"></textarea>
+				</div>
+
+				<br> <br>
+				<button type="submit" class="submit-button">Begin</button>
+
+			</div>
+
+	</form>
+
+
+	<script>
+		// Get the file input and remove button elements
+
+
+		const dropZone = document.getElementById('drop-zone');
+		const fileInput = document.getElementById('resume-upload');
+
+		// Prevent default behavior for file drag and drop
+		dropZone.addEventListener('dragover', (e) => {
+			e.preventDefault();
+			dropZone.classList.add('dragover');
+		});
+
+		dropZone.addEventListener('dragleave', () => {
+			dropZone.classList.remove('dragover');
+		});
+
+		dropZone.addEventListener('drop', (e) => {
+			e.preventDefault();
+			dropZone.classList.remove('dragover');
+			const file = e.dataTransfer.files[0];
+			handleFile(file);
+		});
+
+		// Clicking the drop zone opens the file dialog
+		dropZone.addEventListener('click', () => {
+			fileInput.click();
+		});
+
+		// Handle selected file
+		fileInput.addEventListener('change', () => {
+			const file = fileInput.files[0];
+			handleFile(file);
+		});
+
+		function handleFile(file) {
+			if (file) {
+				// Handle the selected file here, e.g., display the file name
+				const fileName = file.name;
+				dropZone.innerHTML = `<p>Selected file: ${fileName}</p>`;
+			}
+		}
+
+	</script>
+
 	</div>
-<script>
-	
-</script>	
-    <p>Allowed file formats: PDF, DOC, DOCX</p>
 
-<br><br>
-	<div class="custom-select">
-		<label for="round-type">Select Round Type:</label>
-		<select id="round-type">
-			<option value="technical">Technical Round</option>
-			<option value="hr">HR Round</option>
-		</select>
-	</div>
-	
-<br><br><br><br>
-
-    <!-- Add the job title and description text boxes within a grey container -->
-    <div class="grey-container">
-        <label for="job-title">Job Title:</label>
-        <input type="text" id="job-title" name="job-title" placeholder="Enter job title">
-		<br><br><br><br>
-
-        <label for="job-description">Job Description:</label><br><br>
-        <textarea id="job-description" name="job-description" placeholder="Enter job description"></textarea>
-    </div>
-
-    <br> <br>
-    <button type="submit" class="submit-button">Begin</button>
-
-</div>
-
-<script>
-	// Get the file input and remove button elements
+	<!-- UPLOAD RESUME SECTION -->
 
 
-    const dropZone = document.getElementById('drop-zone');
-    const fileInput = document.getElementById('resume-upload');
+	<!--  design starts here-->
 
-    // Prevent default behavior for file drag and drop
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('dragover');
-    });
+	<svg version="1.1" id="Ilustration" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+		x="0px" y="0px" viewBox="0 0 1979.9 1080" style="enable-background:new 0 0 1979.9 1080;" xml:space="preserve">
 
-    dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('dragover');
-    });
-
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        const file = e.dataTransfer.files[0];
-        handleFile(file);
-    });
-
-    // Clicking the drop zone opens the file dialog
-    dropZone.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    // Handle selected file
-    fileInput.addEventListener('change', () => {
-        const file = fileInput.files[0];
-        handleFile(file);
-    });
-
-    function handleFile(file) {
-        if (file) {
-            // Handle the selected file here, e.g., display the file name
-            const fileName = file.name;
-            dropZone.innerHTML = `<p>Selected file: ${fileName}</p>`;
-        }
-    }
-	
-</script>
-
-</div>
-
-<!-- UPLOAD RESUME SECTION -->
-
-
-<!--  design starts here-->
-
-<svg version="1.1" id="Ilustration" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" viewBox="0 0 1979.9 1080" style="enable-background:new 0 0 1979.9 1080;" xml:space="preserve">
-
-<g id="background">
-	<g id="white_wall">
-		<polygon id="the_wall" class="st0" points="1509.7,1040.3 511.2,1014 608.2,276 1959.8,9.8 "/>
-		<polygon id="window" class="st1" points="1555.1,682.1 1027,616 1045.1,254 1710.6,134.4 "/>
-		<path id="trees" class="st2" d="M1029.8,585c0,0,10.5-54.9,84.3-56.7s107.8,74.7,107.8,74.7s62.1-25.3,114.5-12.5
-			c27.3,6.7,66.5,24.5,82,46.5c54.5-26.7,119.5-26.1,155.5-21l-18.8,66.1L1027,616L1029.8,585z"/>
-		<polygon id="window_bar" class="st3" points="1324.9,178.1 1265.9,658.8 1293.1,661.3 1363.7,165.4"/>
-		<polygon id="white_wall_shadow" class="st3" points="1045.1,254 1025,618.1 1010.7,613 1015.8,262.1 586.9,411.3 604.1,276.7 
-			1955.7,10.5 1736.2,515.1 1710.6,134.4"/>
-	</g>
-	<polygon id="purple_wall" class="st4" points="18,168.9 198.5,1036.9 441.9,1021.1 663.2,998.8 604.2,276.4"/>
-	<polygon id="purple_wall_shadow" class="st5" points="614.4,401.7 99.8,560.6 18,168.9 604.2,276.4"/>
-	<g id="clock">
-		<ellipse id="shadow_clock" transform="matrix(6.816390e-02 -0.9977 0.9977 6.816390e-02 369.6182 1222.0718)" class="st6" cx="839" cy="413.2" rx="58.4" ry="52.7"/>
-		<ellipse id="clock_base" transform="matrix(6.816390e-02 -0.9977 0.9977 6.816390e-02 368.862 1230.5776)" class="st7" cx="843.2" cy="417.8" rx="58.9" ry="47.8"/>
-		<polyline id="clock_hands" class="st8" points="844.5,383.4 843.2,417.8 859.5,433.1"/>
-	</g>
-	<g id="callendar">
-		<polygon id="callendar_paper_back" class="st9" points="300.7,555.6 161.7,557.1 181.5,705.1 189.1,704.3 189.7,707.7 202.6,710.9 
-			322,697.1 		"/>
-		<polygon id="callendar_dark_bar" class="st10" points="303.5,578.8 165.7,586.9 161.7,557.1 300.7,555.6"/>
-		<polygon id="callendar_paper" class="st3" points="161.7,557.1 300.7,555.6 329.8,699.5 202.6,710.9"/>
-		<polygon id="callendar_dark_bar_2" class="st10" points="305.4,578.7 168.3,583.1 161.7,557.1 300.7,555.6"/>
-		<g id="callendar_lines">
-			<line class="st11" x1="180.6" y1="570.3" x2="259.2" y2="568.4"/>
-			<polygon class="st12" points="308.9,680.8 220.7,689.4 200.6,608.3 288.9,604.6 "/>
-			<line class="st12" x1="197.5" y1="599.8" x2="256" y2="597.9"/>
-			<line class="st12" x1="217.3" y1="607.5" x2="237.8" y2="687.3"/>
-			<line class="st12" x1="237.8" y1="606.4" x2="257.4" y2="685"/>
-			<line class="st12" x1="259.2" y1="607" x2="276.9" y2="684.5"/>
-			<line class="st12" x1="273.1" y1="606.4" x2="290.8" y2="683.9"/>
-			<line class="st12" x1="205.2" y1="626.9" x2="293.3" y2="621.3"/>
-			<line class="st12" x1="209.2" y1="643.1" x2="297" y2="635.3"/>
-			<line class="st12" x1="213.6" y1="658.6" x2="301.3" y2="650.9"/>
-			<line class="st12" x1="215.4" y1="674.2" x2="303.1" y2="666.4"/>
-		</g>
-	</g>
-</g>
-<g id="red_armchair">
-	<path id="red_armchair_back" class="st13" d="M678.3,875.3l-83.4-136.5L409.2,471.4c-40.2,31.1-83.1,92.1-32.4,245.3s139.5,260.2,139.5,260.2
-		l237.9,44.2l131.9,3.4l108-152.9L678.3,875.3z"/>
-	<path id="red_armchair_highlight" class="st14" d="M460.1,444.4c-99.9,24.7-103.8,116.8-81.1,190.8c22.7,74,29.9,127.3,63.6,114.1
-		c79-31,103.8,105.2,103.8,105.2l289.4-62.3c0,0-43.4-157.7-100.5-123.3s-57.8-22.1-76.6-88.3S583.7,413.9,460.1,444.4z"/>
-	<path id="interviewer_shadow" class="st13" d="M544.6,489.3c-8.7-23.1-58.7-26.3-87.4-6.1c-14.4,10.2-39.8,49.2-21.6,77.9
-		c6.1,9.7,35.5,46.5,35.5,46.5s-29.4,26.1-30.5,47c-4,79.3,37,28.1,80.9,124.3c17.5,38.3,37,32.5,37,32.5l66.4-12.2L544.6,489.3z"/>
-</g>
-<g id="table">
-	<g id="table_construction">
-		<polygon class="st15" points="1512.9,983.3 1212.5,967.9 1100.6,806.9 1425.7,732.8 1458.4,745.1"/>
-        <g>
-            <path id="SVGID_1_" class="st15" d="M1369.3,786.5l1.5-29.5c0,0-294-32.6-335.3-24c-133.8,28-426,89.6-497.9,107.3
-                c-0.5,0.1-0.9,0.2-1.4,0.4h-0.1c-75.4,17.6-35.7,174.5-35.7,174.5l313.3,7.5c1-19.3,5.8-62.3,36.2-73.9L1369.3,786.5z"/>
-        </g>
-		<g>
-			<g>
-				<path id="SVGID_3_" class="st16" d="M1427.2,732.7l-373.1-22.2c-8-1.2-16.2-0.9-24.1,0.7c-72.4,15.2-450.9,94.7-515.9,110.7
-					c-0.5,0.1-0.9,0.2-1.4,0.4h-0.1c-75.4,17.6-12.2,192.9-12.2,192.9l276.3,6.7c0,0,1-73,49.7-91.5l601.5-191.5
-					C1431.3,737.8,1430.7,732.9,1427.2,732.7z"/>
+		<g id="background">
+			<g id="white_wall">
+				<polygon id="the_wall" class="st0" points="1509.7,1040.3 511.2,1014 608.2,276 1959.8,9.8 " />
+				<polygon id="window" class="st1" points="1555.1,682.1 1027,616 1045.1,254 1710.6,134.4 " />
+				<path id="trees" class="st2" d="M1029.8,585c0,0,10.5-54.9,84.3-56.7s107.8,74.7,107.8,74.7s62.1-25.3,114.5-12.5
+			c27.3,6.7,66.5,24.5,82,46.5c54.5-26.7,119.5-26.1,155.5-21l-18.8,66.1L1027,616L1029.8,585z" />
+				<polygon id="window_bar" class="st3" points="1324.9,178.1 1265.9,658.8 1293.1,661.3 1363.7,165.4" />
+				<polygon id="white_wall_shadow" class="st3" points="1045.1,254 1025,618.1 1010.7,613 1015.8,262.1 586.9,411.3 604.1,276.7 
+			1955.7,10.5 1736.2,515.1 1710.6,134.4" />
 			</g>
-			<g>
-				<clipPath id="SVGID_4_">
-					<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
-				</clipPath>
-				<polygon class="st17" points="429.6,875.6 822.4,989.7 777,1022.4 500.5,1015.2"/>
+			<polygon id="purple_wall" class="st4" points="18,168.9 198.5,1036.9 441.9,1021.1 663.2,998.8 604.2,276.4" />
+			<polygon id="purple_wall_shadow" class="st5" points="614.4,401.7 99.8,560.6 18,168.9 604.2,276.4" />
+			<g id="clock">
+				<ellipse id="shadow_clock"
+					transform="matrix(6.816390e-02 -0.9977 0.9977 6.816390e-02 369.6182 1222.0718)" class="st6" cx="839"
+					cy="413.2" rx="58.4" ry="52.7" />
+				<ellipse id="clock_base" transform="matrix(6.816390e-02 -0.9977 0.9977 6.816390e-02 368.862 1230.5776)"
+					class="st7" cx="843.2" cy="417.8" rx="58.9" ry="47.8" />
+				<polyline id="clock_hands" class="st8" points="844.5,383.4 843.2,417.8 859.5,433.1" />
+			</g>
+			<g id="callendar">
+				<polygon id="callendar_paper_back" class="st9" points="300.7,555.6 161.7,557.1 181.5,705.1 189.1,704.3 189.7,707.7 202.6,710.9 
+			322,697.1 		" />
+				<polygon id="callendar_dark_bar" class="st10"
+					points="303.5,578.8 165.7,586.9 161.7,557.1 300.7,555.6" />
+				<polygon id="callendar_paper" class="st3" points="161.7,557.1 300.7,555.6 329.8,699.5 202.6,710.9" />
+				<polygon id="callendar_dark_bar_2" class="st10"
+					points="305.4,578.7 168.3,583.1 161.7,557.1 300.7,555.6" />
+				<g id="callendar_lines">
+					<line class="st11" x1="180.6" y1="570.3" x2="259.2" y2="568.4" />
+					<polygon class="st12" points="308.9,680.8 220.7,689.4 200.6,608.3 288.9,604.6 " />
+					<line class="st12" x1="197.5" y1="599.8" x2="256" y2="597.9" />
+					<line class="st12" x1="217.3" y1="607.5" x2="237.8" y2="687.3" />
+					<line class="st12" x1="237.8" y1="606.4" x2="257.4" y2="685" />
+					<line class="st12" x1="259.2" y1="607" x2="276.9" y2="684.5" />
+					<line class="st12" x1="273.1" y1="606.4" x2="290.8" y2="683.9" />
+					<line class="st12" x1="205.2" y1="626.9" x2="293.3" y2="621.3" />
+					<line class="st12" x1="209.2" y1="643.1" x2="297" y2="635.3" />
+					<line class="st12" x1="213.6" y1="658.6" x2="301.3" y2="650.9" />
+					<line class="st12" x1="215.4" y1="674.2" x2="303.1" y2="666.4" />
+				</g>
 			</g>
 		</g>
-	</g>
-	<g id="shadows">
-		<g id="shadow_legs">
-			<polygon class="st18" points="912.4,736.7 875.6,744.2 1022.2,734 977.2,723.1 "/>
-			<polygon class="st18" points="1067.2,713.5 1036.2,716.5 1030.2,733.3 1085.3,730 "/>
+		<g id="red_armchair">
+			<path id="red_armchair_back" class="st13" d="M678.3,875.3l-83.4-136.5L409.2,471.4c-40.2,31.1-83.1,92.1-32.4,245.3s139.5,260.2,139.5,260.2
+		l237.9,44.2l131.9,3.4l108-152.9L678.3,875.3z" />
+			<path id="red_armchair_highlight" class="st14"
+				d="M460.1,444.4c-99.9,24.7-103.8,116.8-81.1,190.8c22.7,74,29.9,127.3,63.6,114.1
+		c79-31,103.8,105.2,103.8,105.2l289.4-62.3c0,0-43.4-157.7-100.5-123.3s-57.8-22.1-76.6-88.3S583.7,413.9,460.1,444.4z" />
+			<path id="interviewer_shadow" class="st13"
+				d="M544.6,489.3c-8.7-23.1-58.7-26.3-87.4-6.1c-14.4,10.2-39.8,49.2-21.6,77.9
+		c6.1,9.7,35.5,46.5,35.5,46.5s-29.4,26.1-30.5,47c-4,79.3,37,28.1,80.9,124.3c17.5,38.3,37,32.5,37,32.5l66.4-12.2L544.6,489.3z" />
 		</g>
-		<polygon id="shadow_hand" class="st18" points="1035.2,829.9 1028.3,866.1 1073.1,853.8 1056.9,812"/>
-	</g>
-	<g id="stuff_on_table">
-		<g id="phone">
-			<path id="shadow_phone" class="st18" d="M923.9,749.7c0,0-7.1,0.8-8.5,5.8c0,0-4.7,21.5-4.7,24.2s-4.2,9,11.5,11.3
-				c12.7,1.9,36.6,2.8,46.7,3.5c2.5,0.2,10.3-0.1,12.5-1.2l27.2-6L923.9,749.7z"/>
-			<path class="st19" d="M1005.2,789.5l-79-7.8c-4.5-0.4-7.7-3.1-7.3-7.6l3.2-22.1c0.4-4.5,4.1-5.6,8.5-5.2l75.5,5
-				c4.5,0.4,6.4,2.5,6,7l0.7,23.2C1012.4,786.5,1009.7,789.9,1005.2,789.5z"/>
-			<polygon id="phone-screen" class="st10" points="934.1,749.2 931.4,776 1005.9,782.7 1005,753.8 "/>
-			<path class="st19" d="M949.4,785.4l-14-1.3c-0.8-0.1-1.4-0.8-1.3-1.6l0,0c0.1-0.8,0.8-1.4,1.6-1.3l14,1.3
-				c0.8,0.1,1.4,0.8,1.3,1.6l0,0C950.9,784.9,950.2,785.5,949.4,785.4z"/>
-			<circle class="st20" cx="927" cy="761.8" r="3.8"/>
-		</g>
-		<g id="papers">
-			<polygon id="paper_bottom" class="st19" points="800.4,779.8 879.2,767.1 951.8,838.8 866.2,857 "/>
-			<polygon id="paper_top" class="st1" points="810.4,786.2 885.7,764 971.6,826 890.7,854.4 "/>
-		</g>
-		<g id="pen">
-			<path id="shadow_pen" class="st18" d="M693.7,807.6c0,0-23.6,5.2-20,8.2s33.7,4.9,45.5,3.1s48.6-5.7,48.6-5.7L693.7,807.6z"/>
-			<path class="st21" d="M716.5,816h-22.1c-2.1,0-3.9-1.7-3.9-3.9v-1.4c0-2.1,1.7-3.9,3.9-3.9h22.1c2.1,0,3.9,1.7,3.9,3.9v1.4
-				C720.3,814.3,718.6,816,716.5,816z"/>
-			<path class="st21" d="M767.8,813.2h-49.9c-1.7,0-3.1-1.4-3.1-3.1l0,0c0-1.7,1.4-3.1,3.1-3.1h49.9c1.7,0,3.1,1.4,3.1,3.1l0,0
-				C770.9,811.8,769.5,813.2,767.8,813.2z"/>
-			<path class="st19" d="M768.2,807l10.2,2.9v0.9l-10.6,2.3C767.8,813.2,767.1,807.8,768.2,807"/>
-		</g>
-	</g>
-</g>
-<g id="interviewer">
-	<g id="legs">
-		<path id="leg2" class="st22" d="M990.2,679.5l-99.7,12.2c-20.2,2.5-38.3,13.6-49.6,30.4l-22.5,34l177.2-36.7L990.2,679.5z"/>
-		<path id="leg1" class="st22" d="M1076.5,658.3l-99.7,12.5c-20.2,2.5-38.2,13.7-49.5,30.6L904.8,735l177.2-36.8L1076.5,658.3z"/>
-		<path id="highlight" class="st23" d="M827.2,742.4c0,0,24.5-35.1,73.6-39.5s77.1-9.5,77.1-9.5l5.5-13.3c0,0-99.3,3.5-126.3,23.1
-			C844.5,712.3,827.2,742.4,827.2,742.4z"/>
-	</g>
-	<g id="shoes">
-		<g id="shoe_2">
-			<path class="st10" d="M1116.1,603.7c-19.1,19.1-60.9,95.7-56.2,111.9c2.1,7,7.1,10.9,15.7,13.9c13.2,4.5,32.2-17.9,42.5-31.9
-				c16.9-23,39.3-57.4,40.6-71.9C1158.3,582.2,1130.1,589.8,1116.1,603.7z"/>
-			<path class="st21" d="M1144.4,593.6c-8.7-2.3-24.4-7.3-37.4,9.8c-13.1,17.1-31,49.3-37,52.3s-27.4,32.8-27.5,40.2
-				s17.6,26,22.7,29.2c5.1,3.2,10.6,5,10.6,5s-9.1-11.6-6.8-23.7s28.4-62,38.7-74.6c10.3-12.6,18.3-29.6,37.5-37.3"/>
-			<path class="st24" d="M1087.7,634.3c0,0-2.5-1.6-3.8-0.8c-12.4,8.2-6.2,18.9-2.1,23.6"/>
-			<path class="st25" d="M1110.9,699.1l-24.6-14.2c-2.4-1.4-3.2-4.4-1.8-6.8l0.8-1.5c1.4-2.4,4.4-3.2,6.8-1.8l24.6,14.2
-				c2.4,1.4,3.2,4.4,1.8,6.8l-0.8,1.5C1116.3,699.7,1113.3,700.5,1110.9,699.1z"/>
-			<path class="st25" d="M1133.9,656.6l-24.6-14.2c-2.4-1.4-3.2-4.4-1.8-6.8l0.8-1.5c1.4-2.4,4.4-3.2,6.8-1.8l24.6,14.2
-				c2.4,1.4,3.2,4.4,1.8,6.8l-0.8,1.5C1139.3,657.2,1136.2,658,1133.9,656.6z"/>
-		</g>
-		<g id="shoe_1">
-			<path class="st10" d="M1011.4,607.4c-14.6,22.4-13.8,111.8-3.4,124.8c4.5,5.7,13.4,6.5,21.9,5.6c13.1-1.4,17.5-29.7,20.9-47.1
-				c5.4-28.6,8.9-63.1,6.6-84.1c-1.2-10.7-6.3-17.8-11-20.1C1031.9,579.3,1020.7,593.2,1011.4,607.4z"/>
-			<path class="st21" d="M1032.1,581.9c-10.3,0.1-28.3,3.4-33.8,24.9s-4.5,63.1-25,68.2c-6.6,1.6-1.6,38.3,1.8,45.2
-				c3.4,6.9,29.6,16.2,36.4,16.9s12.6,1.1,12.6,1.1s-4-1.6-7.4-13.8c-3.4-12.3-6.7-148.3,29.8-137.9
-				C1046.5,586.5,1041.5,581.9,1032.1,581.9z"/>
-			<path class="st24" d="M990,645.5c0,0-0.5-0.1-1-0.1c0,0-6.4,22.9,6.3,26.3"/>
-			<path class="st24" d="M996.2,623.8c0,0-4.1-0.4-5.1,1.4c0,0-4.8,21.1,7.9,24.5"/>
-			<path class="st25" d="M1048.6,640.9l-29.1-6.1c-2.7-0.6-4.5-3.5-4-6.5l0.3-1.8c0.5-3,3.1-5,5.8-4.5l29.1,6.1
-				c2.7,0.6,4.5,3.5,4,6.5l-0.3,1.8C1053.9,639.4,1051.3,641.4,1048.6,640.9z"/>
-			<path class="st25" d="M1043,701.9l-30.4-6.3c-2.8-0.6-4.6-3.6-4.1-6.7l0.3-1.6c0.5-3.1,3.2-5.2,5.9-4.6l30.4,6.3
-				c2.8,0.6,4.6,3.6,4.1,6.7l-0.3,1.6C1048.4,700.5,1045.7,702.5,1043,701.9z"/>
-		</g>
-	</g>
-	<g id="arm_with_mug">
-		<path id="biceps" class="st26" d="M782.8,698.4l-30.5-32.1C716.4,623,662.5,604,662.5,604s-22.7,70.1,29.8,88.1
-			c68.4,23.3,85.7,14.6,89.2,13.9S784.3,702.1,782.8,698.4z"/>
-		<g id="forehand_mug">
-			<g id="coffee_mug">
+		<g id="table">
+			<g id="table_construction">
+				<polygon class="st15" points="1512.9,983.3 1212.5,967.9 1100.6,806.9 1425.7,732.8 1458.4,745.1" />
+				<g>
+					<path id="SVGID_1_" class="st15"
+						d="M1369.3,786.5l1.5-29.5c0,0-294-32.6-335.3-24c-133.8,28-426,89.6-497.9,107.3
+                c-0.5,0.1-0.9,0.2-1.4,0.4h-0.1c-75.4,17.6-35.7,174.5-35.7,174.5l313.3,7.5c1-19.3,5.8-62.3,36.2-73.9L1369.3,786.5z" />
+				</g>
 				<g>
 					<g>
-						<path id="SVGID_5_" class="st16" d="M715.6,535.6c14.9-0.2,25.4,3.2,26,9.1c0.6,5.8,5.5,58.7-23,58.7c-18.8,0-17,0-17,0
-							s-21,1.9-17.5-55.8C684.6,540.2,697.3,535.8,715.6,535.6z"/>
-					</g>
-					<g id="coffee_mug_shadows">
-						<defs>
-							<path id="SVGID_6_" d="M715.6,535.6c14.9-0.2,25.4,3.2,26,9.1c0.6,5.8,5.5,58.7-23,58.7c-18.8,0-17,0-17,0s-21,1.9-17.5-55.8
-								C684.6,540.2,697.3,535.8,715.6,535.6z"/>
-						</defs>
-						<clipPath id="SVGID_8_">
-							<use xlink:href="#SVGID_6_"  style="overflow:visible;"/>
-						</clipPath>
-						<path class="st27" d="M682.5,547.9c0.2,9.1,18.2,11.7,26.8,12c14.5,0.6,24-1.5,25.8-2.9c-0.1,4.5-2.8,41.7-14.2,46.9
-							c-11.5,5.2-29.8,2.6-29.8,2.6l-11.7-34.8L682.5,547.9z"/>
-                        <clipPath id="SVGID_12_">
-							<use xlink:href="#SVGID_6_"  style="overflow:visible;"/>
-						</clipPath>
-                        <path class="st28" d="M688.4,548.7c0,0-4.5,38.6,8.9,53.9c13.4,15.2,7.3,4.3,7.3,4.3s-10.5-8-9.8-51.6
-							C697.2,541.4,688.4,548.7,688.4,548.7z"/>
-					</g>
-				</g>
-				<g id="mug_top">
-					<g>
-						<ellipse id="SVGID_7_" class="st15" cx="713.4" cy="546.2" rx="24.7" ry="8.6"/>
+						<path id="SVGID_3_" class="st16" d="M1427.2,732.7l-373.1-22.2c-8-1.2-16.2-0.9-24.1,0.7c-72.4,15.2-450.9,94.7-515.9,110.7
+					c-0.5,0.1-0.9,0.2-1.4,0.4h-0.1c-75.4,17.6-12.2,192.9-12.2,192.9l276.3,6.7c0,0,1-73,49.7-91.5l601.5-191.5
+					C1431.3,737.8,1430.7,732.9,1427.2,732.7z" />
 					</g>
 					<g>
-						<clipPath id="SVGID_15_">
-							<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+						<clipPath id="SVGID_4_">
+							<use xlink:href="#SVGID_3_" style="overflow:visible;" />
 						</clipPath>
-						<ellipse id="coffee" class="st29" cx="714.4" cy="553.7" rx="24.7" ry="8.6"/>
+						<polygon class="st17" points="429.6,875.6 822.4,989.7 777,1022.4 500.5,1015.2" />
 					</g>
 				</g>
-				<path id="handle" class="st30" d="M740.6,553c11.7-1.9,16.2-2.8,15.6,16s-8.7,24.3-23.4,22"/>
-				<g id="smoke">
-					<path id="smoke1" class="st31" d="M718.8,539.6c-3.3-11,1.2-13.7,2.2-23.5s-6.8-20.7-7.3-21.3c-0.5-0.7,13.8,7,15,14.8
-						C729.8,517.4,721.2,523.1,718.8,539.6z"/>
-					<path id="smoke2" class="st31" d="M706.7,547.8c-3.3-11,0.4-10.9,1.4-20.7s-2.8-22.8-6.6-24.1c7.5,2.1,11.9,15.6,13,23.4
-						C715.7,534.2,709.1,531.3,706.7,547.8z"/>
+			</g>
+			<g id="shadows">
+				<g id="shadow_legs">
+					<polygon class="st18" points="912.4,736.7 875.6,744.2 1022.2,734 977.2,723.1 " />
+					<polygon class="st18" points="1067.2,713.5 1036.2,716.5 1030.2,733.3 1085.3,730 " />
+				</g>
+				<polygon id="shadow_hand" class="st18" points="1035.2,829.9 1028.3,866.1 1073.1,853.8 1056.9,812" />
+			</g>
+			<g id="stuff_on_table">
+				<g id="phone">
+					<path id="shadow_phone" class="st18" d="M923.9,749.7c0,0-7.1,0.8-8.5,5.8c0,0-4.7,21.5-4.7,24.2s-4.2,9,11.5,11.3
+				c12.7,1.9,36.6,2.8,46.7,3.5c2.5,0.2,10.3-0.1,12.5-1.2l27.2-6L923.9,749.7z" />
+					<path class="st19" d="M1005.2,789.5l-79-7.8c-4.5-0.4-7.7-3.1-7.3-7.6l3.2-22.1c0.4-4.5,4.1-5.6,8.5-5.2l75.5,5
+				c4.5,0.4,6.4,2.5,6,7l0.7,23.2C1012.4,786.5,1009.7,789.9,1005.2,789.5z" />
+					<polygon id="phone-screen" class="st10" points="934.1,749.2 931.4,776 1005.9,782.7 1005,753.8 " />
+					<path class="st19" d="M949.4,785.4l-14-1.3c-0.8-0.1-1.4-0.8-1.3-1.6l0,0c0.1-0.8,0.8-1.4,1.6-1.3l14,1.3
+				c0.8,0.1,1.4,0.8,1.3,1.6l0,0C950.9,784.9,950.2,785.5,949.4,785.4z" />
+					<circle class="st20" cx="927" cy="761.8" r="3.8" />
+				</g>
+				<g id="papers">
+					<polygon id="paper_bottom" class="st19" points="800.4,779.8 879.2,767.1 951.8,838.8 866.2,857 " />
+					<polygon id="paper_top" class="st1" points="810.4,786.2 885.7,764 971.6,826 890.7,854.4 " />
+				</g>
+				<g id="pen">
+					<path id="shadow_pen" class="st18"
+						d="M693.7,807.6c0,0-23.6,5.2-20,8.2s33.7,4.9,45.5,3.1s48.6-5.7,48.6-5.7L693.7,807.6z" />
+					<path class="st21" d="M716.5,816h-22.1c-2.1,0-3.9-1.7-3.9-3.9v-1.4c0-2.1,1.7-3.9,3.9-3.9h22.1c2.1,0,3.9,1.7,3.9,3.9v1.4
+				C720.3,814.3,718.6,816,716.5,816z" />
+					<path class="st21" d="M767.8,813.2h-49.9c-1.7,0-3.1-1.4-3.1-3.1l0,0c0-1.7,1.4-3.1,3.1-3.1h49.9c1.7,0,3.1,1.4,3.1,3.1l0,0
+				C770.9,811.8,769.5,813.2,767.8,813.2z" />
+					<path class="st19" d="M768.2,807l10.2,2.9v0.9l-10.6,2.3C767.8,813.2,767.1,807.8,768.2,807" />
 				</g>
 			</g>
-			<path id="forehand" class="st26" d="M774.1,596.8c0.6-7.2-6.5-36.4-7.4-43.3s-17.7,1.5-21.2,2.6s-4.8,21.5-2.5,28.9
-				s11.2,16.7,11.2,16.7c2.3,18.7-8.3,39.1,2.1,78.4c10.3,39.1,26.2,18.3,26.2,18.3C782.7,690.1,773.5,603.9,774.1,596.8z"/>
 		</g>
-	</g>
-	<g id="body">
-		<path class="st32" d="M542.5,614.5c0,0,85.2-26.6,111-15.6c40.9,17.5,109.7,162.6,135.1,163.2c-36.3,8.2-110.3,25.7-159.7,36.3
-			c-29.2,6.3-66.8-56.5-66.8-56.5l-15.6-61.3L542.5,614.5z"/>
-		<path id="shadow" class="st33" d="M555.7,667.9c0,0,24.4,89.9,110.5,122.5l-62.7,13.4c-45.8-8.3-54.9-53.7-54.9-53.7L555.7,667.9z
-			"/>
-	</g>
-	<g id="arm_biceps">
-		<defs>
-			<path id="SVGID_16_" d="M558.6,657.1c-0.2-8.8-5.5-47.3-5.5-47.3c-35.9,17-75.4,36.8-56.2,102.3c18.6,63.3,34.5,102.5,60.2,96.2
-				l8.5-17.2C576,734.4,558.8,665.9,558.6,657.1z"/>
-		</defs>
-		<use xlink:href="#SVGID_16_"  style="overflow:visible;fill:#FCCEA4;"/>
-		<clipPath id="SVGID_17_">
-			<use xlink:href="#SVGID_16_"  style="overflow:visible;"/>
-		</clipPath>
-		<path id="shadow_biceps" class="st34" d="M565.5,647.7c-10.3,5.6-46.9,13.6-45.6,30.8S525.5,727,530,767c1.7,14.5,10.8,57.3,24.7,61.6
-			c10.4,3.2-12.3,2.8-12.3,2.8l-62.1-116.1l16.6-78l57.3-35.6L565.5,647.7z"/>
-	</g>
-	<g id="shoulder">
-		<g>
-			<path id="shoulder_base" class="st32" d="M554.6,604.7c-4.2-8.1-47.2,11.1-59.5,45.9c-12.3,34.7-4,51.9-4,51.9s59-24.4,77.1-6
-				C575.4,703.9,569.8,634,554.6,604.7z"/>
-		</g>
-		<g>
-			<clipPath id="SVGID_19_">
-				<use xlink:href="#shoulder_base"  style="overflow:visible;"/>
-			</clipPath>
-			<path id="shadow_shoulder" class="st35" d="M566.5,635.9c0,0-41.3-15.5-54.4,14.8c-7.8,18.1-8.1,38.7-8.1,38.7l-24.6,14.1l-0.7-39
-				l54.4-68.4l25,3.6L566.5,635.9z"/>
-		</g>
-	</g>
-	<g id="neck">
-		<path class="st33" d="M551.7,574.3c0,0-31.2-6.1-31.7,35.8c-0.4,33.1,43.3,24.4,58.8,28.4c65,16.8,81.9,10.1,74-21.4
-			c-6.7-26.7,1.9-29.2,1.9-29.2L551.7,574.3z"/>
-		<g id="lace2">
-			<path class="st36" d="M608.1,636.6c0,0-6.3,12.9-3,26.2s0.7,19.6,0.7,19.6"/>
-			<path class="st10" d="M610,677.6c-0.3,3.6-2.2,6.4-4.3,6.3c-2.1-0.1-3.6-3.1-3.3-6.7c0.3-3.6,2.2-6.4,4.3-6.3
-				C608.8,671,610.3,674,610,677.6z"/>
-			<path class="st37" d="M609.3,683.3c0.3,1.7-1.2,3.3-3.3,3.6c-2.1,0.2-4-1-4.3-2.7s1.2-3.3,3.3-3.6
-				C607.1,680.4,609,681.6,609.3,683.3z"/>
-		</g>
-		<g id="lace">
-			<path class="st36" d="M645.5,639.2c0,0,15.1,2.6,15,16.3s3.9,19.2,3.9,19.2"/>
-			<path class="st10" d="M659.2,671.1c1.1,3.4,3.6,5.7,5.6,5.1s2.8-3.8,1.7-7.3s-3.6-5.7-5.6-5.1S658.1,667.7,659.2,671.1z"/>
-			<path class="st37" d="M661.2,676.5c0.1,1.8,1.9,3,4,2.7s3.7-1.9,3.5-3.7c-0.1-1.8-1.9-3-4-2.7
-				C662.7,673.1,661.1,674.7,661.2,676.5z"/>
-		</g>
-	</g>
-	<g id="head">
-		<g id="head_base">
-			<g>
-				<path id="SVGID_11_" class="st26" d="M533.3,484.3c-11.9-4.7-13.4,9.1-12.6,15.7s8,20.6,23.8,18.2c6.1,12.6,18.8,59.6,13.4,67.8
-					c-5.4,8.2,85.3,15.7,85.3,15.7l8.7-62.3c0,0,7.7-0.7,9.2-13.4c0.7-5.8-3.8-9-3.8-9s-1.8-20,11.2-25.6
-					c3.4-22.5,6.9-30.4-0.9-44.3c-7.9-14.1-87.5-30.8-87.5-30.8l-26.5,42.3l-23.4,21.6"/>
+		<g id="interviewer">
+			<g id="legs">
+				<path id="leg2" class="st22"
+					d="M990.2,679.5l-99.7,12.2c-20.2,2.5-38.3,13.6-49.6,30.4l-22.5,34l177.2-36.7L990.2,679.5z" />
+				<path id="leg1" class="st22"
+					d="M1076.5,658.3l-99.7,12.5c-20.2,2.5-38.2,13.7-49.5,30.6L904.8,735l177.2-36.8L1076.5,658.3z" />
+				<path id="highlight" class="st23" d="M827.2,742.4c0,0,24.5-35.1,73.6-39.5s77.1-9.5,77.1-9.5l5.5-13.3c0,0-99.3,3.5-126.3,23.1
+			C844.5,712.3,827.2,742.4,827.2,742.4z" />
 			</g>
-			<g>
-				<clipPath id="SVGID_21_">
-					<use xlink:href="#SVGID_11_"  style="overflow:visible;"/>
+			<g id="shoes">
+				<g id="shoe_2">
+					<path class="st10" d="M1116.1,603.7c-19.1,19.1-60.9,95.7-56.2,111.9c2.1,7,7.1,10.9,15.7,13.9c13.2,4.5,32.2-17.9,42.5-31.9
+				c16.9-23,39.3-57.4,40.6-71.9C1158.3,582.2,1130.1,589.8,1116.1,603.7z" />
+					<path class="st21" d="M1144.4,593.6c-8.7-2.3-24.4-7.3-37.4,9.8c-13.1,17.1-31,49.3-37,52.3s-27.4,32.8-27.5,40.2
+				s17.6,26,22.7,29.2c5.1,3.2,10.6,5,10.6,5s-9.1-11.6-6.8-23.7s28.4-62,38.7-74.6c10.3-12.6,18.3-29.6,37.5-37.3" />
+					<path class="st24" d="M1087.7,634.3c0,0-2.5-1.6-3.8-0.8c-12.4,8.2-6.2,18.9-2.1,23.6" />
+					<path class="st25" d="M1110.9,699.1l-24.6-14.2c-2.4-1.4-3.2-4.4-1.8-6.8l0.8-1.5c1.4-2.4,4.4-3.2,6.8-1.8l24.6,14.2
+				c2.4,1.4,3.2,4.4,1.8,6.8l-0.8,1.5C1116.3,699.7,1113.3,700.5,1110.9,699.1z" />
+					<path class="st25" d="M1133.9,656.6l-24.6-14.2c-2.4-1.4-3.2-4.4-1.8-6.8l0.8-1.5c1.4-2.4,4.4-3.2,6.8-1.8l24.6,14.2
+				c2.4,1.4,3.2,4.4,1.8,6.8l-0.8,1.5C1139.3,657.2,1136.2,658,1133.9,656.6z" />
+				</g>
+				<g id="shoe_1">
+					<path class="st10" d="M1011.4,607.4c-14.6,22.4-13.8,111.8-3.4,124.8c4.5,5.7,13.4,6.5,21.9,5.6c13.1-1.4,17.5-29.7,20.9-47.1
+				c5.4-28.6,8.9-63.1,6.6-84.1c-1.2-10.7-6.3-17.8-11-20.1C1031.9,579.3,1020.7,593.2,1011.4,607.4z" />
+					<path class="st21" d="M1032.1,581.9c-10.3,0.1-28.3,3.4-33.8,24.9s-4.5,63.1-25,68.2c-6.6,1.6-1.6,38.3,1.8,45.2
+				c3.4,6.9,29.6,16.2,36.4,16.9s12.6,1.1,12.6,1.1s-4-1.6-7.4-13.8c-3.4-12.3-6.7-148.3,29.8-137.9
+				C1046.5,586.5,1041.5,581.9,1032.1,581.9z" />
+					<path class="st24" d="M990,645.5c0,0-0.5-0.1-1-0.1c0,0-6.4,22.9,6.3,26.3" />
+					<path class="st24" d="M996.2,623.8c0,0-4.1-0.4-5.1,1.4c0,0-4.8,21.1,7.9,24.5" />
+					<path class="st25" d="M1048.6,640.9l-29.1-6.1c-2.7-0.6-4.5-3.5-4-6.5l0.3-1.8c0.5-3,3.1-5,5.8-4.5l29.1,6.1
+				c2.7,0.6,4.5,3.5,4,6.5l-0.3,1.8C1053.9,639.4,1051.3,641.4,1048.6,640.9z" />
+					<path class="st25" d="M1043,701.9l-30.4-6.3c-2.8-0.6-4.6-3.6-4.1-6.7l0.3-1.6c0.5-3.1,3.2-5.2,5.9-4.6l30.4,6.3
+				c2.8,0.6,4.6,3.6,4.1,6.7l-0.3,1.6C1048.4,700.5,1045.7,702.5,1043,701.9z" />
+				</g>
+			</g>
+			<g id="arm_with_mug">
+				<path id="biceps" class="st26" d="M782.8,698.4l-30.5-32.1C716.4,623,662.5,604,662.5,604s-22.7,70.1,29.8,88.1
+			c68.4,23.3,85.7,14.6,89.2,13.9S784.3,702.1,782.8,698.4z" />
+				<g id="forehand_mug">
+					<g id="coffee_mug">
+						<g>
+							<g>
+								<path id="SVGID_5_" class="st16" d="M715.6,535.6c14.9-0.2,25.4,3.2,26,9.1c0.6,5.8,5.5,58.7-23,58.7c-18.8,0-17,0-17,0
+							s-21,1.9-17.5-55.8C684.6,540.2,697.3,535.8,715.6,535.6z" />
+							</g>
+							<g id="coffee_mug_shadows">
+								<defs>
+									<path id="SVGID_6_" d="M715.6,535.6c14.9-0.2,25.4,3.2,26,9.1c0.6,5.8,5.5,58.7-23,58.7c-18.8,0-17,0-17,0s-21,1.9-17.5-55.8
+								C684.6,540.2,697.3,535.8,715.6,535.6z" />
+								</defs>
+								<clipPath id="SVGID_8_">
+									<use xlink:href="#SVGID_6_" style="overflow:visible;" />
+								</clipPath>
+								<path class="st27" d="M682.5,547.9c0.2,9.1,18.2,11.7,26.8,12c14.5,0.6,24-1.5,25.8-2.9c-0.1,4.5-2.8,41.7-14.2,46.9
+							c-11.5,5.2-29.8,2.6-29.8,2.6l-11.7-34.8L682.5,547.9z" />
+								<clipPath id="SVGID_12_">
+									<use xlink:href="#SVGID_6_" style="overflow:visible;" />
+								</clipPath>
+								<path class="st28" d="M688.4,548.7c0,0-4.5,38.6,8.9,53.9c13.4,15.2,7.3,4.3,7.3,4.3s-10.5-8-9.8-51.6
+							C697.2,541.4,688.4,548.7,688.4,548.7z" />
+							</g>
+						</g>
+						<g id="mug_top">
+							<g>
+								<ellipse id="SVGID_7_" class="st15" cx="713.4" cy="546.2" rx="24.7" ry="8.6" />
+							</g>
+							<g>
+								<clipPath id="SVGID_15_">
+									<use xlink:href="#SVGID_7_" style="overflow:visible;" />
+								</clipPath>
+								<ellipse id="coffee" class="st29" cx="714.4" cy="553.7" rx="24.7" ry="8.6" />
+							</g>
+						</g>
+						<path id="handle" class="st30" d="M740.6,553c11.7-1.9,16.2-2.8,15.6,16s-8.7,24.3-23.4,22" />
+						<g id="smoke">
+							<path id="smoke1" class="st31" d="M718.8,539.6c-3.3-11,1.2-13.7,2.2-23.5s-6.8-20.7-7.3-21.3c-0.5-0.7,13.8,7,15,14.8
+						C729.8,517.4,721.2,523.1,718.8,539.6z" />
+							<path id="smoke2" class="st31" d="M706.7,547.8c-3.3-11,0.4-10.9,1.4-20.7s-2.8-22.8-6.6-24.1c7.5,2.1,11.9,15.6,13,23.4
+						C715.7,534.2,709.1,531.3,706.7,547.8z" />
+						</g>
+					</g>
+					<path id="forehand" class="st26"
+						d="M774.1,596.8c0.6-7.2-6.5-36.4-7.4-43.3s-17.7,1.5-21.2,2.6s-4.8,21.5-2.5,28.9
+				s11.2,16.7,11.2,16.7c2.3,18.7-8.3,39.1,2.1,78.4c10.3,39.1,26.2,18.3,26.2,18.3C782.7,690.1,773.5,603.9,774.1,596.8z" />
+				</g>
+			</g>
+			<g id="body">
+				<path class="st32" d="M542.5,614.5c0,0,85.2-26.6,111-15.6c40.9,17.5,109.7,162.6,135.1,163.2c-36.3,8.2-110.3,25.7-159.7,36.3
+			c-29.2,6.3-66.8-56.5-66.8-56.5l-15.6-61.3L542.5,614.5z" />
+				<path id="shadow" class="st33" d="M555.7,667.9c0,0,24.4,89.9,110.5,122.5l-62.7,13.4c-45.8-8.3-54.9-53.7-54.9-53.7L555.7,667.9z
+			" />
+			</g>
+			<g id="arm_biceps">
+				<defs>
+					<path id="SVGID_16_" d="M558.6,657.1c-0.2-8.8-5.5-47.3-5.5-47.3c-35.9,17-75.4,36.8-56.2,102.3c18.6,63.3,34.5,102.5,60.2,96.2
+				l8.5-17.2C576,734.4,558.8,665.9,558.6,657.1z" />
+				</defs>
+				<use xlink:href="#SVGID_16_" style="overflow:visible;fill:#FCCEA4;" />
+				<clipPath id="SVGID_17_">
+					<use xlink:href="#SVGID_16_" style="overflow:visible;" />
 				</clipPath>
-				<path id="shadow_head" class="st38" d="M549.8,479.6l53.7-57.5l1.6,12.5l-6.4,37.8c0,0-29.7,14-9.8,58.1
-					c8.7,19.4,5.9,63.6,5.9,63.6l-52.3,0.1l-41.3-89.9l4.9-32.6l20.4,4.4L549.8,479.6z"/>
+				<path id="shadow_biceps" class="st34" d="M565.5,647.7c-10.3,5.6-46.9,13.6-45.6,30.8S525.5,727,530,767c1.7,14.5,10.8,57.3,24.7,61.6
+			c10.4,3.2-12.3,2.8-12.3,2.8l-62.1-116.1l16.6-78l57.3-35.6L565.5,647.7z" />
 			</g>
-		</g>
-		<g id="eyes">
-			<path class="st39" d="M625.8,501.6c-0.5,3.2-3.1,3.9-6.7,3.4c-3.5-0.5-6.5-2.1-6.1-5.3c0.5-3.2,3.7-5.4,7.2-4.9
-				C623.8,495.3,626.3,498.3,625.8,501.6z"/>
-			<path class="st39" d="M657.1,506.1c-0.6,3.1-2.6,3.7-4.8,3.3c-2.2-0.4-3.8-1.5-3.2-4.6s3-5.4,5.2-5
-				C656.5,500.1,657.7,502.9,657.1,506.1z"/>
-		</g>
-		<g id="eyebrows">
-			<path class="st10" d="M599.8,476.2c0.4,1.9,4.9-2.1,16.3-0.5c9.6,1.4,9.4,2.7,14,5.9c4.6,3.2,8-0.8,7.6-6s-8.2-8.3-21.3-9.6
-				C599.7,464.3,598.6,469.9,599.8,476.2z"/>
-			<path class="st10" d="M650.2,485.6c0,0-0.5-10.5,11.7-6.5c5.6,1.8,8.1,4,8.1,4c1.6,3.5,1,9.6-3,9.3c-4.1-0.3-0.4-3.6-9-4.2
-				C652.3,487.8,650.2,489.9,650.2,485.6z"/>
-		</g>
-		<g id="hair">
-			<g>
-				<path id="hair_base" class="st10" d="M536.9,411.1c0,0,2.6,9.3,4.4,7s-3.7-29.2,81-38.9c35.6-4.1,58.2,2.4,78.4,9.3
+			<g id="shoulder">
+				<g>
+					<path id="shoulder_base" class="st32" d="M554.6,604.7c-4.2-8.1-47.2,11.1-59.5,45.9c-12.3,34.7-4,51.9-4,51.9s59-24.4,77.1-6
+				C575.4,703.9,569.8,634,554.6,604.7z" />
+				</g>
+				<g>
+					<clipPath id="SVGID_19_">
+						<use xlink:href="#shoulder_base" style="overflow:visible;" />
+					</clipPath>
+					<path id="shadow_shoulder" class="st35" d="M566.5,635.9c0,0-41.3-15.5-54.4,14.8c-7.8,18.1-8.1,38.7-8.1,38.7l-24.6,14.1l-0.7-39
+				l54.4-68.4l25,3.6L566.5,635.9z" />
+				</g>
+			</g>
+			<g id="neck">
+				<path class="st33" d="M551.7,574.3c0,0-31.2-6.1-31.7,35.8c-0.4,33.1,43.3,24.4,58.8,28.4c65,16.8,81.9,10.1,74-21.4
+			c-6.7-26.7,1.9-29.2,1.9-29.2L551.7,574.3z" />
+				<g id="lace2">
+					<path class="st36" d="M608.1,636.6c0,0-6.3,12.9-3,26.2s0.7,19.6,0.7,19.6" />
+					<path class="st10" d="M610,677.6c-0.3,3.6-2.2,6.4-4.3,6.3c-2.1-0.1-3.6-3.1-3.3-6.7c0.3-3.6,2.2-6.4,4.3-6.3
+				C608.8,671,610.3,674,610,677.6z" />
+					<path class="st37" d="M609.3,683.3c0.3,1.7-1.2,3.3-3.3,3.6c-2.1,0.2-4-1-4.3-2.7s1.2-3.3,3.3-3.6
+				C607.1,680.4,609,681.6,609.3,683.3z" />
+				</g>
+				<g id="lace">
+					<path class="st36" d="M645.5,639.2c0,0,15.1,2.6,15,16.3s3.9,19.2,3.9,19.2" />
+					<path class="st10"
+						d="M659.2,671.1c1.1,3.4,3.6,5.7,5.6,5.1s2.8-3.8,1.7-7.3s-3.6-5.7-5.6-5.1S658.1,667.7,659.2,671.1z" />
+					<path class="st37" d="M661.2,676.5c0.1,1.8,1.9,3,4,2.7s3.7-1.9,3.5-3.7c-0.1-1.8-1.9-3-4-2.7
+				C662.7,673.1,661.1,674.7,661.2,676.5z" />
+				</g>
+			</g>
+			<g id="head">
+				<g id="head_base">
+					<g>
+						<path id="SVGID_11_" class="st26" d="M533.3,484.3c-11.9-4.7-13.4,9.1-12.6,15.7s8,20.6,23.8,18.2c6.1,12.6,18.8,59.6,13.4,67.8
+					c-5.4,8.2,85.3,15.7,85.3,15.7l8.7-62.3c0,0,7.7-0.7,9.2-13.4c0.7-5.8-3.8-9-3.8-9s-1.8-20,11.2-25.6
+					c3.4-22.5,6.9-30.4-0.9-44.3c-7.9-14.1-87.5-30.8-87.5-30.8l-26.5,42.3l-23.4,21.6" />
+					</g>
+					<g>
+						<clipPath id="SVGID_21_">
+							<use xlink:href="#SVGID_11_" style="overflow:visible;" />
+						</clipPath>
+						<path id="shadow_head" class="st38" d="M549.8,479.6l53.7-57.5l1.6,12.5l-6.4,37.8c0,0-29.7,14-9.8,58.1
+					c8.7,19.4,5.9,63.6,5.9,63.6l-52.3,0.1l-41.3-89.9l4.9-32.6l20.4,4.4L549.8,479.6z" />
+					</g>
+				</g>
+				<g id="eyes">
+					<path class="st39" d="M625.8,501.6c-0.5,3.2-3.1,3.9-6.7,3.4c-3.5-0.5-6.5-2.1-6.1-5.3c0.5-3.2,3.7-5.4,7.2-4.9
+				C623.8,495.3,626.3,498.3,625.8,501.6z" />
+					<path class="st39" d="M657.1,506.1c-0.6,3.1-2.6,3.7-4.8,3.3c-2.2-0.4-3.8-1.5-3.2-4.6s3-5.4,5.2-5
+				C656.5,500.1,657.7,502.9,657.1,506.1z" />
+				</g>
+				<g id="eyebrows">
+					<path class="st10" d="M599.8,476.2c0.4,1.9,4.9-2.1,16.3-0.5c9.6,1.4,9.4,2.7,14,5.9c4.6,3.2,8-0.8,7.6-6s-8.2-8.3-21.3-9.6
+				C599.7,464.3,598.6,469.9,599.8,476.2z" />
+					<path class="st10" d="M650.2,485.6c0,0-0.5-10.5,11.7-6.5c5.6,1.8,8.1,4,8.1,4c1.6,3.5,1,9.6-3,9.3c-4.1-0.3-0.4-3.6-9-4.2
+				C652.3,487.8,650.2,489.9,650.2,485.6z" />
+				</g>
+				<g id="hair">
+					<g>
+						<path id="hair_base" class="st10" d="M536.9,411.1c0,0,2.6,9.3,4.4,7s-3.7-29.2,81-38.9c35.6-4.1,58.2,2.4,78.4,9.3
 					c3.2,7.7,16,50.3-30.1,64.7c-11-11.1-26.5-15.5-46.9-17c-22.4-1.6-38.1,5.6-44,31.9c-22,18.7-20.3,23-20.3,23s-6,53.9,26.3,68
 					c17.2-24.1,22.1-29.6,39.3-27.8c9.5,6.3,26.9,8.3,26.9,8.3c7.5,6.1,5.6,14.2,5.1,26.8c-0.4,9.4,7.5,25,10.2,35.3
 					s-22.4,38.8-63.1,13.1c-31.1-19.7-47.5-34.6-54.1-42.6c0,0-1.5-25.1-2.5-44c-7-22.3-9.7-41.5-9.7-41.5s-4.5-0.8-6.7-2.8
-					c-8.4-17.7-5-23.9-7-32.4l6.5,3.5C530.5,454.7,527.6,429.1,536.9,411.1z"/>
+					c-8.4-17.7-5-23.9-7-32.4l6.5,3.5C530.5,454.7,527.6,429.1,536.9,411.1z" />
+					</g>
+					<g id="hair_highlight">
+						<clipPath id="SVGID_23_">
+							<use xlink:href="#hair_base" style="overflow:visible;" />
+						</clipPath>
+						<path class="st40"
+							d="M700.6,388.5c0,0-13.8,57.8-30.1,64.7s47.7,1.7,47.7,1.7L708,388.6L700.6,388.5z" />
+						<clipPath id="SVGID_25_">
+							<use xlink:href="#hair_base" style="overflow:visible;" />
+						</clipPath>
+						<path class="st41" d="M649.1,538.4c0,0,8.3,16.2-5.6,30.5c-1.4,1.4,14.3,23.1,8.8,38.6c-5.2,14.8-23.6,23.2-23.6,23.2l53.5-7.4
+					l-3.7-61l-22-26.2L649.1,538.4z" />
+					</g>
+				</g>
+				<path id="mouth" class="st39" d="M644.7,557.9c-0.8-0.6-2.8,0.8-11.1,0.3c-7-0.4-6.3-1.5-10.4-2.6c-4.1-1-5.3,0.3-3.6,2.1
+			c1.8,1.8,5.1,4.4,16.5,3.8C647.3,560.8,647.3,560,644.7,557.9z" />
 			</g>
-			<g id="hair_highlight">
-				<clipPath id="SVGID_23_">
-					<use xlink:href="#hair_base"  style="overflow:visible;"/>
-				</clipPath>
-				<path class="st40" d="M700.6,388.5c0,0-13.8,57.8-30.1,64.7s47.7,1.7,47.7,1.7L708,388.6L700.6,388.5z"/>
-                <clipPath id="SVGID_25_">
-					<use xlink:href="#hair_base"  style="overflow:visible;"/>
-				</clipPath>
-				<path class="st41" d="M649.1,538.4c0,0,8.3,16.2-5.6,30.5c-1.4,1.4,14.3,23.1,8.8,38.6c-5.2,14.8-23.6,23.2-23.6,23.2l53.5-7.4
-					l-3.7-61l-22-26.2L649.1,538.4z"/>
-			</g>
-		</g>
-		<path id="mouth" class="st39" d="M644.7,557.9c-0.8-0.6-2.8,0.8-11.1,0.3c-7-0.4-6.3-1.5-10.4-2.6c-4.1-1-5.3,0.3-3.6,2.1
-			c1.8,1.8,5.1,4.4,16.5,3.8C647.3,560.8,647.3,560,644.7,557.9z"/>
-	</g>
-	<g id="forehand_and_paper">
-		<g id="paper">
-			<path class="st42" d="M757.1,650.6c0.5,0.2,21.6,3.4,22.1,3.6c22.4,9.8,25.3,9.2,25.3,9.2c-34.2,26.7-69.8,78.8-75.4,94.7
-				l-77.4-9.9l12.8-19c0,0,34.7-50.6,41.3-57.3l5.3-4c0,0,15-10,21.5-12.1C737.7,654.1,757.1,650.6,757.1,650.6z"/>
-			<path class="st19" d="M779.8,654.3c0,0-15.9-6.7-38-2.3c-15.2,3.1-36.7,20.6-36.7,20.6s36.3-29,47.9-8.2
-				C759.4,650.9,771.5,653,779.8,654.3z"/>
-		</g>
-		<path id="hand_paper" class="st26" d="M558.1,809.5c37.4-9.1,62-43.7,73.3-53c6.7-5.5,16-12.6,22.9-18.6c22.6-1,42-6.6,42-6.6
+			<g id="forehand_and_paper">
+				<g id="paper">
+					<path class="st42" d="M757.1,650.6c0.5,0.2,21.6,3.4,22.1,3.6c22.4,9.8,25.3,9.2,25.3,9.2c-34.2,26.7-69.8,78.8-75.4,94.7
+				l-77.4-9.9l12.8-19c0,0,34.7-50.6,41.3-57.3l5.3-4c0,0,15-10,21.5-12.1C737.7,654.1,757.1,650.6,757.1,650.6z" />
+					<path class="st19" d="M779.8,654.3c0,0-15.9-6.7-38-2.3c-15.2,3.1-36.7,20.6-36.7,20.6s36.3-29,47.9-8.2
+				C759.4,650.9,771.5,653,779.8,654.3z" />
+				</g>
+				<path id="hand_paper" class="st26" d="M558.1,809.5c37.4-9.1,62-43.7,73.3-53c6.7-5.5,16-12.6,22.9-18.6c22.6-1,42-6.6,42-6.6
 			s6.7-6.7,3.8-12.1c-1.3-2.4,2.3-7.2,3.9-11.3c2.1-5.3-0.3-10.6,3.4-15.6c6.1-8.3-10.9-6.4-31.6,1.2c-20.7,7.5-24.8,21.4-24.8,21.4
-			c-59.7,31-77.2,31.7-94.8,50.3c-6.6,7-6,11.7-12.7,24.8C536.8,803.1,544.7,808.8,558.1,809.5z"/>
-	</g>
-</g>
-<g id="ginger_dude">
-	<g id="ginger">
-		<g id="ginger_head">
-			<path id="ginger_head_base" class="st26" d="M1241.1,460.5c0,0-12.4,20.4-10.7,35.7c1.7,15.3,1.1,45.5,1.1,45.5s-14.1,19.2-13.6,22.1
-				c0.6,2.8,9.1,11.9,9.1,11.9s4.2,37.2,7,40.6c2.8,3.4,24.1,13.2,24.1,13.2l1.1,21.5c0,0,51.2,17.3,89.4-3.4
-				c-0.6-22.7,0-135.3,0-135.3l-76.4-25.5L1241.1,460.5z"/>
-			<path id="eye" class="st39" d="M1232.6,523.1c2.4,0,3.2,3.1,3.2,7.4c0,4.3-0.8,8.3-3.3,8.3s-4.4-3.5-4.4-7.9
-				C1228.2,526.6,1230.2,523.1,1232.6,523.1z"/>
-			<g id="ginger_hair">
-				<path class="st43" d="M1380.7,576l10.6-70.5l-0.8-66l-93.1-20.1c0,0-8.5,10.6-17,11.6c-7.8,1-39.6-8.8-44.6-10.3
-					c-1.5,9.3-0.3,21.5,1.2,37.4c0.8,8.6,23.2,20.1,23.2,20.1l-10.8,51.2c29.8-8,20.1,20.3,9.6,40.1c0.5,51.5,40.4,53.7,53.4,54.3
-					c13.3,0.8,44.7-2.4,44.7-2.4C1357.6,615.7,1379.5,583.5,1380.7,576z"/>
-				<path id="ginger_hair_highlight" class="st22" d="M1280.4,431c8.5-1.1,17.5-9.6,17.5-9.6s76.2,34.6,83.8,27c3.9,24.3-3.5,134.1-3.5,134.1
-					c13.6-22.7,27.5-126.2,27.5-126.2s-6.7-6.9-4.1-15.2c2.5-8.3-20.8-25.2-20.8-25.2l-6.4,6.9c-5.3,7.5-97.3-21.8-97.3-21.8
-					s-3.8,12.2-7.1,14.5c-7,4.8-24.6,3.3-24.6,3.3s-9.5,0.2-9.7,1.9C1240.8,422.3,1272.6,432,1280.4,431z"/>
+			c-59.7,31-77.2,31.7-94.8,50.3c-6.6,7-6,11.7-12.7,24.8C536.8,803.1,544.7,808.8,558.1,809.5z" />
 			</g>
-			<path id="ginger_eyebrow" class="st43" d="M1242.5,502.6l-10.8-4.3c-2.6-1-3.9-4-2.8-6.6l0,0c1-2.6,0.6-5.2,3.2-4.2l14.2,5.6
-				c2.6,1,2.9,6.5,1.9,9l0,0C1247.1,504.8,1245,503.6,1242.5,502.6z"/>
 		</g>
-		<g id="suit">
-			<path id="leg" class="st44" d="M1132.7,905.5l61.9-6.2l92.1,27.2l-164.5,103.8l-55.2-1c0,0,1.1-11.9,33.6-99.6
-				C1103.7,921.2,1123.6,906.4,1132.7,905.5z"/>
-			<path id="base" class="st25" d="M1409.5,870.7l8.9-187.9c0,0-44.9-35.9-76.2-35.9l-82.9,4c-8.8,1.9-14.5,3.3-32.2,10.6
+		<g id="ginger_dude">
+			<g id="ginger">
+				<g id="ginger_head">
+					<path id="ginger_head_base" class="st26" d="M1241.1,460.5c0,0-12.4,20.4-10.7,35.7c1.7,15.3,1.1,45.5,1.1,45.5s-14.1,19.2-13.6,22.1
+				c0.6,2.8,9.1,11.9,9.1,11.9s4.2,37.2,7,40.6c2.8,3.4,24.1,13.2,24.1,13.2l1.1,21.5c0,0,51.2,17.3,89.4-3.4
+				c-0.6-22.7,0-135.3,0-135.3l-76.4-25.5L1241.1,460.5z" />
+					<path id="eye" class="st39" d="M1232.6,523.1c2.4,0,3.2,3.1,3.2,7.4c0,4.3-0.8,8.3-3.3,8.3s-4.4-3.5-4.4-7.9
+				C1228.2,526.6,1230.2,523.1,1232.6,523.1z" />
+					<g id="ginger_hair">
+						<path class="st43" d="M1380.7,576l10.6-70.5l-0.8-66l-93.1-20.1c0,0-8.5,10.6-17,11.6c-7.8,1-39.6-8.8-44.6-10.3
+					c-1.5,9.3-0.3,21.5,1.2,37.4c0.8,8.6,23.2,20.1,23.2,20.1l-10.8,51.2c29.8-8,20.1,20.3,9.6,40.1c0.5,51.5,40.4,53.7,53.4,54.3
+					c13.3,0.8,44.7-2.4,44.7-2.4C1357.6,615.7,1379.5,583.5,1380.7,576z" />
+						<path id="ginger_hair_highlight" class="st22" d="M1280.4,431c8.5-1.1,17.5-9.6,17.5-9.6s76.2,34.6,83.8,27c3.9,24.3-3.5,134.1-3.5,134.1
+					c13.6-22.7,27.5-126.2,27.5-126.2s-6.7-6.9-4.1-15.2c2.5-8.3-20.8-25.2-20.8-25.2l-6.4,6.9c-5.3,7.5-97.3-21.8-97.3-21.8
+					s-3.8,12.2-7.1,14.5c-7,4.8-24.6,3.3-24.6,3.3s-9.5,0.2-9.7,1.9C1240.8,422.3,1272.6,432,1280.4,431z" />
+					</g>
+					<path id="ginger_eyebrow" class="st43" d="M1242.5,502.6l-10.8-4.3c-2.6-1-3.9-4-2.8-6.6l0,0c1-2.6,0.6-5.2,3.2-4.2l14.2,5.6
+				c2.6,1,2.9,6.5,1.9,9l0,0C1247.1,504.8,1245,503.6,1242.5,502.6z" />
+				</g>
+				<g id="suit">
+					<path id="leg" class="st44" d="M1132.7,905.5l61.9-6.2l92.1,27.2l-164.5,103.8l-55.2-1c0,0,1.1-11.9,33.6-99.6
+				C1103.7,921.2,1123.6,906.4,1132.7,905.5z" />
+					<path id="base" class="st25" d="M1409.5,870.7l8.9-187.9c0,0-44.9-35.9-76.2-35.9l-82.9,4c-8.8,1.9-14.5,3.3-32.2,10.6
 				c-8.6,3.6-48.3,25.6-48,34.9l17.5,193.8l5.6,74.3c0,31.3,86.1,66.8,117.4,66.8l4.2-8.8l43.8,12.1c0,0,22.7-31.4,22.7-62.7
-				l-12.6-81.8l22.9,1.2L1409.5,870.7z"/>
-			<path id="white_collar" class="st42" d="M1359.2,651.7l-105,13.6c0,0-1.8-22,2.8-26.6c51.2,19.1,91.2-2.3,91.2-2.3
-				L1359.2,651.7z"/>
-			<path id="collar" class="st10" d="M1248.6,649.7c-6.3,2-19,7.8-27.7,11.9c-4.3,2-4,8.3,0.5,9.9c9.9,3.5,24,5.6,25.9,6.2
+				l-12.6-81.8l22.9,1.2L1409.5,870.7z" />
+					<path id="white_collar" class="st42" d="M1359.2,651.7l-105,13.6c0,0-1.8-22,2.8-26.6c51.2,19.1,91.2-2.3,91.2-2.3
+				L1359.2,651.7z" />
+					<path id="collar" class="st10" d="M1248.6,649.7c-6.3,2-19,7.8-27.7,11.9c-4.3,2-4,8.3,0.5,9.9c9.9,3.5,24,5.6,25.9,6.2
 				c45.2,15.2,105-2.3,127.8-10.2c4.1-1.4,5-6.8,1.6-9.5l-18.4-14.3c-0.8-0.7-2-0.7-2.9-0.2c-9.2,5-58.7,29.7-104.7,6.4
-				C1250,649.6,1249.2,649.5,1248.6,649.7z"/>
-			<polygon id="back_shadow" class="st44" points="1328.2,916.8 1323.7,990.8 1340.3,994.5"/>
-			<g id="arm">
-				<path id="hand" class="st26" d="M1100.5,800.9c-25.7-9.8-49.5-5.6-64.4,12s-9.5,25.1-2.6,21.3c6.9-3.7,16.4-9.2,16.4-9.2
-					l27.8,24.9l37.7-30.4L1100.5,800.9z"/>
-				<path id="white_shirt" class="st42" d="M1119.6,816.3c-4.3-6-12.1-12.8-12.1-12.8s-51.1,7.2-37.8,44.6
-					c12.8,18.9,30.2,24.9,30.2,24.9L1119.6,816.3z"/>
-				<path id="suit_arm" class="st25" d="M1247.5,856.6l-127-47.9c0,0-45.2,2.1-38.9,54c14.8,31.2,167.1,53.4,167.1,53.4L1247.5,856.6z"/>
-				<g id="buttons">
-					<circle class="st39" cx="1096.4" cy="857.1" r="5.5"/>
-					<circle class="st39" cx="1118" cy="868.2" r="5.5"/>
+				C1250,649.6,1249.2,649.5,1248.6,649.7z" />
+					<polygon id="back_shadow" class="st44" points="1328.2,916.8 1323.7,990.8 1340.3,994.5" />
+					<g id="arm">
+						<path id="hand" class="st26" d="M1100.5,800.9c-25.7-9.8-49.5-5.6-64.4,12s-9.5,25.1-2.6,21.3c6.9-3.7,16.4-9.2,16.4-9.2
+					l27.8,24.9l37.7-30.4L1100.5,800.9z" />
+						<path id="white_shirt" class="st42" d="M1119.6,816.3c-4.3-6-12.1-12.8-12.1-12.8s-51.1,7.2-37.8,44.6
+					c12.8,18.9,30.2,24.9,30.2,24.9L1119.6,816.3z" />
+						<path id="suit_arm" class="st25"
+							d="M1247.5,856.6l-127-47.9c0,0-45.2,2.1-38.9,54c14.8,31.2,167.1,53.4,167.1,53.4L1247.5,856.6z" />
+						<g id="buttons">
+							<circle class="st39" cx="1096.4" cy="857.1" r="5.5" />
+							<circle class="st39" cx="1118" cy="868.2" r="5.5" />
+						</g>
+					</g>
+					<polygon id="arm_shadow" class="st44" points="1242,745.6 1248.6,916.1 1260.2,907.4" />
 				</g>
 			</g>
-			<polygon id="arm_shadow" class="st44" points="1242,745.6 1248.6,916.1 1260.2,907.4"/>
 		</g>
-	</g>
-</g>
-<g id="black_armchair">
-	<path id="black_armchair_highlight" class="st21" d="M1505.6,1040.9L1736.2,515c0,0-9.8-11.8-89.3-12.5c-173.1-1.6-266.6,417-293.7,447.3
-		c-70.6,79.2-223.3-117.4-263.7,78.4"/>
-	<path id="dark" class="st44" d="M1662.6,544.7c-173.1,0-287.7,380.6-312.3,413c-73.5,96.8-244.5-108.4-274.1,71.6l429.4,11.6
-		l212.2-486.7C1717.8,554.3,1697.3,544.7,1662.6,544.7z"/>
-</g>
-<g id="fly">
-	<path id="wing_2" class="st9" d="M299.6,388.5c0,0,5-19.3-11.8-26.2C271,355.5,288.3,385.4,299.6,388.5z"/>
-    <ellipse id="fly_base" class="st45" cx="299.5" cy="388.5" rx="10.5" ry="9.9"/>
-	<ellipse id="fly_head" class="st45" cx="310" cy="388.5" rx="5" ry="7"/>
-	<path id="wing_1" class="st9" d="M303,388.5c0,0-5-19.3,11.8-26.2C331.6,355.5,314.4,385.4,303,388.5z"/>
-	<g id="fly_legs">
-		<line class="st46" x1="305.1" y1="394.5" x2="307.8" y2="401.7"/>
-		<line class="st46" x1="302" y1="396.6" x2="302.9" y2="404.4"/>
-		<line class="st46" x1="297.9" y1="396.8" x2="297.5" y2="405.4"/>
-		<line class="st46" x1="294.3" y1="395.8" x2="293.2" y2="403.3"/>
-	</g>
-</g>
-<style type="text/css">
-	.st0{fill:#F0F0F0;}
-	.st1{fill:#FFFFFF;}
-	.st2{fill:#AFF2E2;}
-	.st3{fill:#E8E8E8;}
-	.st4{fill:#797FB8;}
-	.st5{fill:#727BAB;}
-	.st6{fill:none;stroke:#E8E8E8;stroke-width:18;stroke-miterlimit:10;}
-	.st7{fill:#FFFFFF;stroke:#A5AAD8;stroke-width:11.8186;stroke-miterlimit:10;}
-	.st8{fill:#FFFFFF;stroke:#A5AAD8;stroke-width:8;stroke-miterlimit:10;}
-	.st9{fill:#A5AAD8;}
-	.st10{fill:#62627F;}
-	.st11{fill:none;stroke:#E8E8E8;stroke-width:6.6375;stroke-miterlimit:10;}
-	.st12{fill:none;stroke:#A5AAD8;stroke-width:3.9825;stroke-miterlimit:10;}
-	.st13{fill:#97231D;}
-	.st14{fill:#CF4D46;}
-	.st15{fill:#039475;}
-	.st16{fill:#34B399;}
-	.st17{clip-path:url(#SVGID_4_);fill:#0DA37F;}
-	.st18{fill:#0DA37F;}
-	.st19{fill:#F2F2F2;}
-	.st20{fill:#CCCCCC;}
-	.st21{fill:#696F9F;}
-	.st22{fill:#F8A246;}
-	.st23{fill:#F4C02E;}
-	.st24{fill:none;stroke:#A5AAD8;stroke-width:8;stroke-miterlimit:10;}
-	.st25{fill:#555570;}
-	.st26{fill:#FCCEA4;}
-	.st27{clip-path:url(#SVGID_8_);fill:#039475;}
-	.st28{clip-path:url(#SVGID_12_);fill:#34B399;}
-	.st29{clip-path:url(#SVGID_15_);fill:#534741;}
-	.st30{fill:none;stroke:#34B399;stroke-width:10.4669;stroke-miterlimit:10;}
-	.st31{opacity:0.5;fill:#A5AAD8;}
-	.st32{fill:#F7CD45;}
-	.st33{fill:#F4B400;}
-	.st34{clip-path:url(#SVGID_17_);fill:#F9B175;}
-	.st35{clip-path:url(#SVGID_19_);fill:#F4B400;}
-	.st36{fill:none;stroke:#EDEDED;stroke-width:5;stroke-linecap:round;stroke-miterlimit:10;}
-	.st37{fill:#EDEDED;}
-	.st38{clip-path:url(#SVGID_21_);fill:#F9B175;}
-	.st39{fill:#424254;}
-	.st40{clip-path:url(#SVGID_23_);fill:#797999;}
-	.st41{clip-path:url(#SVGID_25_);fill:#797999;}
-	.st42{fill:#E6E6E6;}
-	.st43{fill:#F88A46;}
-	.st44{fill:#46465C;}
-	.st45{fill:#534741;}
-	.st46{fill:none;stroke:#534741;stroke-width:2;stroke-miterlimit:10;}
-</style>
-</svg>
-<!-- design ends here -->
+		<g id="black_armchair">
+			<path id="black_armchair_highlight" class="st21" d="M1505.6,1040.9L1736.2,515c0,0-9.8-11.8-89.3-12.5c-173.1-1.6-266.6,417-293.7,447.3
+		c-70.6,79.2-223.3-117.4-263.7,78.4" />
+			<path id="dark" class="st44" d="M1662.6,544.7c-173.1,0-287.7,380.6-312.3,413c-73.5,96.8-244.5-108.4-274.1,71.6l429.4,11.6
+		l212.2-486.7C1717.8,554.3,1697.3,544.7,1662.6,544.7z" />
+		</g>
+		<g id="fly">
+			<path id="wing_2" class="st9" d="M299.6,388.5c0,0,5-19.3-11.8-26.2C271,355.5,288.3,385.4,299.6,388.5z" />
+			<ellipse id="fly_base" class="st45" cx="299.5" cy="388.5" rx="10.5" ry="9.9" />
+			<ellipse id="fly_head" class="st45" cx="310" cy="388.5" rx="5" ry="7" />
+			<path id="wing_1" class="st9" d="M303,388.5c0,0-5-19.3,11.8-26.2C331.6,355.5,314.4,385.4,303,388.5z" />
+			<g id="fly_legs">
+				<line class="st46" x1="305.1" y1="394.5" x2="307.8" y2="401.7" />
+				<line class="st46" x1="302" y1="396.6" x2="302.9" y2="404.4" />
+				<line class="st46" x1="297.9" y1="396.8" x2="297.5" y2="405.4" />
+				<line class="st46" x1="294.3" y1="395.8" x2="293.2" y2="403.3" />
+			</g>
+		</g>
+		<style type="text/css">
+			.st0 {
+				fill: #F0F0F0;
+			}
+
+			.st1 {
+				fill: #FFFFFF;
+			}
+
+			.st2 {
+				fill: #AFF2E2;
+			}
+
+			.st3 {
+				fill: #E8E8E8;
+			}
+
+			.st4 {
+				fill: #797FB8;
+			}
+
+			.st5 {
+				fill: #727BAB;
+			}
+
+			.st6 {
+				fill: none;
+				stroke: #E8E8E8;
+				stroke-width: 18;
+				stroke-miterlimit: 10;
+			}
+
+			.st7 {
+				fill: #FFFFFF;
+				stroke: #A5AAD8;
+				stroke-width: 11.8186;
+				stroke-miterlimit: 10;
+			}
+
+			.st8 {
+				fill: #FFFFFF;
+				stroke: #A5AAD8;
+				stroke-width: 8;
+				stroke-miterlimit: 10;
+			}
+
+			.st9 {
+				fill: #A5AAD8;
+			}
+
+			.st10 {
+				fill: #62627F;
+			}
+
+			.st11 {
+				fill: none;
+				stroke: #E8E8E8;
+				stroke-width: 6.6375;
+				stroke-miterlimit: 10;
+			}
+
+			.st12 {
+				fill: none;
+				stroke: #A5AAD8;
+				stroke-width: 3.9825;
+				stroke-miterlimit: 10;
+			}
+
+			.st13 {
+				fill: #97231D;
+			}
+
+			.st14 {
+				fill: #CF4D46;
+			}
+
+			.st15 {
+				fill: #039475;
+			}
+
+			.st16 {
+				fill: #34B399;
+			}
+
+			.st17 {
+				clip-path: url(#SVGID_4_);
+				fill: #0DA37F;
+			}
+
+			.st18 {
+				fill: #0DA37F;
+			}
+
+			.st19 {
+				fill: #F2F2F2;
+			}
+
+			.st20 {
+				fill: #CCCCCC;
+			}
+
+			.st21 {
+				fill: #696F9F;
+			}
+
+			.st22 {
+				fill: #F8A246;
+			}
+
+			.st23 {
+				fill: #F4C02E;
+			}
+
+			.st24 {
+				fill: none;
+				stroke: #A5AAD8;
+				stroke-width: 8;
+				stroke-miterlimit: 10;
+			}
+
+			.st25 {
+				fill: #555570;
+			}
+
+			.st26 {
+				fill: #FCCEA4;
+			}
+
+			.st27 {
+				clip-path: url(#SVGID_8_);
+				fill: #039475;
+			}
+
+			.st28 {
+				clip-path: url(#SVGID_12_);
+				fill: #34B399;
+			}
+
+			.st29 {
+				clip-path: url(#SVGID_15_);
+				fill: #534741;
+			}
+
+			.st30 {
+				fill: none;
+				stroke: #34B399;
+				stroke-width: 10.4669;
+				stroke-miterlimit: 10;
+			}
+
+			.st31 {
+				opacity: 0.5;
+				fill: #A5AAD8;
+			}
+
+			.st32 {
+				fill: #F7CD45;
+			}
+
+			.st33 {
+				fill: #F4B400;
+			}
+
+			.st34 {
+				clip-path: url(#SVGID_17_);
+				fill: #F9B175;
+			}
+
+			.st35 {
+				clip-path: url(#SVGID_19_);
+				fill: #F4B400;
+			}
+
+			.st36 {
+				fill: none;
+				stroke: #EDEDED;
+				stroke-width: 5;
+				stroke-linecap: round;
+				stroke-miterlimit: 10;
+			}
+
+			.st37 {
+				fill: #EDEDED;
+			}
+
+			.st38 {
+				clip-path: url(#SVGID_21_);
+				fill: #F9B175;
+			}
+
+			.st39 {
+				fill: #424254;
+			}
+
+			.st40 {
+				clip-path: url(#SVGID_23_);
+				fill: #797999;
+			}
+
+			.st41 {
+				clip-path: url(#SVGID_25_);
+				fill: #797999;
+			}
+
+			.st42 {
+				fill: #E6E6E6;
+			}
+
+			.st43 {
+				fill: #F88A46;
+			}
+
+			.st44 {
+				fill: #46465C;
+			}
+
+			.st45 {
+				fill: #534741;
+			}
+
+			.st46 {
+				fill: none;
+				stroke: #534741;
+				stroke-width: 2;
+				stroke-miterlimit: 10;
+			}
+		</style>
+	</svg>
+	<!-- design ends here -->
 
 
 
@@ -529,6 +729,7 @@
 
 
 
-    
+
 </body>
+
 </html>
