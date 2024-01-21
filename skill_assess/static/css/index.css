@@ -1,0 +1,210 @@
+body {
+    font-family: 'Poppins', sans-serif;;
+    margin: 0;
+    padding: 0;
+    background: rgb(3,182,190);
+    background: linear-gradient(90deg, rgba(3,182,190,1) 29%, rgba(255,255,255,1) 100%);
+}
+.navbar.bg-transparent {
+    background-color: transparent !important;
+}
+.navbar .navbar-brand {
+    font-size: 2em;
+    color: white;
+}
+.navbar-nav .nav-link {
+    font-size: 18px;
+    color: white;
+}
+
+.main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+}
+.custom-div {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 1em;
+    width: 100%;
+}
+.custom-text {
+    text-align: center;
+    color: #e6e2e2;
+    padding: 1em;
+    padding-top: 2em;
+    flex: 1;
+}
+.custom-text h1 {
+    font-size: 2.7em;
+    margin-bottom: 10px;
+}
+.custom-text p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+.start-button {
+    padding: 10px 25px;
+    background-color: #FC5185;
+    color: white;
+    border: black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 2em;
+}
+.start-button:hover {
+    background-color: #f60e53;
+}
+.custom-image {
+    max-width: 100%;
+    height: auto;
+    padding: 1em;
+    flex: 1;
+}
+@media (max-width: 768px) {
+    .custom-text {
+        padding-top: 0;
+    }
+    .custom-text h1 {
+        font-size: 2.1em;
+        margin-bottom: 10px;
+    }
+    .custom-text p {
+        font-size: 0.8em;
+        margin-bottom: 25px;
+    }
+  .custom-image {
+        max-width: 100%;
+        height: auto;
+        padding: 1em;
+        flex: 1;
+    }
+}
+@media (min-width: 768px) {
+    .custom-text {
+        text-align: left;
+    }
+}
+
+/* section */
+
+.main-container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-top: -150px; 
+}
+
+.card {
+    width: 320px;
+    margin: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(246, 49, 89, 0.678);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.card-content h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Example responsive text styles */
+.card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-content h2 {
+    font-size: 1.7rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Responsive text adjustments */
+
+@media (max-width: 700px) {
+    .card-content h2 {
+        font-size: 1.2rem;
+        margin: 8px 0;
+    }
+
+    .card-content p {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+    .card {
+        width: calc(100% - 100px);
+    }
+}
+
+
+/* nav button (Home and about) */
+.button1 {
+    background-color: #FC5185; 
+    color: rgb(255, 255, 255); 
+    border-radius: 4px;
+    padding: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-right:16px;
+    font-size: 17px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button1:hover {
+    background-color: #f60e53;
+    color: white;
+  }
+
+  .button1:active {
+    background-color: #FC5185;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+  }
+
+  .form .button:active {
+    background-color: #FC5185;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+  }
