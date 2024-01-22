@@ -2,6 +2,11 @@ from django.shortcuts import render,HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from home.models import Resume
+from django.http import JsonResponse
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+import pdfplumber
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -38,11 +43,38 @@ def Login(request):
 def about(request):
     return render(request,'about.html')
 
+def extract_text_from_pdf(pdf_path):
+    with pdfplumber.open(pdf_path) as pdf:
+        text_content = ""
+        for page in pdf.pages:
+            text_content += page.extract_text()
+    return text_content
+
+
+from django.http import HttpResponseBadRequest
+
 def resume_upload(request):
-    if request.method=="POST":
-        # resume=request.POST['resume']
-        round=request.POST['round']
-        job_title=request.POST['job-title']
-        job_description=request.POST['job-description']
-        print(round,job_title,job_description)
-    return render(request,'resume.html')
+    if request.method == 'POST':
+        print(request.FILES)
+        if 'resume' in request.FILES:
+            resume_file = request.FILES['resume']
+            round_type = request.POST.get('round')
+            job_title = request.POST.get('job-title')
+            job_description = request.POST.get('job-description')
+
+            file_path = f'resume/{resume_file.name}'
+            default_storage.save(file_path, resume_file)
+
+            new_resume = Resume(
+                file_path=file_path,
+                round_type=round_type,
+                job_title=job_title,
+                job_description=job_description
+            )
+            new_resume.save()
+
+            return HttpResponse('Resume submitted successfully!')
+        else:
+            return HttpResponseBadRequest('No file selected. Please choose a file.')
+
+    return render(request, 'resume.html')
