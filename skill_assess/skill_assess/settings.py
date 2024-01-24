@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home'
+    'home',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -133,18 +134,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AWS_ACCESS_KEY_ID = 'AKIAUXOLYPXYEGGGRMWU'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAUXOLYPXYOATHKBHU'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'skillassess'
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'ap-south-1'
 AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL =  None
-AWS_S3_VERITY = True
+AWS_DEFAULT_ACL =  'public-read'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_QUERYSTRING_AUTH= False

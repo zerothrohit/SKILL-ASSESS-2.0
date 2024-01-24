@@ -53,28 +53,58 @@ def extract_text_from_pdf(pdf_path):
 
 from django.http import HttpResponseBadRequest
 
+# def resume_upload(request):
+#     if request.method == 'POST':
+#         print(request.FILES)
+#         if 'resume' in request.FILES:
+#             resume_file = request.FILES['resume']
+#             round_type = request.POST.get('round')
+#             job_title = request.POST.get('job-title')
+#             job_description = request.POST.get('job-description')
+
+#             file_path = f'resume/{resume_file.name}'
+#             default_storage.save(file_path, resume_file)
+
+#             new_resume = Resume(
+#                 file_path=file_path,
+#                 round_type=round_type,
+#                 job_title=job_title,
+#                 job_description=job_description
+#             )
+#             new_resume.save()
+
+#             return HttpResponse('Resume submitted successfully!')
+#         else:
+#             return HttpResponseBadRequest('No file selected. Please choose a file.')
+
+#     return render(request, 'resume.html')
+
+
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.core.files.storage import default_storage
+from storages.backends.s3boto3 import S3Boto3Storage
+
+class MediaStorage(S3Boto3Storage):
+    location = 'resume/'
+    file_overwrite = False
+
 def resume_upload(request):
     if request.method == 'POST':
-        print(request.FILES)
-        if 'resume' in request.FILES:
-            resume_file = request.FILES['resume']
-            round_type = request.POST.get('round')
-            job_title = request.POST.get('job-title')
-            job_description = request.POST.get('job-description')
 
-            file_path = f'resume/{resume_file.name}'
-            default_storage.save(file_path, resume_file)
 
-            new_resume = Resume(
-                file_path=file_path,
-                round_type=round_type,
-                job_title=job_title,
-                job_description=job_description
-            )
-            new_resume.save()
+        pdf_file = request.FILES['resume_file']
 
-            return HttpResponse('Resume submitted successfully!')
-        else:
-            return HttpResponseBadRequest('No file selected. Please choose a file.')
+        # Save the file to S3 using the custom storage class
+        file_path = default_storage.save(f'resume/{pdf_file.name}', pdf_file)
+
+        # You can get the URL of the saved file using the custom storage class
+        file_url = default_storage.url(file_path)
+
+        round_type = request.POST.get('round')
+        job_title = request.POST.get('job-title')
+        job_description = request.POST.get('job-description')
+
+        return HttpResponse('Resume submitted successfully!')  # Redirect to a success page
 
     return render(request, 'resume.html')

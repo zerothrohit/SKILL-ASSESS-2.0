@@ -20,12 +20,14 @@
 	<br>
 	<h3 class="t-1">To begin a mock interview.</h3>
 
-	<form action="/resume_upload" method="POST">
-	{% csrf_token %}
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
 		<div class="gaint-container">
-
+			
 			<div class="upload-section">
-				<br>
+				<input type="file" name="resume_file">
+			<!-- <input type="file" class="file-upload" id="resume-upload" name="resume_file" accept=".pdf, .doc, .docx"> -->
+				<!-- <br>
 				<div class="drop-zone" id="drop-zone">
 					<p>Drag and drop your resume here</p>
 					<p>Or click to choose a file</p>
@@ -34,7 +36,7 @@
 				</div>
 				<script>
 
-				</script>
+				</script> -->
 				<p>Allowed file formats: PDF, DOC, DOCX</p>
 
 				<br><br>
@@ -67,7 +69,7 @@
 	</form>
 
 
-	<script>
+	<!-- <script>
 		// Get the file input and remove button elements
 
 
@@ -110,7 +112,7 @@
 			}
 		}
 
-	</script>
+	</script> -->
 
 	</div>
 
