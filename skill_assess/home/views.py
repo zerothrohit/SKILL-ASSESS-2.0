@@ -89,10 +89,32 @@ class MediaStorage(S3Boto3Storage):
     location = 'resume/'
     file_overwrite = False
 
+# def resume_upload(request):
+#     if request.method == 'POST':
+
+
+#         pdf_file = request.FILES['resume_file']
+
+#         # Save the file to S3 using the custom storage class
+#         file_path = default_storage.save(f'resume/{pdf_file.name}', pdf_file)
+
+#         # You can get the URL of the saved file using the custom storage class
+#         file_url = default_storage.url(file_path)
+
+#         round_type = request.POST.get('round')
+#         job_title = request.POST.get('job-title')
+#         job_description = request.POST.get('job-description')
+
+#         return HttpResponse('Resume submitted successfully!')  # Redirect to a success page
+
+#     return render(request, 'resume.html')
+
+
+from django.shortcuts import render, HttpResponse
+from .models import Resume
+
 def resume_upload(request):
     if request.method == 'POST':
-
-
         pdf_file = request.FILES['resume_file']
 
         # Save the file to S3 using the custom storage class
@@ -104,7 +126,21 @@ def resume_upload(request):
         round_type = request.POST.get('round')
         job_title = request.POST.get('job-title')
         job_description = request.POST.get('job-description')
+    
+        base_url = file_url.split('?')[0]
+        
+
+        # Create a Resume object and save it to the database
+        resume_object = Resume(
+            file_path=base_url,
+            round_type=round_type,
+            job_title=job_title,
+            job_description=job_description
+        )
+        resume_object.save()
+        print("File URL:", base_url)
 
         return HttpResponse('Resume submitted successfully!')  # Redirect to a success page
 
     return render(request, 'resume.html')
+
