@@ -19,7 +19,7 @@
 	<h1 class="t-1"> Enter your details </h1>
 	<br>
 	<h3 class="t-1">To begin a mock interview.</h3>
-
+	<h1>Welcome to Our Website, {{ request.user.username }}!</h1>
 	<form method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		<div class="gaint-container">
