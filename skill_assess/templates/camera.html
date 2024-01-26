@@ -1,0 +1,62 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Camera Example</title>
+</head>
+<body>
+    <h1>Web Camera Example</h1>
+    <video id="cameraFeed" width="640" height="480" autoplay></video>
+
+    <script>
+        // Get access to the user's camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                // Assign the camera stream to the video element
+                var videoElement = document.getElementById('cameraFeed');
+                videoElement.srcObject = stream;
+            })
+            .catch(function (error) {
+                console.error('Error accessing camera:', error);
+            });
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Demo</title>
+    <style>
+        #videoElement {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webcam Demo</h1>
+    <button onclick="startWebcam()">Start Webcam</button>
+    <video id="videoElement" autoplay></video>
+
+    <script>
+        function startWebcam() {
+            // Get access to the user's webcam
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    // Assign the stream to the video element
+                    var videoElement = document.getElementById('videoElement');
+                    videoElement.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error accessing webcam:', error);
+                });
+        }
+    </script>
+</body>
+</html>

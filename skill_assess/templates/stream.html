@@ -24,6 +24,7 @@
   <body>
     <div class="main-section">
       <div class="custom-div">
+        <video id="cameraFeed" width="640" height="480" autoplay></video>
         <div class="question-container" id="question-container">
           <div id="question"></div>
           <div class="timer" id="timer">00:00</div>
@@ -123,6 +124,18 @@
             .catch((error) =>
               console.error("Error accessing microphone:", error)
             );
+
+            //camera code
+            // Get access to the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    // Assign the camera stream to the video element
+                    var videoElement = document.getElementById('cameraFeed');
+                    videoElement.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error accessing camera:', error);
+                });
         </script>
       </div>
     </div>
