@@ -1,0 +1,111 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: rgb(3, 182, 190);
+    background: linear-gradient(90deg, rgba(3, 182, 190, 1) 29%, rgba(255, 255, 255, 1) 100%);
+  }
+  
+  .main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+  }
+  
+  .custom-div {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    width: 100%;
+  }
+  
+  #question-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #question {
+    color: #03045E;
+    font-size: 23px;
+    font-family: "Roboto Slab", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  #question2 {
+    color: #03045E;
+    height: 55%;
+    margin-top: 40px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 50px;
+    border: 2px solid #f60e53;
+    text-align: justify;
+  }
+  
+  #timer {
+    font-family: "Roboto Slab", serif;
+    font-size: 18px;
+    color: #03045E;
+    margin-top: -20px;
+    margin-left: 400px;
+  }
+  
+  .question-container {
+    margin-left: 800px;
+    width: 500px;
+    height: 600px;
+    background-color: #fff;
+    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
+    border-radius: 3rem;
+  }
+  
+  #audio-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #00ba16;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .button-stop {
+    background-color: #f60e53;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  #audio-player {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+
+

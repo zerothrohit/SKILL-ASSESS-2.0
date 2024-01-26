@@ -46,19 +46,23 @@ body {
 }
 .custom-text p {
     font-size: 1.1em;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
 }
 .start-button {
-    padding: 10px 25px;
-    background-color: #FC5185;
-    color: white;
+    height: 20px;
+    padding: 1px 50px;
+    background-color: #ffffff;
+    color:  #f60e53;
     border: black;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 20px;
+
 }
 .start-button:hover {
+
     background-color: #f60e53;
+    color: #ffffff;
 }
 .custom-image {
     max-width: 100%;
