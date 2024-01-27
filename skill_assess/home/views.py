@@ -6,10 +6,7 @@ from home.models import Resume
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from storages.backends.s3boto3 import S3Boto3Storage
-from .models import Resume
 from django.contrib.auth.decorators import login_required
-from functools import wraps
-from django.http import HttpResponseForbidden
 from .decorators import custom_login_required
 from django.urls import reverse
 from django.contrib.auth import logout
