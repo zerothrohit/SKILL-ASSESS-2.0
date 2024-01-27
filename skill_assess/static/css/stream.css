@@ -23,8 +23,15 @@ body {
   }
   
   #question-container {
+    margin-top: -500px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-left: 800px;
+    width: 500px;
+    height: 600px;
+    background-color: #fff;
+    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
+    border-radius: 3rem;
+
   }
   
   #question {
@@ -33,6 +40,7 @@ body {
     font-family: "Roboto Slab", serif;
     font-weight: 700;
     font-style: normal;
+    
   }
   
   #question2 {
@@ -58,14 +66,7 @@ body {
     margin-left: 400px;
   }
   
-  .question-container {
-    margin-left: 800px;
-    width: 500px;
-    height: 600px;
-    background-color: #fff;
-    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
-    border-radius: 3rem;
-  }
+
   
   #audio-container {
     margin-top: 20px;
@@ -104,10 +105,33 @@ body {
   
 
   
-  #audio-player {
+#audio-player {
     width: 100%;
     margin-top: 10px;
   }
   
-
-
+  .video-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ /* Removed 'transparent' for better visibility */
+    border: 2px solid #f60e53;
+    width: 550px; /* Removed quotes around the values */
+    height: 480px; /* Removed quotes around the values */
+    margin: 20px; /* Adjust margin as needed */
+    margin-top: 100px;
+    background-color: #fff;
+    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
+    border-radius: 3rem;
+  }
+  
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  #question-container {
+      margin-left: 5%;
+      width: 90%;
+  }
+  #timer {
+      margin-left: 5%;
+  }
+}
