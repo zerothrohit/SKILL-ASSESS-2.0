@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="../static/css/images/teaching.png"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="../static/css/images/logo.ico" type="image/x-icon" />
     <title>Skill Assess</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -125,17 +121,18 @@
               console.error("Error accessing microphone:", error)
             );
 
-            //camera code
-            // Get access to the user's camera
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function (stream) {
-                    // Assign the camera stream to the video element
-                    var videoElement = document.getElementById('cameraFeed');
-                    videoElement.srcObject = stream;
-                })
-                .catch(function (error) {
-                    console.error('Error accessing camera:', error);
-                });
+          //camera code
+          // Get access to the user's camera
+          navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+              // Assign the camera stream to the video element
+              var videoElement = document.getElementById("cameraFeed");
+              videoElement.srcObject = stream;
+            })
+            .catch(function (error) {
+              console.error("Error accessing camera:", error);
+            });
         </script>
       </div>
     </div>

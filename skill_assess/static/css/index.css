@@ -5,17 +5,6 @@ body {
     background: rgb(3,182,190);
     background: linear-gradient(90deg, rgba(3,182,190,1) 29%, rgba(255,255,255,1) 100%);
 }
-.navbar.bg-transparent {
-    background-color: transparent !important;
-}
-.navbar .navbar-brand {
-    font-size: 2em;
-    color: white;
-}
-.navbar-nav .nav-link {
-    font-size: 18px;
-    color: white;
-}
 
 .main-section {
     display: flex;
@@ -28,8 +17,6 @@ body {
 .custom-div {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center;
-    align-items: center; */
     padding: 1em;
     width: 100%;
 }
@@ -50,8 +37,8 @@ body {
 }
 .start-button {
     padding: 10px 25px;
-    background-color: #FC5185;
-    color: white;
+    background-color: white;
+    color: #FC5185;
     border: black;
     border-radius: 10px;
     cursor: pointer;
@@ -59,6 +46,7 @@ body {
 }
 .start-button:hover {
     background-color: #f60e53;
+    color: #fff;
 }
 .custom-image {
     max-width: 100%;
@@ -181,8 +169,8 @@ body {
 
 /* nav button (Home and about) */
 .button1 {
-    background-color: #FC5185; 
-    color: rgb(255, 255, 255); 
+    background-color: white;
+    color: #FC5185;
     border-radius: 4px;
     padding: 10px;
     padding-left: 7px;
@@ -208,3 +196,10 @@ body {
     box-shadow: 0 5px #f60e53;
     transform: translateY(4px);
   }
+
+.logo{
+    width: 300px;
+    margin-top:-20px;
+    margin-left: -100px;
+
+}
