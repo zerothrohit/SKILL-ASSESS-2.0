@@ -1,25 +1,53 @@
 body {
-    font-family: 'Poppins', sans-serif;;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: rgb(3,182,190);
-    background: linear-gradient(90deg, rgba(3,182,190,1) 29%, rgba(255,255,255,1) 100%);
+    background-color: #ffffff;
+}
+.container-fluid {
+    border-bottom: 2px solid #333; /* Use border-bottom instead of border to create a bottom border */
+    box-shadow: 0 5px 10px rgba(246, 14, 83, 0.3); /* Adjust the box shadow for a more subtle effect */
+}
+.droplet-path {
+    margin-top: 100px;
+    position: absolute;
+    width: 480px;
+    height: 500px;
+    background-color: #f60e53; /* Red color for the droplet path */
+    border-radius: 50%;
+    clip-path: circle(50% 20%, 100% 100%, 0% 100%);
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
 }
 
+
+
+.boy-img{
+    width: 60vh; 
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Main Section */
 .main-section {
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: auto;
+
+
 }
+
 .custom-div {
     display: flex;
     flex-wrap: wrap;
     padding: 1em;
     width: 100%;
 }
+
+/* Custom Text */
 .custom-text {
     text-align: center;
     color: #e6e2e2;
@@ -27,70 +55,86 @@ body {
     padding-top: 2em;
     flex: 1;
 }
+
 .custom-text h1 {
     font-size: 2.7em;
     margin-bottom: 10px;
+    color: #f60e53;
 }
+
 .custom-text p {
     font-size: 1.1em;
     margin-bottom: 25px;
+    color: #f60e53;
+    
 }
+
+/* Start Button */
 .start-button {
     padding: 10px 25px;
     background-color: white;
-    color: #FC5185;
-    border: black;
+    color: #f60e53;
+    border: 2px solid black; /* Added border style */
     border-radius: 10px;
     cursor: pointer;
     font-size: 2em;
 }
+
 .start-button:hover {
     background-color: #f60e53;
     color: #fff;
 }
+
+/* Custom Image */
 .custom-image {
     max-width: 100%;
     height: auto;
     padding: 1em;
     flex: 1;
 }
+
+/* Media Queries */
 @media (max-width: 768px) {
     .custom-text {
         padding-top: 0;
     }
+
     .custom-text h1 {
         font-size: 2.1em;
         margin-bottom: 10px;
     }
+
     .custom-text p {
         font-size: 0.8em;
         margin-bottom: 25px;
     }
-  .custom-image {
+
+    .custom-image {
         max-width: 100%;
         height: auto;
         padding: 1em;
         flex: 1;
     }
 }
+
 @media (min-width: 768px) {
     .custom-text {
         text-align: left;
     }
 }
 
-/* section */
-
+/* Main Container (Card Section) */
 .main-container {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin-top: -150px; 
+    margin-top: -150px;
 }
 
+/* Card Styling */
 .card {
     width: 320px;
     margin: 20px;
@@ -106,6 +150,7 @@ body {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Card Content Styling */
 .card-content {
     padding: 20px;
     text-align: center;
@@ -130,27 +175,7 @@ body {
     margin-bottom: 15px;
 }
 
-/* Example responsive text styles */
-.card-content {
-    padding: 20px;
-    text-align: center;
-}
-
-.card-content h2 {
-    font-size: 1.7rem;
-    margin: 10px 0;
-    color: #333;
-}
-
-.card-content p {
-    font-size: 0.9rem;
-    color: #777;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
-/* Responsive text adjustments */
-
+/* Responsive Text Styles Adjustments */
 @media (max-width: 700px) {
     .card-content h2 {
         font-size: 1.2rem;
@@ -161,45 +186,43 @@ body {
         font-size: 0.85rem;
         margin-bottom: 10px;
     }
+
     .card {
-        width: calc(100% - 100px);
+        width: calc(100% - 40px);
     }
 }
 
-
-/* nav button (Home and about) */
+/* Navigation Button Styles */
 .button1 {
     background-color: white;
-    color: #FC5185;
+    color: #f60e53;
     border-radius: 4px;
     padding: 10px;
-    padding-left: 7px;
-    padding-right: 7px;
-    margin-right:16px;
+    margin-right: 16px;
     font-size: 17px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .button1:hover {
+}
+
+.button1:hover {
     background-color: #f60e53;
     color: white;
-  }
+}
 
-  .button1:active {
-    background-color: #FC5185;
+.button1:active {
+    background-color: #f60e53;
     box-shadow: 0 5px #f60e53;
     transform: translateY(4px);
-  }
+}
 
-  .form .button:active {
-    background-color: #FC5185;
+.form .button:active {
+    background-color: #f60e53;
     box-shadow: 0 5px #f60e53;
     transform: translateY(4px);
-  }
+}
 
-.logo{
+/* Logo Styling */
+.logo {
     width: 300px;
-    margin-top:-20px;
+    margin-top: -10px;
     margin-left: -100px;
-
 }

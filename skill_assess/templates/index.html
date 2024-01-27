@@ -10,6 +10,7 @@
     <title> Skill Assess </title> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/index.css">
+    <script src="https://kit.fontawesome.com/03b9268964.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -41,16 +42,23 @@
     <div class="main-section">
         <div class="custom-div">
             <div class="custom-text">
-                <h1 style="font-size: 55px; margin-top: 50px;">Welcome to Mock Interview</h1>
+                 <!-- <h1 style="font-size: 30px; margin-top: 50px; color:black;">Welcome</h1>
+                <h1 style="font-size: 30px; margin-top: 50px;">AI-Mock </h1>
+                <h1 style="font-size: 30px; margin-top: 50px;color:black;">Interview</h1> -->
+                <h1 id="typing-element"></h1>
                 <p>Preparing you towards your job interviews</p>
                 <!-- <a href="/resume_upload"><button class="start-button">Start <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="12"></a> -->
-                <a href=/resume_upload ><button class="start-button" type="button">Start</button></a> 
+                <a href=/resume_upload ><button class="start-button" type="button">Start <i class="fa-sharp fa-solid fa-play"></i> </button> </a> 
+
                     <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" fill="white"/>
 </svg>
 </button>
             </div>
+           
             <div>
-                <img src="https://gradeazy.com/images/home/home-hero.png" alt="Student Image" style="width: 60vh; margin-bottom: 70px;">
+                <div class="droplet-path"></div>
+
+                <img src="https://gradeazy.com/images/home/home-hero.png" alt="Student Image"  class="boy-img">
             </div>
         </div>
     </div>
@@ -88,7 +96,28 @@
             </div>
         </div>
     </section>
-    <!-- image : https://tse1.mm.bing.net/th?id=OIP._wfKsqaDlhOjo___eUnNxgHaE0&pid=Api&P=0&h=180 -->
+    <script>
+      const texts = ["Welcome to AI-Mock Interviewer"];
+      let count = 0;
+      let index = 0;
+      let currentText = "";
+      let letter = "";
+
+      (function type() {
+          if (count === texts.length) {
+              count = 0;
+          }
+          currentText = texts[count];
+          letter = currentText.slice(0, ++index);
+
+          document.getElementById('typing-element').textContent = letter;
+          if (letter.length === currentText.length) {
+              count++;
+              index = 0;
+          }
+          setTimeout(type, 200); // Adjust typing speed (milliseconds)
+      })();
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
