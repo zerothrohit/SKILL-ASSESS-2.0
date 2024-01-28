@@ -16,6 +16,7 @@ body {
 .container-fluid {
 
     border-bottom: 2px solid #333;
+    background-color: #3FC1C9;
     /* Use border-bottom instead of border to create a bottom border */
     box-shadow: 0 5px 10px rgba(246, 14, 83, 0.3);
     /* Adjust the box shadow for a more subtle effect */
@@ -39,7 +40,6 @@ body {
 }
 
 
-
 .boy-img {
     width: 60vh;
     margin-bottom: 70px;
@@ -54,9 +54,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-
-
-
 }
 
 .custom-div {
@@ -250,7 +247,7 @@ body {
 
 /* footer css */
 .footer {
-    background-color: #f0f0f0;
+    background-color: #3FC1C9;
     padding: 40px 0;
     color: #333;
 }
