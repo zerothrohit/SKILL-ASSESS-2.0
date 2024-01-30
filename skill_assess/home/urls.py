@@ -9,5 +9,6 @@ urlpatterns = [
     path('resume_upload', login_required(views.resume_upload), name='resume_upload'),
     path('login', views.Login, name='login'),
     path('register', views.register, name='register'),
-    path('logout', views.logout_view, name='logout')
+    path('logout', views.logout_view, name='logout'),
+    path('stream', views.stream, name='stream'),
 ]

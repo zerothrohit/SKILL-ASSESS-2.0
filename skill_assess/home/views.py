@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from .decorators import custom_login_required
 from django.urls import reverse
 from django.contrib.auth import logout
+from .utils import get_text_from_resume_file, skills_extraction, question_generator
 
 # Create your views here.
 def index(request):
@@ -83,8 +84,44 @@ def resume_upload(request):
         )
         resume_object.save()
         print("File URL:", base_url)
-        return HttpResponse('Resume submitted successfully!')
+        return redirect('stream')
 
     return render(request, 'resume.html')
+
+@custom_login_required
+def stream(request):
+    # Fetch the last uploaded resume details of the current user
+    last_resume = Resume.objects.filter(user=request.user).last()
+
+    if last_resume:
+        # Extract information from the last uploaded resume
+        resume_file_path = last_resume.file_path
+        round_type = last_resume.round_type
+        job_title = last_resume.job_title
+        job_description = last_resume.job_description
+
+        # Fetch the resume file from S3 and extract text (you may need to implement this)
+        # For demonstration purposes, let's assume there's a function get_text_from_resume_file
+        resume_text = get_text_from_resume_file(resume_file_path)
+
+        # Print details in the terminal (replace print statements with your desired actions)
+        print("Resume Text:", resume_text)
+        print("Round Type:", round_type)
+        print("Job Title:", job_title)
+        print("Job Description:", job_description)
+
+        skills=skills_extraction(resume_text,job_description)
+        questions = question_generator(job_description, skills)
+        print(questions)
+        # Render the stream page with resume details
+
+        return render(request,'stream.html')
+    
+    else:
+        # Handle the case where there is no resume uploaded
+        return HttpResponse('error')
+    if resume_text:
+        skills_extraction(resume_text,job_description)
+
 
 
