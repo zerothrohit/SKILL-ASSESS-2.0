@@ -113,15 +113,17 @@ def stream(request):
         skills=skills_extraction(resume_text,job_description)
         questions = question_generator(job_description, skills)
         print(questions)
-        # Render the stream page with resume details
+        
+        # Transform questions to the desired structure
+        transformed_questions = [{"title": f"Question {i+1}", "text": question} for i, question in enumerate(questions)]
+        print(transformed_questions)
 
-        return render(request,'stream.html')
+        # Render the stream page with resume details and transformed questions
+        return render(request, 'stream.html', {'questions': transformed_questions})
     
     else:
         # Handle the case where there is no resume uploaded
         return HttpResponse('error')
-    if resume_text:
-        skills_extraction(resume_text,job_description)
 
 
 

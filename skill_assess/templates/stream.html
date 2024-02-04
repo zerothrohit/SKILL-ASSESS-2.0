@@ -1,146 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../static/css/images/logo.ico" type="image/x-icon" />
-    <title>Skill Assess</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../static/css/stream.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    />
-    <script src="https://unpkg.com/wavesurfer.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../static/css/images/logo.ico" type="image/x-icon" />
+  <title>Skill Assess</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/stream.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+</head>
 
-  <body>
-    <div class="main-section">
-      <div class="custom-div">
-        <video
-          class="video-container"
-          width="550px;"
-          height="480px;"
-          id="cameraFeed"
-          autoplay
-        ></video>
-        <div class="question-container" id="question-container">
-          <div id="question"></div>
-          <div class="timer" id="timer">00:00</div>
-          <div id="question2">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </div>
-          <div id="audio-container">
-            <button class="button-start" id="start-recording">Start Recording</button>
-            <button class="button-stop" id="stop-recording">
-              Stop Recording
-            </button>
-            <audio id="audio-player" controls></audio>
-          </div>
+<body>
+  <div class="main-section">
+    <div class="custom-div">
+      <video class="video-container" width="550px;" height="480px;" id="cameraFeed" autoplay></video>
+      <div class="question-container" id="question-container">
+        <div id="question"></div>
+        <div class="timer" id="timer">00:00</div>
+        <div id="questionText"></div> <!-- Updated div for displaying questions -->
+        <div id="audio-container">
+          <button class="button-start" id="start-recording">Start Recording</button>
+          <button class="button-stop" id="stop-recording">Stop Recording</button>
+          <audio id="audio-player" controls></audio>
         </div>
-        <!-- JavaScript -->
-        <script>
-          function displayQuestion(question, questionId) {
-            document.getElementById(questionId).innerText = question;
-          }
-
-          function startTimer(duration, display) {
-            var timer = duration,
-              minutes,
-              seconds;
-            return setInterval(function () {
-              minutes = parseInt(timer / 60, 10);
-              seconds = parseInt(timer % 60, 10);
-
-              minutes = minutes < 10 ? "0" + minutes : minutes;
-              seconds = seconds < 10 ? "0" + seconds : seconds;
-
-              display.textContent = minutes + ":" + seconds;
-
-              if (--timer < 0) {
-                timer = duration;
-                // Display next question or take action when the timer runs out
-                questionIndex++;
-                if (questionIndex < questions.length) {
-                  displayQuestion(questions[questionIndex], "question");
-                } else {
-                  // All questions answered, you can redirect or perform any other action
-                  // For now, let's just stop the timer
-                  clearInterval(timerInterval);
-                }
-              }
-            }, 1000);
-          }
-
-          // To use the functions
-          var questions = ["Question 1", "Question 2", "Question 3"];
-          var questionIndex = 0;
-          displayQuestion(questions[questionIndex], "question");
-          var timerDisplay = document.querySelector("#timer");
-          var timerInterval = startTimer(10, timerDisplay); // 10 seconds for each question
-
-          // Audio recording logic (this is a simplified example)
-          const startRecordingBtn = document.getElementById("start-recording");
-          const stopRecordingBtn = document.getElementById("stop-recording");
-          const audioPlayer = document.getElementById("audio-player");
-
-          let mediaRecorder;
-          let audioChunks = [];
-
-          navigator.mediaDevices
-            .getUserMedia({ audio: true })
-            .then((stream) => {
-              mediaRecorder = new MediaRecorder(stream);
-
-              startRecordingBtn.addEventListener("click", () => {
-                audioChunks = [];
-                mediaRecorder.start();
-                startRecordingBtn.disabled = true;
-                stopRecordingBtn.disabled = false;
-              });
-
-              stopRecordingBtn.addEventListener("click", () => {
-                mediaRecorder.stop();
-                startRecordingBtn.disabled = false;
-                stopRecordingBtn.disabled = true;
-              });
-
-              mediaRecorder.ondataavailable = (event) => {
-                if (event.data.size > 0) {
-                  audioChunks.push(event.data);
-                }
-              };
-
-              mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
-                const audioUrl = URL.createObjectURL(audioBlob);
-                audioPlayer.src = audioUrl;
-              };
-            })
-            .catch((error) =>
-              console.error("Error accessing microphone:", error)
-            );
-
-          //camera code
-          // Get access to the user's camera
-          navigator.mediaDevices
-            .getUserMedia({ video: true })
-            .then(function (stream) {
-              // Assign the camera stream to the video element
-              var videoElement = document.getElementById("cameraFeed");
-              videoElement.srcObject = stream;
-            })
-            .catch(function (error) {
-              console.error("Error accessing camera:", error);
-            });
-        </script>
       </div>
+      <!-- JavaScript -->
+      <script>
+        function displayQuestion(question, questionText) {
+          document.getElementById("question").innerText = question;
+          document.getElementById("questionText").innerText = questionText;
+        }
+
+        function startTimer(duration, display) {
+          var timer = duration, minutes, seconds;
+          return setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+              timer = duration;
+              // Display next question or take action when the timer runs out
+              questionIndex++;
+              if (questionIndex < questions.length) {
+                displayQuestion(questions[questionIndex].title, questions[questionIndex].text);
+              } else {
+                // All questions answered, you can redirect or perform any other action
+                // For now, let's just stop the timer
+                clearInterval(timerInterval);
+              }
+            }
+          }, 1000);
+        }
+
+        // To use the functions
+        var questions = {{ questions|safe }}; // Fetching questions from Django context
+        var questionIndex = 0;
+        displayQuestion(questions[questionIndex].title, questions[questionIndex].text);
+        var timerDisplay = document.querySelector("#timer");
+        var timerInterval = startTimer(10, timerDisplay); // 10 seconds for each question
+
+        // Audio recording logic (this is a simplified example)
+        const startRecordingBtn = document.getElementById("start-recording");
+        const stopRecordingBtn = document.getElementById("stop-recording");
+        const audioPlayer = document.getElementById("audio-player");
+
+        let mediaRecorder;
+        let audioChunks = [];
+
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then((stream) => {
+            mediaRecorder = new MediaRecorder(stream);
+
+            startRecordingBtn.addEventListener("click", () => {
+              audioChunks = [];
+              mediaRecorder.start();
+              startRecordingBtn.disabled = true;
+              stopRecordingBtn.disabled = false;
+            });
+
+            stopRecordingBtn.addEventListener("click", () => {
+              mediaRecorder.stop();
+              startRecordingBtn.disabled = false;
+              stopRecordingBtn.disabled = true;
+            });
+
+            mediaRecorder.ondataavailable = (event) => {
+              if (event.data.size > 0) {
+                audioChunks.push(event.data);
+              }
+            };
+
+            mediaRecorder.onstop = () => {
+              const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+              const audioUrl = URL.createObjectURL(audioBlob);
+              audioPlayer.src = audioUrl;
+            };
+          })
+          .catch((error) =>
+            console.error("Error accessing microphone:", error)
+          );
+
+        //camera code
+        // Get access to the user's camera
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then(function (stream) {
+            // Assign the camera stream to the video element
+            var videoElement = document.getElementById("cameraFeed");
+            videoElement.srcObject = stream;
+          })
+          .catch(function (error) {
+            console.error("Error accessing camera:", error);
+          });
+      </script>
     </div>
-  </body>
+  </div>
+</body>
 </html>
