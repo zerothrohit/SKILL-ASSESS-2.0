@@ -77,4 +77,4 @@ def question_generator(description, skills):
     # # Write the content of the variable into the file
     #     file.write(str(criteria))
     
-    return type(criteria),criteria,type(question_list), question_list
+    return question_list
