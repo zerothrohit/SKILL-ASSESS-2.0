@@ -11,7 +11,9 @@ from .decorators import custom_login_required
 from django.urls import reverse
 from django.contrib.auth import logout
 from .utils import get_text_from_resume_file, skills_extraction, question_generator
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -125,5 +127,29 @@ def stream(request):
         # Handle the case where there is no resume uploaded
         return HttpResponse('error')
 
+
+
+
+user_answers = {}  # Define outside the function to persist between requests
+
+@csrf_exempt
+def save_answer(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        question = data.get('question')
+        answer = data.get('answer')
+        
+        # Save the answer to the user_answers dictionary
+        user_answers[question] = answer
+
+        # Check if all questions have been answered
+        if len(user_answers) == 10:  # Assuming you have 10 questions
+            print("All questions answered:")
+            for question, answer in user_answers.items():
+                print(f"Question: {question}, Answer: {answer}")
+
+        return JsonResponse({'message': 'Answer saved successfully.'})
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 

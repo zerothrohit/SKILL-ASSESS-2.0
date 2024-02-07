@@ -11,4 +11,5 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('logout', views.logout_view, name='logout'),
     path('stream', views.stream, name='stream'),
+    path('save-answer', views.save_answer, name='save_answer'),
 ]
