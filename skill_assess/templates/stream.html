@@ -27,6 +27,28 @@
       </div>
       <!-- JavaScript -->
       <script>
+        // Function to send answer to server
+        function sendAnswer(question, answer) {
+          fetch('/save-answer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': '{{ csrf_token }}', // Add CSRF token if CSRF protection is enabled
+            },
+            body: JSON.stringify({ question: question, answer: answer })
+          })
+          .then(response => {
+            if (response.ok) {
+              console.log('Answer saved successfully.');
+            } else {
+              console.error('Failed to save answer.');
+            }
+          })
+          .catch(error => {
+            console.error('Error occurred while saving answer:', error);
+          });
+        }
+
         function displayQuestion(question, questionText) {
           document.getElementById("question").innerText = question;
           document.getElementById("questionText").innerText = questionText;
@@ -73,46 +95,48 @@
         let mediaRecorder;
         let audioChunks = [];
 
-        navigator.mediaDevices
-          .getUserMedia({ audio: true })
-          .then((stream) => {
-            mediaRecorder = new MediaRecorder(stream);
+        // Web Speech API
+        const recognition = new webkitSpeechRecognition(); // For compatibility with some browsers
+        recognition.continuous = true;
+        recognition.interimResults = true;
 
-            startRecordingBtn.addEventListener("click", () => {
-              audioChunks = [];
-              mediaRecorder.start();
-              startRecordingBtn.disabled = true;
-              stopRecordingBtn.disabled = false;
-            });
+        recognition.onstart = () => {
+          console.log('Speech recognition started.');
+        };
 
-            stopRecordingBtn.addEventListener("click", () => {
-              mediaRecorder.stop();
-              startRecordingBtn.disabled = false;
-              stopRecordingBtn.disabled = true;
-            });
+        recognition.onresult = (event) => {
+          const transcript = Array.from(event.results)
+            .map(result => result[0].transcript)
+            .join('');
+          console.log('Transcript:', transcript);
+          sendAnswer(questions[questionIndex].title, transcript);
+        };
 
-            mediaRecorder.ondataavailable = (event) => {
-              if (event.data.size > 0) {
-                audioChunks.push(event.data);
-              }
-            };
+        recognition.onerror = (event) => {
+          console.error('Speech recognition error:', event.error);
+        };
 
-            mediaRecorder.onstop = () => {
-              const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
-              const audioUrl = URL.createObjectURL(audioBlob);
-              audioPlayer.src = audioUrl;
-            };
-          })
-          .catch((error) =>
-            console.error("Error accessing microphone:", error)
-          );
+        recognition.onend = () => {
+          console.log('Speech recognition ended.');
+        };
 
-        //camera code
-        // Get access to the user's camera
+        startRecordingBtn.addEventListener("click", () => {
+          audioChunks = [];
+          recognition.start();
+          startRecordingBtn.disabled = true;
+          stopRecordingBtn.disabled = false;
+        });
+
+        stopRecordingBtn.addEventListener("click", () => {
+          recognition.stop();
+          startRecordingBtn.disabled = false;
+          stopRecordingBtn.disabled = true;
+        });
+
+        // Camera code (unchanged)
         navigator.mediaDevices
           .getUserMedia({ video: true })
           .then(function (stream) {
-            // Assign the camera stream to the video element
             var videoElement = document.getElementById("cameraFeed");
             videoElement.srcObject = stream;
           })
