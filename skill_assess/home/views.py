@@ -10,11 +10,14 @@ from django.contrib.auth.decorators import login_required
 from .decorators import custom_login_required
 from django.urls import reverse
 from django.contrib.auth import logout
-from .utils import get_text_from_resume_file, skills_extraction, question_generator
+from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
+import json,time
 # Create your views here.
+job_description=""
+criterias=[]
+questions=[]
 def index(request):
     return render(request,'index.html')
 
@@ -85,7 +88,6 @@ def resume_upload(request):
             job_description=job_description
         )
         resume_object.save()
-        print("File URL:", base_url)
         return redirect('stream')
 
     return render(request, 'resume.html')
@@ -100,26 +102,23 @@ def stream(request):
         resume_file_path = last_resume.file_path
         round_type = last_resume.round_type
         job_title = last_resume.job_title
+        global job_description
         job_description = last_resume.job_description
 
         # Fetch the resume file from S3 and extract text (you may need to implement this)
         # For demonstration purposes, let's assume there's a function get_text_from_resume_file
         resume_text = get_text_from_resume_file(resume_file_path)
 
-        # Print details in the terminal (replace print statements with your desired actions)
-        print("Resume Text:", resume_text)
-        print("Round Type:", round_type)
-        print("Job Title:", job_title)
-        print("Job Description:", job_description)
 
         skills=skills_extraction(resume_text,job_description)
-        questions = question_generator(job_description, skills)
-        print(questions)
-        
+        questions_and_criterias = question_generator(job_description, skills)
+        global criterias
+        global questions
+        questions, criterias = questions_and_criterias[0],questions_and_criterias[1]
+    
+
         # Transform questions to the desired structure
         transformed_questions = [{"title": f"Question {i+1}", "text": question} for i, question in enumerate(questions)]
-        print(transformed_questions)
-
         # Render the stream page with resume details and transformed questions
         return render(request, 'stream.html', {'questions': transformed_questions})
     
@@ -128,28 +127,41 @@ def stream(request):
         return HttpResponse('error')
 
 
-
-
 user_answers = {}  # Define outside the function to persist between requests
 
 @csrf_exempt
 def save_answer(request):
+    global user_answers
+
     if request.method == 'POST':
         data = json.loads(request.body)
         question = data.get('question')
+        time.sleep(12)
         answer = data.get('answer')
-        
+
         # Save the answer to the user_answers dictionary
         user_answers[question] = answer
 
         # Check if all questions have been answered
         if len(user_answers) == 10:  # Assuming you have 10 questions
             print("All questions answered:")
-            for question, answer in user_answers.items():
-                print(f"Question: {question}, Answer: {answer}")
-
+            print("===========================================")
+            print(user_answers)
+            print("===========================================")
+            return redirect('feedback')
+            # global job_description, criterias, questions
+            # feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
+            # return render(request, 'feedback.html', {'feedback_dict': feedback_dict})
+        
+        
+        # If not all questions are answered, return a JsonResponse indicating success
         return JsonResponse({'message': 'Answer saved successfully.'})
+
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
-
+def feedback(request):
+    global job_description, criterias, questions, user_answers
+    feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
+    print(feedback_dict)
+    return render(request, 'feedback.html', {'feedback_dict': feedback_dict})
