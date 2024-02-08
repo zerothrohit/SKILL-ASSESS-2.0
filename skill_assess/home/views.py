@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from .decorators import custom_login_required
 from django.urls import reverse
 from django.contrib.auth import logout
-from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation
+from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation, question_generator_hr
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json,time
@@ -111,7 +111,10 @@ def stream(request):
 
 
         skills=skills_extraction(resume_text,job_description)
-        questions_and_criterias = question_generator(job_description, skills)
+        if round_type == 'technical':
+            questions_and_criterias = question_generator(job_description, skills)
+        elif round_type == 'hr':
+            questions_and_criterias = question_generator_hr(job_description, skills)
         global criterias
         global questions
         questions, criterias = questions_and_criterias[0],questions_and_criterias[1]

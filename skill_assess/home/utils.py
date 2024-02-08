@@ -65,6 +65,37 @@ def question_generator(description, skills):
         question_list.extend(sublist)
     return question_list, criteria
 
+def question_generator_hr(description, skills):
+    prompt = f'''You are an experienced HR professional conducting interviews to assess whether the candidate aligns with the job role and organizational culture.
+                Interview a candidate for the following job description: {description}.
+                The candidate possesses the following skill set: {skills}.
+                Based on the job description and the candidate's skill set, you need to generate 10 questions in total.
+                Questions must be generated on the following evaluation criterias, each category should have 2 questions:  Leadership Potential, Work Ethic and Professionalism, Teamwork and Collaboration, Motivation and Passion, Adaptability and Learning Orientation
+                The formation of the questions should emulate a human HR interviewer's style, incorporating verbal inflections, pauses, and vocal fillers. Craft questions that flow naturally in a conversation. 
+
+                Your output should be in Python dictionary format, where the key is the evaluation criteria, and the value contains the questions in list format. Ensure there is no '*' character in your response.
+
+                '''
+    response = palm.generate_text(prompt= prompt)
+    questions=response.result
+    if questions==None:
+        response=palm.generate_text(prompt=prompt)
+    start_idx = questions.find('{')
+    end_idx = questions.find('}')
+    
+    if start_idx != -1 and end_idx != -1:
+        questions= questions[start_idx:end_idx+1]
+    else:
+        questions= questions
+   
+    questions_dict = ast.literal_eval(questions)
+    criteria=list(questions_dict.keys())
+
+    question_list= []
+
+    for sublist in questions_dict.values():
+        question_list.extend(sublist)
+    return question_list, criteria
 
 def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,questions_list,final_answers):
     evaluation_prompt=f'''your job is to evaluate an entire interview for the below job description:
