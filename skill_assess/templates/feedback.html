@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+</head>
+<body>
+    <h1>Feedback</h1>
+    <div>
+        {% for key, value in feedback_dict.items %}
+            <h2>{{ key }}</h2>
+            <p>Rating: {{ value.0 }}/10</p>
+            <p>{{ value.1 }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

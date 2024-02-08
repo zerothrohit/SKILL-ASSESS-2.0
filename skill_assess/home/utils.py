@@ -15,9 +15,6 @@ def get_text_from_resume_file(file_path):
 
 
 def skills_extraction(text, description):
-    # Configure PALM with your API key
-
-    # Prepare the prompt with the {text} variable.
     prompt = f'''*ONLY* Extract all soft skills along with hard skills related to Computer Science, Information Technology, and related fields mentioned in the following text.
             Use the following {text} as input,
             * DO NOT AUTO-GENERATE SKILLS WHICH ARE NOT PRESENT, show skills which are mentioned in {text} only *
@@ -51,30 +48,46 @@ def question_generator(description, skills):
     questions=response.result
     if questions==None:
         response=palm.generate_text(prompt=prompt)
-    print("=====================================================================")
-    print(questions)
-    print("=====================================================================")
     start_idx = questions.find('{')
     end_idx = questions.find('}')
     
     if start_idx != -1 and end_idx != -1:
         questions= questions[start_idx:end_idx+1]
-        # questions_dict = ast.literal_eval(questions)
     else:
         questions= questions
-        # questions_dict = ast.literal_eval(questions)
    
     questions_dict = ast.literal_eval(questions)
-    # global criteria
     criteria=list(questions_dict.keys())
 
     question_list= []
 
     for sublist in questions_dict.values():
         question_list.extend(sublist)
+    return question_list, criteria
 
-    # with open('criteria.txt', 'w') as file:
-    # # Write the content of the variable into the file
-    #     file.write(str(criteria))
+
+def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,questions_list,final_answers):
+    evaluation_prompt=f'''your job is to evaluate an entire interview for the below job description:
+    {description}
+
+    The question are based on these five evaluation criterias {criteria1}, {criteria2}, {criteria3}, {criteria4}, {criteria5}
+    Here is the list of questions asked to the candidate:
+    {questions_list}
+    And the below list contains the answers given by the candidate with respect to the questions asked:
+    {final_answers}
+
+    Based upon the answers given by candidate rate the skills of the candidate out of 10 points for each criteria and provide personalised feedback for improvements in each criteria.
+    The feedback should be genuine so that the candidate can excel in the next interview.
+    Return the response as a dictionary data type of python where key is the evaluation criteria of string type and value contains the rating and feedback to improve in list format'''    
+    response = palm.generate_text(prompt= evaluation_prompt)
+    evaluation=response.result
+    start_idx = evaluation.find('{')
+    end_idx = evaluation.find('}')
     
-    return question_list
+    if start_idx != -1 and end_idx != -1:
+        evaluation= evaluation[start_idx:end_idx+1]
+    else:
+        evaluation= evaluation
+    evaluation_dict = ast.literal_eval(evaluation)
+
+    return evaluation_dict
