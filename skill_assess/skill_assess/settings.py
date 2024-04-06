@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'skill_assess.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skillassessdb',
-        'USER': 'skillassess',
+        'NAME': 'skillassessdbb',
+        'USER': 'skillassessdbb',
         'PASSWORD': 'skillassess2024',
-        'HOST': 'skillassessdb.cpiky2qmkt1e.ap-south-1.rds.amazonaws.com',
+        'HOST': 'skillassessdbb.cu6nfvakmh9c.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
