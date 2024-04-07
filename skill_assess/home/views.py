@@ -9,7 +9,7 @@ from storages.backends.s3boto3 import S3Boto3Storage
 from django.contrib.auth.decorators import login_required
 from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation, question_generator_hr
 from .decorators import custom_login_required
-
+import os
 from django.urls import reverse
 
 from django.contrib.auth import logout
@@ -229,6 +229,32 @@ def save_answer(request):
 
 
 
+
+@csrf_exempt
+def save_video(request):
+    if request.method == 'POST':
+        data = request.FILES['video']
+        question_number = request.POST.get('question_number')
+
+        # Define the directory where you want to save the videos
+        save_dir = 'skill_assess/media/'
+
+        # Ensure the directory exists, create it if not
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+
+        # Save the video file
+        video_path = os.path.join(save_dir, f'video_{question_number}.webm')
+        with open(video_path, 'wb') as f:
+            for chunk in data.chunks():
+                f.write(chunk)
+
+        return redirect('feedback')
+
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)
+    
+    
 
 def feedback(request):
 
