@@ -230,6 +230,12 @@ def save_answer(request):
 
 
 
+from django.shortcuts import render, HttpResponse, redirect
+from django.conf import settings
+from django.shortcuts import render, HttpResponse, redirect
+from django.core.files.storage import FileSystemStorage  # Import FileSystemStorage
+import os
+
 @csrf_exempt
 def save_video(request):
     if request.method == 'POST':
@@ -237,7 +243,7 @@ def save_video(request):
         question_number = request.POST.get('question_number')
 
         # Define the directory where you want to save the videos
-        save_dir = 'skill_assess/media/'
+        save_dir = 'media/'
 
         # Ensure the directory exists, create it if not
         if not os.path.exists(save_dir):
@@ -253,8 +259,6 @@ def save_video(request):
 
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
-    
-    
 
 def feedback(request):
 

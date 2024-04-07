@@ -12,5 +12,6 @@ urlpatterns = [
     path('logout', views.logout_view, name='logout'),
     path('stream', views.stream, name='stream'),
     path('save-answer', views.save_answer, name='save_answer'),
+    path('save-video', views.save_video, name='save_video'),
     path('feedback', views.feedback, name='feedback'),
 ]

@@ -199,33 +199,41 @@
             resolve(blob);
           });
         }
+        function saveVideo() {
+            return new Promise(resolve => {
+              const blob = new Blob(recordedChunks, { type: 'video/webm' });
+              resolve(blob);
+            });
+          }
 
+          function startRecording() {
+            mediaRecorder = new MediaRecorder(videoStream);
+            const chunks = [];
+            mediaRecorder.ondataavailable = event => chunks.push(event.data);
+            mediaRecorder.onstop = async () => {
+              const blob = new Blob(chunks, { type: 'video/webm' });
+              const formData = new FormData();
+              formData.append('video', blob);
+              formData.append('question_number', questionIndex + 1); // Assuming question starts from 1
 
-        function startRecording() {
-          mediaRecorder = new MediaRecorder(videoStream);
-          const chunks = [];
-          mediaRecorder.ondataavailable = event => {
-            chunks.push(event.data);
-          };
-          mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'video/webm' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `video_${questionIndex + 1}.webm`;
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => {
-              document.body.removeChild(a);
-              window.URL.revokeObjectURL(url);
-            }, 100);
-          };
-          mediaRecorder.start();
-        }
+              try {
+                const response = await fetch('/save-video', {
+                  method: 'POST',
+                  body: formData
+                });
+                if (!response.ok) {
+                  throw new Error('Failed to save video.');
+                }
+              } catch (error) {
+                console.error('Error occurred while saving video:', error);
+              }
+            };
+            mediaRecorder.start();
+          }
 
-        function stopRecording() {
-          mediaRecorder.stop();
-        }        
+          function stopRecording() {
+            mediaRecorder.stop();
+          }      
 
 
       </script>
