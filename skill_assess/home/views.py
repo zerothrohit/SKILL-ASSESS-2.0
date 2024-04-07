@@ -7,19 +7,32 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from storages.backends.s3boto3 import S3Boto3Storage
 from django.contrib.auth.decorators import login_required
-from .decorators import custom_login_required
-from django.urls import reverse
-from django.contrib.auth import logout
 from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation, question_generator_hr
+from .decorators import custom_login_required
+
+from django.urls import reverse
+
+from django.contrib.auth import logout
+
 from django.http import JsonResponse
+
 from django.views.decorators.csrf import csrf_exempt
+
 import json,time
+
 # Create your views here.
+
 job_description=""
+
 criterias=[]
+
 questions=[]
+
 def index(request):
+
     return render(request,'index.html')
+
+
 
 def register(request):
     if request.method=="POST":
@@ -85,10 +98,18 @@ def resume_upload(request):
             file_path=f'resume/{pdf_file.name}',
             round_type=round_type,
             job_title=job_title,
+
             job_description=job_description
+
         )
+
         resume_object.save()
+
+
         return redirect('stream')
+
+
+
 
     return render(request, 'resume.html')
 
@@ -118,53 +139,104 @@ def stream(request):
         global criterias
         global questions
         questions, criterias = questions_and_criterias[0],questions_and_criterias[1]
-    
+
 
         # Transform questions to the desired structure
         transformed_questions = [{"title": f"Question {i+1}", "text": question} for i, question in enumerate(questions)]
         # Render the stream page with resume details and transformed questions
         return render(request, 'stream.html', {'questions': transformed_questions})
-    
+
     else:
         # Handle the case where there is no resume uploaded
         return HttpResponse('error')
 
 
+
+
+
+
+
 user_answers = {}  # Define outside the function to persist between requests
 
+
+
+
 @csrf_exempt
+
 def save_answer(request):
+
     global user_answers
 
+
+
+
     if request.method == 'POST':
+
         data = json.loads(request.body)
+
         question = data.get('question')
+
         time.sleep(12)
+
         answer = data.get('answer')
 
+
+
+
         # Save the answer to the user_answers dictionary
+
         user_answers[question] = answer
 
+
+
+
         # Check if all questions have been answered
+
         if len(user_answers) == 10:  # Assuming you have 10 questions
+
             print("All questions answered:")
+
             print("===========================================")
+
             print(user_answers)
+
             print("===========================================")
+
             return redirect('feedback')
+
             # global job_description, criterias, questions
+
             # feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
+
             # return render(request, 'feedback.html', {'feedback_dict': feedback_dict})
-        
-        
+
+
+
+
+
+
+
         # If not all questions are answered, return a JsonResponse indicating success
+
         return JsonResponse({'message': 'Answer saved successfully.'})
 
+
+
+
     else:
+
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
+
+
+
 def feedback(request):
+
     global job_description, criterias, questions, user_answers
+
     feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
+
     print(feedback_dict)
+
     return render(request, 'feedback.html', {'feedback_dict': feedback_dict})
+
