@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/feedback.css"/>
     <title>Feedback</title>
+<<<<<<< Updated upstream
 </head>
 <body>
     <h1>Feedback</h1>
@@ -22,4 +24,309 @@
         {% endfor %}
     </div>
 </body>
+=======
+  </head>
+
+
+    <body>
+      <header class="p-3 m-0 border-0 bd-example m-0 border-0">
+          <nav class="navbar navbar-expand-lg bg-trasparent">
+              <div class="container-fluid">
+                    
+                      <h1>
+                          <img src="../static/css/images/logo-new.png" alt="Logo" class="logo"> 
+                          <span style="font-size: 70px; color: #ffffff; font-weight: bold; margin-left: -50px;">Skill </span>
+                          <span style="font-size: 70px; color: #f60e53; font-weight: bold;margin-left: 10px;">Assess</span>
+                      </h1>
+                      
+                  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                  <ul class="navigation">
+  
+                      <a href="/" ><button class="button1" type="button">Home <i class="fa-solid fa-house"></i> </button></a>  
+                      <a href=/about ><button class="button1" type="button">About <i class="fa-regular fa-address-card"></i></button></a>
+                      <a href=/login ><button class="button1" type="button">Login <i class="fa-solid fa-right-to-bracket"></i></button></a>
+                      <a href=/register ><button class="button1" type="button">Register   <i class="fa-solid fa-registered"></i></button></a>
+                      <a href=/logout ><button class="button1" type="button">Logout   <i class="fa-solid fa-right-from-bracket"></i></button></a>
+                  </ul>
+              </div>
+          </nav>
+      </header>
+      <!-- <h1>Feedback</h1>
+      <div>
+          <h2>Video Analysis Output</h2>
+          {% for key, value in video_analysis_output.items %}
+              <p>{{ key }}: {{ value }}</p>
+          {% endfor %}
+      </div>
+      <div>
+          <h2>Evaluation Feedback</h2>
+          {% for key, value in feedback_dict.items %}
+              <h3>{{ key }}</h3>
+              <p>Rating: {{ value.0 }}/10</p>
+              <p>{{ value.1 }}</p>
+          {% endfor %}
+      </div>-->
+
+      <div class="project-boxes jsGridView">
+        <div class="project-box-wrapper">
+          <div class="project-box" style="background-color: #fee4cb">
+            <div class="project-box-header">
+              
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-more-vertical"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="project-box-content-header">
+              <p class="box-content-header">Web Designing</p>
+              <p class="box-content-subheader">Prototyping</p>
+            </div>
+            <div class="box-progress-wrapper">
+              <p class="box-progress-header">Progress</p>
+              <div class="box-progress-bar">
+                <span
+                  class="box-progress"
+                  style="width: 60%; background-color: #ff942e"
+                ></span>
+              </div>
+              <p class="box-progress-percentage">60%</p>
+            </div>
+            <div class="project-box-footer">
+             
+             
+            </div>
+          </div>
+        </div>
+        <div class="project-box-wrapper">
+          <div class="project-box" style="background-color: #e9e7fd">
+            <div class="project-box-header">
+            
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-more-vertical"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="project-box-content-header">
+              <p class="box-content-header">Testing</p>
+              <p class="box-content-subheader">Prototyping</p>
+            </div>
+            <div class="box-progress-wrapper">
+              <p class="box-progress-header">Progress</p>
+              <div class="box-progress-bar">
+                <span
+                  class="box-progress"
+                  style="width: 50%; background-color: #4f3ff0"
+                ></span>
+              </div>
+              <p class="box-progress-percentage">50%</p>
+            </div>
+            <div class="project-box-footer">
+              
+      
+            </div>
+          </div>
+        </div>
+        <div class="project-box-wrapper">
+          <div class="project-box">
+            <div class="project-box-header">
+              
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  
+                </button>
+              </div>
+            </div>
+            <div class="project-box-content-header">
+              <p class="box-content-header">Svg Animations</p>
+              <p class="box-content-subheader">Prototyping</p>
+            </div>
+            <div class="box-progress-wrapper">
+              <p class="box-progress-header">Progress</p>
+              <div class="box-progress-bar">
+                <span
+                  class="box-progress"
+                  style="width: 80%; background-color: #096c86"
+                ></span>
+              </div>
+              <p class="box-progress-percentage">80%</p>
+            </div>
+            <div class="project-box-footer">
+              
+    
+            </div>
+          </div>
+        </div>
+        <div class="project-box-wrapper">
+          <div class="project-box" style="background-color: #ffd3e2">
+            <div class="project-box-header">
+              
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-more-vertical"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="project-box-content-header">
+              <p class="box-content-header">UI Development</p>
+              <p class="box-content-subheader">Prototyping</p>
+            </div>
+            <div class="box-progress-wrapper">
+              <p class="box-progress-header">Progress</p>
+              <div class="box-progress-bar">
+                <span
+                  class="box-progress"
+                  style="width: 20%; background-color: #df3670"
+                ></span>
+              </div>
+              <p class="box-progress-percentage">20%</p>
+            </div>
+            <div class="project-box-footer">
+              
+   
+            </div>
+          </div>
+        </div>
+        <div class="project-box-wrapper">
+          <div class="project-box" style="background-color: #c8f7dc">
+            <div class="project-box-header">
+              
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-more-vertical"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="project-box-content-header">
+              <p class="box-content-header">Data Analysis</p>
+              <p class="box-content-subheader">Prototyping</p>
+            </div>
+            <div class="box-progress-wrapper">
+              <p class="box-progress-header">Progress</p>
+              <div class="box-progress-bar">
+                <span
+                  class="box-progress"
+                  style="width: 60%; background-color: #34c471"
+                ></span>
+              </div>
+              <p class="box-progress-percentage">60%</p>
+            </div>
+            <div class="project-box-footer">
+             
+              
+            </div>
+          </div>
+        </div>
+        <div class="project-box-wrapper">
+          <div class="project-box" style="background-color: #d5deff">
+            <div class="project-box-header">
+              
+              <div class="more-wrapper">
+                <button class="project-btn-more">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-more-vertical"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="project-box-content-header">
+              <p class="box-content-header">Web Designing</p>
+              <p class="box-content-subheader">Prototyping</p>
+            </div>
+            <div class="box-progress-wrapper">
+              <p class="box-progress-header">Progress</p>
+              <div class="box-progress-bar">
+                <span
+                  class="box-progress"
+                  style="width: 40%; background-color: #4067f9"
+                ></span>
+              </div>
+              <p class="box-progress-percentage">40%</p>
+            </div>
+            <div class="project-box-footer">
+             
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+>>>>>>> Stashed changes
 </html>
