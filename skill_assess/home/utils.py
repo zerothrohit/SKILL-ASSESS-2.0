@@ -11,7 +11,8 @@ from keras.models import load_model
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 # Load pre-trained emotion recognition model
-emotion_model = load_model('facialemotionmodel.h5')
+# emotion_model = load_model('facialemotionmodel.h5')
+emotion_model = load_model(os.path.join(os.path.dirname(__file__), 'facialemotionmodel.h5'))
 
 # Define emotions
 emotions = ['Angry', 'Disgust', 'Fear', 'Confidence', 'Sad', 'Surprise', 'Neutral']

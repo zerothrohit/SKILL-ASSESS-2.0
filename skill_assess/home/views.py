@@ -265,11 +265,12 @@ def save_video(request):
 def feedback(request):
 
     global job_description, criterias, questions, user_answers
-    video_analysis_output=video_analysis()
 
+    video_analysis_output=video_analysis()
     feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
+    print('############################################################')
     print(video_analysis_output)
     print(feedback_dict)
 
-    return render(request, 'feedback.html', {'feedback_dict': feedback_dict,'video_analysis_output':video_analysis_output})
+    return render(request, 'feedback.html', {'feedback_dict': feedback_dict} ,{'video_analysis_output':video_analysis_output})
 
