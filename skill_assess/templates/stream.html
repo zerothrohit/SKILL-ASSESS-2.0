@@ -29,6 +29,7 @@
       </div>
       <!-- JavaScript -->
       <script>
+
         // Function to send answer to server
         function sendAnswer(question, answer) {
           fetch('/save-answer', {
@@ -155,6 +156,78 @@
           .catch(function (error) {
             console.error("Error accessing camera:", error);
           });
+        // Video recording logic
+        let videoStream;
+
+        startRecordingBtn.addEventListener("click", async () => {
+          try {
+            videoStream = await navigator.mediaDevices.getUserMedia({ video: true });
+            startRecording();
+          } catch (error) {
+            console.error('Error accessing camera:', error);
+          }
+        });
+
+        // JavaScript code for sending the recorded video to the server
+        stopRecordingBtn.addEventListener("click", () => {
+          stopRecording();
+          saveVideo().then(() => {
+            const formData = new FormData();
+            formData.append('video', recordedChunks[0]); // Assuming you're recording one chunk per video
+            formData.append('question_number', questionIndex + 1); // Assuming question numbering starts from 1
+            fetch('/save-video', {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => {
+              if (response.ok) {
+                console.log('Video saved successfully.');
+              } else {
+                console.error('Failed to save video.');
+              }
+            })
+            .catch(error => {
+              console.error('Error occurred while saving video:', error);
+            });
+          });
+        });
+
+        // Function to save recorded video locally
+        function saveVideo() {
+          return new Promise(resolve => {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            resolve(blob);
+          });
+        }
+
+
+        function startRecording() {
+          mediaRecorder = new MediaRecorder(videoStream);
+          const chunks = [];
+          mediaRecorder.ondataavailable = event => {
+            chunks.push(event.data);
+          };
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, { type: 'video/webm' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `video_${questionIndex + 1}.webm`;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+              document.body.removeChild(a);
+              window.URL.revokeObjectURL(url);
+            }, 100);
+          };
+          mediaRecorder.start();
+        }
+
+        function stopRecording() {
+          mediaRecorder.stop();
+        }        
+
+
       </script>
     </div>
   </div>
