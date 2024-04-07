@@ -241,6 +241,7 @@ def video_analysis():
         # Print cumulative percentages
         for emotion, percentage in cumulative_percentages.items():
             print(f"Cumulative {emotion}: {percentage:.2f}%")
+        return cumulative_percentages
     else:
         print("No frames processed across all videos.")
 
