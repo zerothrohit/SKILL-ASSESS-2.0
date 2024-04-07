@@ -3,6 +3,19 @@ import pdfplumber
 import google.generativeai as palm
 import ast
 from dotenv import load_dotenv
+import cv2
+import numpy as np
+import os
+from keras.models import load_model
+# Load pre-trained Haar Cascade classifier for face detection
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+# Load pre-trained emotion recognition model
+emotion_model = load_model('facialemotionmodel.h5')
+
+# Define emotions
+emotions = ['Angry', 'Disgust', 'Fear', 'Confidence', 'Sad', 'Surprise', 'Neutral']
+
 load_dotenv()
 palm.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
@@ -122,3 +135,111 @@ def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,que
     evaluation_dict = ast.literal_eval(evaluation)
 
     return evaluation_dict
+
+
+## VIDEO ANALYSIS
+def detect_faces_and_emotions(frame, emotion_counts):
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30))
+
+    for (x, y, w, h) in faces:
+        face_roi = gray[y:y + h, x:x + w]
+        face_roi = cv2.resize(face_roi, (48, 48))
+        face_roi = np.expand_dims(np.expand_dims(face_roi, -1), 0)
+        emotion_pred = emotion_model.predict(face_roi)
+        emotion_label = emotions[np.argmax(emotion_pred)]
+
+        # Update emotion counts
+        emotion_counts[emotion_label] += 1
+
+        # Draw rectangle and emotion text on the frame
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.putText(frame, emotion_label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+
+    return frame
+
+def video_analysis():
+    # Directory where the videos are stored
+    video_dir = "media"
+
+    # Check if the number of video files is exactly 10
+    if len([filename for filename in os.listdir(video_dir) if filename.endswith(".webm")]) != 10:
+        print("There must be exactly 10 video files in the 'media' folder.")
+        return
+
+    # Dictionary to store outputs
+    video_outputs = {}
+
+    # Iterate over video files in the directory
+    for filename in os.listdir(video_dir):
+        if filename.endswith(".webm"):
+            video_path = os.path.join(video_dir, filename)
+            
+            # Open video capture
+            cap = cv2.VideoCapture(video_path)
+
+            total_frames = 0
+            emotion_counts = {emotion: 0 for emotion in emotions}
+
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    break
+
+                total_frames += 1
+
+                frame = detect_faces_and_emotions(frame, emotion_counts)
+
+                cv2.imshow('Video Emotion Detection', frame)
+
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+
+            # Release the capture
+            cap.release()
+            cv2.destroyAllWindows()
+
+            # Calculate combined percentages
+            combined_percentage_angry_fear = (emotion_counts['Angry'] + emotion_counts['Fear']) / total_frames * 100
+            combined_percentage_sad_disgust = (emotion_counts['Sad'] + emotion_counts['Disgust']) / total_frames * 100
+
+            # Store output in the dictionary
+            video_outputs[filename] = {
+                "Combined Angry_Fear": combined_percentage_angry_fear,
+                "Combined Sad_Disgust": combined_percentage_sad_disgust,
+                "Confidence": (emotion_counts['Confidence'] / total_frames) * 100,
+                "Surprise": (emotion_counts['Surprise'] / total_frames) * 100,
+                "Neutral": (emotion_counts['Neutral'] / total_frames) * 100
+            }
+
+    # Print the dictionary
+    print(video_outputs)
+
+    # Initialize a dictionary to store cumulative counts for each emotion
+    cumulative_counts = {'Combined Angry_Fear': 0, 'Combined Sad_Disgust': 0, 'Confidence': 0, 'Surprise': 0, 'Neutral': 0}
+
+    # Iterate over video outputs
+    for video_output in video_outputs.values():
+        # Accumulate counts for each emotion
+        for emotion, count in video_output.items():
+            if emotion == 'Combined Angry_Fear':
+                cumulative_counts['Combined Angry_Fear'] += count
+            elif emotion == 'Combined Sad_Disgust':
+                cumulative_counts['Combined Sad_Disgust'] += count
+            elif emotion in cumulative_counts:
+                cumulative_counts[emotion] += count
+
+    # Calculate total number of frames across all videos
+    total_frames_all_videos = sum([total_frames for total_frames in cumulative_counts.values()])
+
+    # Check if total_frames_all_videos is not zero
+    if total_frames_all_videos != 0:
+        # Calculate cumulative percentages for each emotion
+        cumulative_percentages = {emotion: (count / total_frames_all_videos) * 100 for emotion, count in cumulative_counts.items()}
+
+        # Print cumulative percentages
+        for emotion, percentage in cumulative_percentages.items():
+            print(f"Cumulative {emotion}: {percentage:.2f}%")
+    else:
+        print("No frames processed across all videos.")
+

@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from storages.backends.s3boto3 import S3Boto3Storage
 from django.contrib.auth.decorators import login_required
-from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation, question_generator_hr
+from .utils import get_text_from_resume_file, skills_extraction, question_generator, evaluation, question_generator_hr,video_analysis
 from .decorators import custom_login_required
 import os
 from django.urls import reverse
@@ -19,7 +19,11 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 import json,time
-
+from django.shortcuts import render, HttpResponse, redirect
+from django.conf import settings
+from django.shortcuts import render, HttpResponse, redirect
+from django.core.files.storage import FileSystemStorage  # Import FileSystemStorage
+import os
 # Create your views here.
 
 job_description=""
@@ -230,11 +234,7 @@ def save_answer(request):
 
 
 
-from django.shortcuts import render, HttpResponse, redirect
-from django.conf import settings
-from django.shortcuts import render, HttpResponse, redirect
-from django.core.files.storage import FileSystemStorage  # Import FileSystemStorage
-import os
+
 
 @csrf_exempt
 def save_video(request):
@@ -260,13 +260,16 @@ def save_video(request):
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
+
+
 def feedback(request):
 
     global job_description, criterias, questions, user_answers
+    video_analysis_output=video_analysis()
 
     feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
-
+    print(video_analysis_output)
     print(feedback_dict)
 
-    return render(request, 'feedback.html', {'feedback_dict': feedback_dict})
+    return render(request, 'feedback.html', {'feedback_dict': feedback_dict,'video_analysis_output':video_analysis_output})
 

@@ -8,8 +8,15 @@
 <body>
     <h1>Feedback</h1>
     <div>
+        <h2>Video Analysis Output</h2>
+        {% for key, value in video_analysis_output.items %}
+            <p>{{ key }}: {{ value }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <h2>Evaluation Feedback</h2>
         {% for key, value in feedback_dict.items %}
-            <h2>{{ key }}</h2>
+            <h3>{{ key }}</h3>
             <p>Rating: {{ value.0 }}/10</p>
             <p>{{ value.1 }}</p>
         {% endfor %}
