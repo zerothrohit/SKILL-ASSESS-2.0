@@ -99,7 +99,7 @@ body {
   overflow: hidden;
   height: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row-reverse;
 }
 
 .projects-section-line {
@@ -134,17 +134,18 @@ body {
 }
 
 .project-boxes {
-    margin: 0 10px 20px;
-    overflow-y: auto;
-    display: flex; /* Add display:flex */
-    flex-wrap: nowrap; /* Change flex-wrap to nowrap */
-  }
-  
-  .project-box-wrapper {
-    width: calc(50% - 16px); /* Adjust the width to fit two boxes in a row */
-    padding: 8px 10px 20px ;
-    transition: .2s;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 6rem;
+}
+
+.project-box-wrapper {
+  width: 48%; /* Adjust width to leave space for margins */
+  margin-bottom: 20px; /* Add margin to create space between boxes */
+}
+
+
   
 .project-boxes.jsListView .project-box {
   display: flex;
@@ -206,6 +207,8 @@ body {
   border-radius: 30px;
   padding: 16px;
   background-color: var(--main-color-card);
+  width: 500px;
+  height: 300px;
 }
 
 .project-box-header {
@@ -296,6 +299,28 @@ body {
   font-size: 14px;
   font-weight: 700;
   line-height: 16px;
+}
+.feedback-p{
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  margin-bottom: 50px;
+}
+.feedback-points {
+  list-style-type: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.feedback-points li {
+  text-align: center;
+  font-size: 12px;
+  line-height: 24px;
+  font-weight: 700;
+  padding: 20px;
+margin-top: -35px;
 }
 
 .project-box-footer {
