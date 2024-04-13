@@ -7,6 +7,152 @@ body {
     background: linear-gradient(90deg, rgba(3,182,190,1) 29%, rgba(255,255,255,1) 100%);
 }
 
+
+
+
+/* navbar skill assess logo */
+.logo {
+    width: 300px;
+    margin-top: -10px;
+    margin-left: -50px;
+}
+
+.container-fluid {
+
+    border-bottom: 2px solid #333;
+    background-color: white;
+    /* Use border-bottom instead of border to create a bottom border */
+    box-shadow: 0 5px 10px rgba(246, 14, 83, 0.3);
+    /* Adjust the box shadow for a more subtle effect */
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+
+.button1 {
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: white;
+    color: #f60e53;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 16px;
+    font-size: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button1:hover {
+    background-color: #f60e53;
+    color: white;
+}
+
+.button1:active {
+    background-color: #f60e53;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+}
+
+.form .button:active {
+    background-color: #f60e53;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+}
+
+
+
+/* Main Section */
+.main-section {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-div {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    width: 100%;
+}
+
+/* Custom Text */
+.custom-text {
+    text-align: center;
+    color: #e6e2e2;
+    padding: 1em;
+    padding-top: 2em;
+    flex: 1;
+}
+
+.custom-text h1 {
+    font-size: 2.7em;
+    margin-bottom: 10px;
+    color: #f60e53;
+}
+
+.custom-text p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: #f60e53;
+
+}
+
+/* Start Button */
+.start-button {
+    padding: 10px 25px;
+    background-color: white;
+    color: #f60e53;
+    border: 2px solid black;
+    /* Added border style */
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+.start-button:hover {
+    background-color: #f60e53;
+    color: #fff;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .custom-text {
+        padding-top: 0;
+    }
+
+    .custom-text h1 {
+        font-size: 2.1em;
+        margin-bottom: 10px;
+    }
+
+    .custom-text p {
+        font-size: 0.8em;
+        margin-bottom: 25px;
+    }
+
+    .custom-image {
+        max-width: 100%;
+        height: auto;
+        padding: 1em;
+        flex: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .custom-text {
+        text-align: left;
+    }
+}
+
+
+
 .gaint-container{
     border: #FC5185 10px solid;
     width: 600px;
@@ -160,15 +306,18 @@ label {
     background-color: #f60e53; /* Darker green on hover */
 }
 
-  /* description  end */
-
-.t-1{
-color: #364F6B;
-margin-left: 800px;
-margin-bottom: -40px;
-
+.t-1 {
+    color: #f60e53; /* Dark pink text color */
+    font-family: 'Poppins', sans-serif; /* Same font family as body */
+    font-size: 24px; /* Increased font size for emphasis */
+    margin-left: 900px;
+    margin-bottom: -90px;
+    padding: 0;
+    display: flex;
 
 }
+
+
 
 
 /* DESIGN STARTS HERE  */
@@ -244,10 +393,10 @@ margin-bottom: -40px;
 
 
 #Ilustration{
-    width: 720px;
-    height: 680px;
-    margin-left: 650px;
-    margin-top: -5000px;
+    width: 520px;
+    height: 500px;
+    margin-left: 850px;
+    margin-top: -3000px;
 
 
 }

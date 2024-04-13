@@ -26,6 +26,40 @@ body {
 
 }
 
+
+.button1 {
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: white;
+    color: #f60e53;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 16px;
+    font-size: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button1:hover {
+    background-color: #f60e53;
+    color: white;
+}
+
+.button1:active {
+    background-color: #f60e53;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+}
+
+.form .button:active {
+    background-color: #f60e53;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+}
+
+
+
 .droplet-path {
     margin-top: 100px;
     position: absolute;
@@ -207,39 +241,6 @@ body {
     .card {
         width: calc(100% - 40px);
     }
-}
-
-
-
-.button1 {
-
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    background-color: white;
-    color: #f60e53;
-    border-radius: 4px;
-    padding: 10px;
-    margin-right: 16px;
-    font-size: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-}
-
-.button1:hover {
-    background-color: #f60e53;
-    color: white;
-}
-
-.button1:active {
-    background-color: #f60e53;
-    box-shadow: 0 5px #f60e53;
-    transform: translateY(4px);
-}
-
-.form .button:active {
-    background-color: #f60e53;
-    box-shadow: 0 5px #f60e53;
-    transform: translateY(4px);
 }
 
 
