@@ -2,60 +2,66 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Skill Assess</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/css/images/teaching.png" type="image/x-icon" >
+    
 
-	<link rel="stylesheet" href="../static/css/resume.css">
-	<link rel="icon" href="../static/css/images/teaching.png" type="image/x-icon" >
-
+    <title> Skill Assess </title> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/resume.css">
+    <script src="https://kit.fontawesome.com/03b9268964.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
-
-	<!-- UPLOAD RESUME SECTION -->
-
     <header class="p-3 m-0 border-0 bd-example m-0 border-0">
         <nav class="navbar navbar-expand-lg bg-trasparent">
             <div class="container-fluid">
                   
                     <h1>
                         <img src="../static/css/images/logo-new.png" alt="Logo" class="logo"> 
-                        <span style="font-size: 70px; color: #f60e53; font-weight: bold; margin-left: -50px;">Skill </span>
+                        <span style="font-size: 70px; color: #ffffff; font-weight: bold; margin-left: -50px;">Skill </span>
                         <span style="font-size: 70px; color: #f60e53; font-weight: bold;margin-left: 10px;">Assess</span>
                     </h1>
                     
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <!-- <ul class="navigation">
+                <ul class="navigation">
 
-                    <a href="/" ><button class="button1" type="button">Home <i class="fa-solid fa-house"></i> </button></a>  
-                    <a href=/about ><button class="button1" type="button">About <i class="fa-regular fa-address-card"></i></button></a>
-                    <a href=/login ><button class="button1" type="button">Login <i class="fa-solid fa-right-to-bracket"></i></button></a>
-                    <a href=/register ><button class="button1" type="button">Register   <i class="fa-solid fa-registered"></i></button></a>
+                    <!-- <a href="/" ><button class="button1" type="button">Home <i class="fa-solid fa-house"></i> </button></a>   -->
+                    <!-- <a href=/about ><button class="button1" type="button">About <i class="fa-regular fa-address-card"></i></button></a> -->
+                    <!-- <a href=/login ><button class="button1" type="button">Login <i class="fa-solid fa-right-to-bracket"></i></button></a> -->
+                    <!-- <a href=/register ><button class="button1" type="button">Register   <i class="fa-solid fa-registered"></i></button></a> -->
                     <a href=/logout ><button class="button1" type="button">Logout   <i class="fa-solid fa-right-from-bracket"></i></button></a>
-                </ul> -->
+                </ul>
             </div>
         </nav>
     </header>
-	<Div class="texts"> 
+
+	<div class="texts">  
 		<h1 class="t-1">Welcome to Our Website, {{ request.user.username }}!</h1>
 		
-		<br><br>
-		<h2 class="t-1">Enter Your Details</h2>	
-	
 		<br><br>		<br><br>
-		<p class="t-1">To begin a mock interview.</p>
-	</Div>
+		<h2 class="t-2">Enter Your Details</h2>	
+	
+		<br><br>		
+		<p class="t-3">To begin a mock interview.</p>
+	</div>
 
-	<form method="post" enctype="multipart/form-data">
+    <!-- Container for details -->
+    <form method="post" enctype="multipart/form-data">
 		{% csrf_token %}
+
 		<div class="gaint-container">
 			
 			<div class="upload-section">
+                
+              
 				<input type="file" name="resume_file">
+              
 
-				<p>Allowed file formats: PDF, DOC, DOCX</p>
+                <br> <br><p>Allowed file formats: PDF, DOC, DOCX</p>
 
 				<br><br>
 				<div class="custom-select">
@@ -70,35 +76,37 @@
 
 				<!-- Add the job title and description text boxes within a grey container -->
 				<div class="grey-container">
-					<label for="job-title">Job Title:</label>
+					<label for="job-title" >Job Title:</label>
 					<input type="text" id="job-title" name="job-title" placeholder="Enter job title">
 					<br><br><br><br>
 
-					<label for="job-description">Job Description:</label><br><br>
+			
+
+                    <label for="job-description" >		
+                        Job Description: </label> <br><br>
+
 					<textarea id="job-description" name="job-description"
 						placeholder="Enter job description"></textarea>
 				</div>
 
 				<br> <br>
-				<button type="submit" class="submit-button">Begin</button>
+				<button type="submit" class="submit-button">Begin <i class="fa-solid fa-rocket"></i> </button>
 
 			</div>
 
 	</form>
 </div>
-
-
+</div>
 	<!-- UPLOAD RESUME SECTION -->
 
 
+    <!-- IMAGE -->
+
 	<!--  design starts here-->
+    <svg version="1.1" id="Ilustration" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1979.9 1080" style="enable-background:new 0 0 1979.9 1080;" xml:space="preserve">
 
-	<svg version="1.1" id="Ilustration" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-		x="0px" y="0px" viewBox="0 0 1979.9 1080" style="enable-background:new 0 0 1979.9 1080;" xml:space="preserve">
-
-		
-
-		<g id="background">
+        <g id="background">
 			<g id="white_wall">
 				<polygon id="the_wall" class="st0" points="1509.7,1040.3 511.2,1014 608.2,276 1959.8,9.8 " />
 				<polygon id="window" class="st1" points="1555.1,682.1 1027,616 1045.1,254 1710.6,134.4 " />
@@ -108,7 +116,7 @@
 				<polygon id="white_wall_shadow" class="st3" points="1045.1,254 1025,618.1 1010.7,613 1015.8,262.1 586.9,411.3 604.1,276.7 
 			1955.7,10.5 1736.2,515.1 1710.6,134.4" />
 			</g>
-			<polygon id="purple_wall" class="st4" points="18,168.9 198.5,1036.9 441.9,1021.1 663.2,998.8 604.2,276.4" />
+            <polygon id="purple_wall" class="st4" points="18,168.9 198.5,1036.9 441.9,1021.1 663.2,998.8 604.2,276.4" />
 			<polygon id="purple_wall_shadow" class="st5" points="614.4,401.7 99.8,560.6 18,168.9 604.2,276.4" />
 			<g id="clock">
 				<ellipse id="shadow_clock"
@@ -118,7 +126,7 @@
 					class="st7" cx="843.2" cy="417.8" rx="58.9" ry="47.8" />
 				<polyline id="clock_hands" class="st8" points="844.5,383.4 843.2,417.8 859.5,433.1" />
 			</g>
-			<g id="callendar">
+            <g id="callendar">
 				<polygon id="callendar_paper_back" class="st9" points="300.7,555.6 161.7,557.1 181.5,705.1 189.1,704.3 189.7,707.7 202.6,710.9 
 			322,697.1 		" />
 				<polygon id="callendar_dark_bar" class="st10"
@@ -141,7 +149,7 @@
 				</g>
 			</g>
 		</g>
-		<g id="red_armchair">
+        <g id="red_armchair">
 			<path id="red_armchair_back" class="st13" d="M678.3,875.3l-83.4-136.5L409.2,471.4c-40.2,31.1-83.1,92.1-32.4,245.3s139.5,260.2,139.5,260.2
 		l237.9,44.2l131.9,3.4l108-152.9L678.3,875.3z" />
 			<path id="red_armchair_highlight" class="st14"
@@ -173,7 +181,7 @@
 					</g>
 				</g>
 			</g>
-			<g id="shadows">
+            <g id="shadows">
 				<g id="shadow_legs">
 					<polygon class="st18" points="912.4,736.7 875.6,744.2 1022.2,734 977.2,723.1 " />
 					<polygon class="st18" points="1067.2,713.5 1036.2,716.5 1030.2,733.3 1085.3,730 " />
@@ -206,7 +214,7 @@
 				</g>
 			</g>
 		</g>
-		<g id="interviewer">
+        <g id="interviewer">
 			<g id="legs">
 				<path id="leg2" class="st22"
 					d="M990.2,679.5l-99.7,12.2c-20.2,2.5-38.3,13.6-49.6,30.4l-22.5,34l177.2-36.7L990.2,679.5z" />
@@ -241,7 +249,7 @@
 				c2.8,0.6,4.6,3.6,4.1,6.7l-0.3,1.6C1048.4,700.5,1045.7,702.5,1043,701.9z" />
 				</g>
 			</g>
-			<g id="arm_with_mug">
+            <g id="arm_with_mug">
 				<path id="biceps" class="st26" d="M782.8,698.4l-30.5-32.1C716.4,623,662.5,604,662.5,604s-22.7,70.1,29.8,88.1
 			c68.4,23.3,85.7,14.6,89.2,13.9S784.3,702.1,782.8,698.4z" />
 				<g id="forehand_mug">
@@ -469,7 +477,7 @@
 				<line class="st46" x1="294.3" y1="395.8" x2="293.2" y2="403.3" />
 			</g>
 		</g>
-		<style type="text/css">
+        <style type="text/css">
 			.st0 {
 				fill: #F0F0F0;
 			}
@@ -700,12 +708,9 @@
 	<!-- design ends here -->
 
 
-
-
-
-
-
-
 </body>
 
 </html>
+    
+
+        

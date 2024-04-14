@@ -1,0 +1,58 @@
+/* body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+} */
+
+
+/* navbar skill assess logo */
+.logo {
+    width: 300px;
+    margin-top: -13px;
+    margin-left: -50px;
+}
+
+.container-fluid {
+    border-bottom: 2px solid #333;
+    background-color: #3FC1C9;
+    /* Use border-bottom instead of border to create a bottom border */
+    box-shadow: 0 5px 10px rgba(246, 14, 83, 0.3);
+    /* Adjust the box shadow for a more subtle effect */
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+
+.button1 {
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: white;
+    color: #f60e53;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 16px;
+    font-size: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button1:hover {
+    background-color: #f60e53;
+    color: white;
+}
+
+.button1:active {
+    background-color: #f60e53;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+}
+
+.form .button:active {
+    background-color: #f60e53;
+    box-shadow: 0 5px #f60e53;
+    transform: translateY(4px);
+}

@@ -2,10 +2,62 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: rgb(3, 182, 190);
-    background: linear-gradient(90deg, rgba(3, 182, 190, 1) 29%, rgba(255, 255, 255, 1) 100%);
+    background: rgb(255, 255, 255);
+    /* background: linear-gradient(90deg, rgba(3, 182, 190, 1) 29%, rgba(255, 255, 255, 1) 100%); */
   }
   
+
+/* navbar skill assess logo */
+.logo {
+  width: 300px;
+  margin-top: -10px;
+  margin-left: -50px;
+}
+
+.container-fluid {
+
+  border-bottom: 2px solid #333;
+  background-color: #3FC1C9;
+  /* Use border-bottom instead of border to create a bottom border */
+  box-shadow: 0 5px 10px rgba(246, 14, 83, 0.3);
+  /* Adjust the box shadow for a more subtle effect */
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+.button1 {
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: white;
+  color: #f60e53;
+  border-radius: 4px;
+  padding: 10px;
+  margin-right: 16px;
+  font-size: 15px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button1:hover {
+  background-color: #f60e53;
+  color: white;
+}
+
+.button1:active {
+  background-color: #f60e53;
+  box-shadow: 0 5px #f60e53;
+  transform: translateY(4px);
+}
+
+.form .button:active {
+  background-color: #f60e53;
+  box-shadow: 0 5px #f60e53;
+  transform: translateY(4px);
+}
+
   .main-section {
     display: flex;
     flex-wrap: wrap;
@@ -26,11 +78,22 @@ body {
     margin-top: 40px;
     text-align: center;
     width: 100rem;
-    height: 280px;
-    background-color: #fff;
-    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
-    border-radius: 5px;
+    height: 300px;
+    /* background-color: #c2fafd; */
+    background-color: #3FC1C9;
 
+    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
+    border-radius: 30px;
+
+  }
+  .question-box{
+    border-radius: 5px;
+    border: 2px solid #f60e53;
+    margin-left: 220px;
+    background-color: #ffffff;
+    width: 950px;
+    height: 80px;
+    padding: 0;
   }
   
   #question {
@@ -45,32 +108,35 @@ body {
   #question2 {
 
     color: #03045E;
-    margin-top: 15px;
+
     font-size: 16px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
-    padding: 20px;
-    background-color: whitesmoke;
+
+    background-color: rgb(2, 2, 2);
     border-radius: 50px;
     border: 2px solid #f60e53;
     text-align: justify;
   }
-  
   #timer {
     font-family: 'Arial', sans-serif;
     font-size: 18px;
     color: #03045E;
-    margin-top: -20px;
-    margin-left: 1200px;
-    
-  }
-  
+    margin-top: 12px;
+    margin-left: 1250px;
+    display: inline-block; /* Ensure the timer appears in line with other elements */
+    padding: 5px 10px; /* Add padding to improve readability */
+    background-color: #f2f2f2; /* Light gray background */
+    border-radius: 5px; /* Add rounded corners */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
 
   
   #audio-container {
     margin-top: 20px;
     text-align: center;
+
   }
   
   .button-start {
@@ -83,6 +149,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 30px;
   }
   .button-stop {
     background-color: #f60e53;
@@ -91,10 +158,11 @@ body {
     font-size: 16px;
     font-weight: 600;
     padding: 10px 20px;
-    margin: 5px;
+    margin: 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
   }
   
   button:disabled {
@@ -117,9 +185,9 @@ body {
     width: 450px; /* Removed quotes around the values */
     height: 300px; /* Removed quotes around the values */
     margin: 20px; /* Adjust margin as needed */
-    margin-left: 1000px;
-margin-bottom: 50px;
-    background-color: #fff;
+    margin-left: 900px;
+    margin-bottom: 50px;
+    background-color: rgba(174, 172, 172, 0.429);
     box-shadow: 0px 0px 5px rgba(246, 49, 89, 0.678);
 
   }

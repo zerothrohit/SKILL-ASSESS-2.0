@@ -4,27 +4,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="../static/css/images/logo.ico" type="image/x-icon" />
+
   <title>Skill Assess</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="../static/css/stream.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
   <script src="https://unpkg.com/wavesurfer.js"></script>
+  <link rel="icon" href="../static/css/images/teaching.png" type="image/x-icon" >
+  <script src="https://kit.fontawesome.com/03b9268964.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <header class="p-3 m-0 border-0 bd-example m-0 border-0">
+        <nav class="navbar navbar-expand-lg bg-trasparent">
+            <div class="container-fluid">
+                  
+                    <h1>
+                        <img src="../static/css/images/logo-new.png" alt="Logo" class="logo"> 
+                        <span style="font-size: 70px; color: #ffffff; font-weight: bold; margin-left: -50px;">Skill </span>
+                        <span style="font-size: 70px; color: #f60e53; font-weight: bold;margin-left: 10px;">Assess</span>
+                    </h1>
+                    
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navigation">
+
+                    <!-- <a href="/" ><button class="button1" type="button">Home <i class="fa-solid fa-house"></i> </button></a>   -->
+                    <!-- <a href=/about ><button class="button1" type="button">About <i class="fa-regular fa-address-card"></i></button></a> -->
+                    <!-- <a href=/login ><button class="button1" type="button">Login <i class="fa-solid fa-right-to-bracket"></i></button></a> -->
+                    <!-- <a href=/register ><button class="button1" type="button">Register   <i class="fa-solid fa-registered"></i></button></a> -->
+                    <a href=/logout ><button class="button1" type="button">Logout   <i class="fa-solid fa-right-from-bracket"></i></button></a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
   <div class="main-section">
     <div class="custom-div">
-      <video class="video-container" width="550px;" height="480px;" id="cameraFeed" autoplay></video>
+
+      <video class="video-container" width="550px;" height="480px;" id="cameraFeed" autoplay>  </video>
+      
+
       <div class="question-container" id="question-container">
         <div id="question"></div>
         <div class="timer" id="timer">00:00</div>
-        <div id="questionText"></div> <!-- Updated div for displaying questions -->
+        <div id="questionText" class="question-box" ></div> 
         <div id="audio-container">
-          <button class="button-start" id="start-recording">Start Recording</button>
-          <button class="button-stop" id="stop-recording">Stop Recording</button>
-          <audio id="audio-player" controls></audio>
+          <audio id="audio-player" controls></audio> <br>
+          <button class="button-start" id="start-recording"> <i class="fa-solid fa-play"></i> Start Recording </button> 
+          <button class="button-stop" id="stop-recording"><i class="fa-solid fa-stop"></i> Stop Recording  </button>
+
+
         </div>
       </div>
       <!-- JavaScript -->
@@ -84,7 +114,7 @@
         }
 
         // To use the functions
-        var questions = {{ questions| safe }}; // Fetching questions from Django context
+        var questions = {{ questions | safe }}; // Fetching questions from Django context
         var questionIndex = 0;
         displayQuestion(questions[questionIndex].title, questions[questionIndex].text);
         var timerDisplay = document.querySelector("#timer");
