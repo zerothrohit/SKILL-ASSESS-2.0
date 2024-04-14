@@ -213,11 +213,17 @@ def feedback(request):
 
     video_analysis_output = video_analysis()  # This should run here if all answers are submitted
     feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
-    
+    if feedback_dict:
+        for key in feedback_dict:
+            feedback_dict[key][0] *= 10
+        # Get the list of values from the dictionary
+        feedback_key = list(feedback_dict.keys())
+        feedback_value = list(feedback_dict.values())
+
     print('############################################################')
     print(video_analysis_output)
     print(feedback_dict)
     
-    return render(request, 'feedback.html', {'feedback_dict': feedback_dict, 'video_analysis_output': video_analysis_output})
+    return render(request, 'feedback.html', {'feedback_key': feedback_key, 'feedback_value': feedback_value, 'video_analysis_output': video_analysis_output})
 
 
