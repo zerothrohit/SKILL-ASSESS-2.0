@@ -56,3 +56,24 @@
     box-shadow: 0 5px #f60e53;
     transform: translateY(4px);
 }
+
+.description{
+    font-size: 15pt;
+}
+
+.video-item{
+    width: 700px;
+    height: 400px;
+    border: #f60e53;
+    border-radius: 20pt;
+}
+
+.team{
+    align-self: center;
+    font-size: 30pt;
+    margin-left: 550px;
+}
+
+.row{
+    margin-left: 200px;
+}
