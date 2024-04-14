@@ -166,7 +166,7 @@ def video_analysis():
     # Check if the number of video files is exactly 10
     if len([filename for filename in os.listdir(video_dir) if filename.endswith(".webm")]) != 10:
         print("There must be exactly 10 video files in the 'media' folder.")
-        return
+        # return
 
     # Dictionary to store outputs
     video_outputs = {}
@@ -214,7 +214,7 @@ def video_analysis():
             }
 
     # Print the dictionary
-    print(video_outputs)
+    # print(video_outputs)
 
     # Initialize a dictionary to store cumulative counts for each emotion
     cumulative_counts = {'Combined Angry_Fear': 0, 'Combined Sad_Disgust': 0, 'Confidence': 0, 'Surprise': 0, 'Neutral': 0}
@@ -241,7 +241,7 @@ def video_analysis():
         # Print cumulative percentages
         for emotion, percentage in cumulative_percentages.items():
             print(f"Cumulative {emotion}: {percentage:.2f}%")
-        return cumulative_percentages
+            return cumulative_percentages
     else:
         print("No frames processed across all videos.")
 

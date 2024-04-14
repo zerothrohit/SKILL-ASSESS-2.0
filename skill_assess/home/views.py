@@ -166,111 +166,58 @@ user_answers = {}  # Define outside the function to persist between requests
 
 
 @csrf_exempt
-
 def save_answer(request):
-
     global user_answers
 
-
-
-
     if request.method == 'POST':
-
         data = json.loads(request.body)
-
         question = data.get('question')
-
-        time.sleep(12)
-
         answer = data.get('answer')
-
-
-
-
-        # Save the answer to the user_answers dictionary
-
         user_answers[question] = answer
 
-
-
-
-        # Check if all questions have been answered
-
-        if len(user_answers) == 10:  # Assuming you have 10 questions
-
+        if len(user_answers) == 10:
             print("All questions answered:")
-
             print("===========================================")
-
             print(user_answers)
-
             print("===========================================")
-
-            return redirect('feedback')
-
-            # global job_description, criterias, questions
-
-            # feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
-
-            # return render(request, 'feedback.html', {'feedback_dict': feedback_dict})
-
-
-
-
-
-
-
-        # If not all questions are answered, return a JsonResponse indicating success
-
+            return redirect('feedback')  # Redirect to feedback once all answers are saved
         return JsonResponse({'message': 'Answer saved successfully.'})
-
-
-
-
     else:
-
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
-
-
-
-
+from django.http import JsonResponse
 
 @csrf_exempt
 def save_video(request):
     if request.method == 'POST':
         data = request.FILES['video']
         question_number = request.POST.get('question_number')
-
-        # Define the directory where you want to save the videos
         save_dir = 'media/'
 
-        # Ensure the directory exists, create it if not
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
 
-        # Save the video file
         video_path = os.path.join(save_dir, f'video_{question_number}.webm')
         with open(video_path, 'wb') as f:
             for chunk in data.chunks():
                 f.write(chunk)
 
-        return redirect('feedback')
+        return JsonResponse({'message': 'Video saved successfully.'})
 
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 
-
 def feedback(request):
-
     global job_description, criterias, questions, user_answers
 
-    video_analysis_output=video_analysis()
+    video_analysis_output = video_analysis()  # This should run here if all answers are submitted
     feedback_dict = evaluation(job_description, criterias[0], criterias[1], criterias[2], criterias[3], criterias[4], questions, user_answers)
+    
     print('############################################################')
     print(video_analysis_output)
     print(feedback_dict)
+    
+    return render(request, 'feedback.html', {'feedback_dict': feedback_dict, 'video_analysis_output': video_analysis_output})
 
-    return render(request, 'feedback.html', {'feedback_dict': feedback_dict} ,{'video_analysis_output':video_analysis_output})
 

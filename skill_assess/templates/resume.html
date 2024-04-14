@@ -40,7 +40,7 @@
     </header>
 	<Div class="texts"> 
 		<h1 class="t-1">Welcome to Our Website, {{ request.user.username }}!</h1>
-		{% csrf_token %}
+		
 		<br><br>
 		<h2 class="t-1">Enter Your Details</h2>	
 	
@@ -49,7 +49,7 @@
 	</Div>
 
 	<form method="post" enctype="multipart/form-data">
-
+		{% csrf_token %}
 		<div class="gaint-container">
 			
 			<div class="upload-section">
