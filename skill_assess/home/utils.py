@@ -77,6 +77,8 @@ def question_generator(description, skills):
 
     for sublist in questions_dict.values():
         question_list.extend(sublist)
+    print(question_list)
+    print(criteria)
     return question_list, criteria
 
 def question_generator_hr(description, skills):
@@ -112,7 +114,7 @@ def question_generator_hr(description, skills):
     return question_list, criteria
 
 def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,questions_list,final_answers):
-    evaluation_prompt=f'''your job is to evaluate an entire interview for the below job description:
+    evaluation_prompt=f'''You are an 10 year old strict and experience technical interviewer you have worked in various companies in past and hired over 700+ brilliant talents and skilled people.Your job is to evaluate an entire interview for the below job description:
     {description}
 
     The question are based on these five evaluation criterias {criteria1}, {criteria2}, {criteria3}, {criteria4}, {criteria5}
@@ -121,9 +123,40 @@ def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,que
     And the below list contains the answers given by the candidate with respect to the questions asked:
     {final_answers}
 
-    Based upon the answers given by candidate rate the skills of the candidate out of 10 points for each criteria and provide personalised feedback for improvements in each criteria.
+    Based upon the answers given by candidate score the skills of the candidate out of 0 to 10 points for each criteria make sure your score is genuine, give a poor score (0-4 score ) if the answers are not descriptive enough, not explained in depth and a good score (5-10 score ) if the candidate seems to be a good fit for the job and provide personalised feedback for improvements in each criteria. You need to analyse whether the answers are fundamentally correct and properly described by the candidate.
     The feedback should be genuine so that the candidate can excel in the next interview.
-    Return the response as a dictionary data type of python where key is the evaluation criteria of string type and value contains the rating and feedback to improve in list format'''    
+    Return the response as a dictionary data type of python where key is the evaluation criteria of string type and value contains the rating and feedback to improve in list format 
+    The feedback should be genuine so that the candidate can excel in the next interview.
+
+    Return the response as a dictionary data type of Python where the key is the evaluation criteria of string type and the value contains the rating and feedback to improve in a list format.
+
+
+    Give a score of 0-4 only if:
+
+    The answer partially addresses the question but lacks coherence or relevance, or is somewhat off-topic.
+    The response provides some description but lacks depth or adequate explanation, leaving some gaps in understanding.
+    The answer is somewhat brief, providing some detail but lacking in sufficient depth to fully convey the information.
+    The response contains some meaningful content but also includes irrelevant or tangential information that detracts from the overall relevance.
+    The answer includes some essential details but lacks consistency or thoroughness in addressing all aspects of the topic.
+    The candidate attempts to answer the question but provides an incomplete or unclear response, or explicitly indicates difficulty in responding.
+
+    These conditions set clear and solid criteria for assigning lower scores, ensuring that candidates receive poor ratings when their answers do not meet the expected standards for depth, relevance, and clarity.
+
+    Give a score of 5-10 only if:
+    1. The answer is meaningful and directly addresses the question.
+    2. The answer demonstrates depth, quality, and genuineness.
+    3. If answer is elaborate
+
+    Give a score of 8-10 only if:
+
+    The answer directly addresses the question comprehensively, covering all aspects.
+    The response demonstrates exceptional depth, quality, and genuineness.
+    The answer is not only elaborate but also provides insightful perspectives or additional relevant information beyond what is expected.
+    The candidate's communication is clear, concise, and well-structured.
+    The response showcases a profound understanding of the subject matter, potentially offering innovative solutions or approaches.
+    The candidate effectively incorporates relevant examples or experiences to support their answer.
+    Overall, the answer significantly exceeds expectations and indicates the candidate's exceptional suitability for the job.
+    Please ensure that the scores and feedback provided are sincere and constructive, aiming to help the candidate improve their performance in future interviews.'''    
     response = palm.generate_text(prompt= evaluation_prompt)
     evaluation=response.result
     start_idx = evaluation.find('{')
