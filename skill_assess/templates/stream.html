@@ -87,31 +87,43 @@
           document.getElementById("questionText").innerText = questionText;
         }
 
+        function createFeedbackLink() {
+        const link = document.createElement('a');
+        link.textContent = 'Generate Feedback';
+        link.classList.add('btn', 'btn-primary', 'mt-3'); // Adjust classes as needed
+        link.href = '/feedback'; // URL of the feedback page
+        link.id = 'generate-feedback-link';
+        document.getElementById('question-container').appendChild(link);
+      }
+
         function startTimer(duration, display) {
-          var timer = duration, minutes, seconds;
-          return setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
+        var timer = duration,
+          minutes,
+          seconds;
+        return setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+          minutes = minutes < 10 ? '0' + minutes : minutes;
+          seconds = seconds < 10 ? '0' + seconds : seconds;
 
-            display.textContent = minutes + ":" + seconds;
+          display.textContent = minutes + ':' + seconds;
 
-            if (--timer < 0) {
-              timer = duration;
-              // Display next question or take action when the timer runs out
-              questionIndex++;
-              if (questionIndex < questions.length) {
-                displayQuestion(questions[questionIndex].title, questions[questionIndex].text);
-              } else {
-                // All questions answered, you can redirect or perform any other action
-                // For now, let's just stop the timer
-                clearInterval(timerInterval);
-              }
+          if (--timer < 0) {
+            timer = duration;
+            // Display next question or take action when the timer runs out
+            questionIndex++;
+            if (questionIndex < questions.length) {
+              displayQuestion(questions[questionIndex].title, questions[questionIndex].text);
+            } else {
+              // All questions answered, you can redirect or perform any other action
+              // For now, let's just stop the timer and display the "Generate Feedback" link
+              clearInterval(timerInterval);
+              createFeedbackLink();
             }
-          }, 1000);
-        }
+          }
+        }, 1000);
+      }
 
         // To use the functions
         var questions = {{ questions | safe }}; // Fetching questions from Django context

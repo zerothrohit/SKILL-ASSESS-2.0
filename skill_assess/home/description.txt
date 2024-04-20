@@ -1,0 +1,24 @@
+Requirements: 4+ years' experience as a Data Scientist. EU based. 
+
+Tech: Python, SQL, AWS, Sage Maker & Snowflake.
+Preferred locations: Romania, Portugal, Poland, Hungary, Bulgaria, etc.
+
+
+Responsibilities:
+
+Develop and maintain machine learning models, including but not limited to, predictive models, natural language processing models, and computer vision models.
+Analyze large and complex data sets to identify trends, patterns, and insights.
+Collaborate with cross-functional teams to develop and deploy machine learning solutions.
+Develop algorithms and statistical models to optimise machine learning models and improve their accuracy.
+Communicate findings and insights to stakeholders in a clear and concise manner.
+
+
+Expected Skills & Capabilities
+
+Strong understanding of machine learning algorithms, such as linear regression, logistic regression, decision trees, and neural networks.
+Understanding and experience with AWS SageMaker
+Background working closely with Snowflake
+Experience with cloud-based machine learning platforms such as AWS.
+Excellent analytical skills and profound expertise in the application of statistical modeling
+Demonstrate excellent programming skills in Python & SQL as well as good skills in related analytical libraries.
+Experience with data visualization tools such as Tableau.
