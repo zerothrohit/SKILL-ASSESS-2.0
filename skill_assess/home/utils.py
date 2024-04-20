@@ -156,7 +156,7 @@ def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,que
     The response showcases a profound understanding of the subject matter, potentially offering innovative solutions or approaches.
     The candidate effectively incorporates relevant examples or experiences to support their answer.
     Overall, the answer significantly exceeds expectations and indicates the candidate's exceptional suitability for the job.
-    Please ensure that the scores and feedback provided are sincere and constructive, aiming to help the candidate improve their performance in future interviews.'''    
+    Please ensure that the scores and feedback provided are sincere and constructive, aiming to help the candidate improve their performance in future interviews. The feedback should be descriptive so that the candidate can work on his weaknesses.'''    
     response = palm.generate_text(prompt= evaluation_prompt)
     evaluation=response.result
     start_idx = evaluation.find('{')
