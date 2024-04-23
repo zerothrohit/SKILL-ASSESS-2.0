@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,22 +69,30 @@
 
 <div class="login-box">
     <h2>Register</h2>
-    {% if error_message %}
-    <div class="error-message">
-        {{ error_message }}
-    </div>
-{% endif %}
-    <form action="/login" method="post">
+
+
+    <form action="/register" method="post">
         {% csrf_token %}
+
+        {% if messages %}
+        <div class="error-message">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+       
+
         <div class="user-box">
             <input type="text" name="username" required>
             <label>Username</label>
-          </div>
-          <div class="user-box">
+        </div>
+        
+        <div class="user-box">
 
           <input type="email" id="email" name="email" required>
           <label for="email">Email:</label>
-          </div>  
+        </div>  
 
       <div class="user-box">
 
@@ -93,9 +102,10 @@
 
       <div class="user-box">
 
-    <input type="password" id="confirmPassword" name="confirmPassword" required>
-    <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <label for="confirmPassword">Confirm Password:</label>
       </div>
+
       <a href="#">
       <button type="submit" class="login-submit">
       
@@ -106,11 +116,12 @@
         Submit
       
     </button>
-</a>
+    </a>
     </form>
-    {% if username %}
+
+    <!-- {% if username %}
     <p>Welcome, {{ username }}!</p>
-{% endif %}
+{% endif %} -->
   </div>
 
 

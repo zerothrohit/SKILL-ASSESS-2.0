@@ -114,6 +114,14 @@ def question_generator_hr(description, skills):
     return question_list, criteria
 
 def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,questions_list,final_answers):
+    example = '''{
+            "Front-end development": [2, ["Focus on improving your front-end skills, such as React and Angular", "Focus on improving your front-end skills, such as React and Angular"]],
+            "Back-end development": [6, ["Your back-end skills are strong, but you could focus on learning more about Node.js and Django", "Focus on improving your front-end skills, such as React and Angular"]],
+            "Database management": [8, ["Your database skills are excellent. Keep up the good work!", "Focus on improving your front-end skills, such as React and Angular"]],
+            "DevOps": [9, ["Your DevOps skills are very strong. Keep up the good work!", "Focus on improving your front-end skills, such as React and Angular"]],
+            "Cloud services": [6, ["Your cloud services skills are good, but you could focus on learning more about serverless computing and container orchestration", "Focus on improving your front-end skills, such as React and Angular"]]
+        }'''
+    
     evaluation_prompt=f'''You are an 10 year old strict and experience technical interviewer you have worked in various companies in past and hired over 700+ brilliant talents and skilled people.Your job is to evaluate an entire interview for the below job description:
     {description}
 
@@ -156,7 +164,10 @@ def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,que
     The response showcases a profound understanding of the subject matter, potentially offering innovative solutions or approaches.
     The candidate effectively incorporates relevant examples or experiences to support their answer.
     Overall, the answer significantly exceeds expectations and indicates the candidate's exceptional suitability for the job.
-    Please ensure that the scores and feedback provided are sincere and constructive, aiming to help the candidate improve their performance in future interviews. The feedback should be descriptive so that the candidate can work on his weaknesses.'''    
+    Please ensure that the scores and feedback provided are sincere and constructive, aiming to help the candidate improve their performance in future interviews. The feedback should be descriptive so that the candidate can work on his weaknesses.
+    
+    Consider the below format as a example, your response should be in the same format: {example}
+    '''    
     response = palm.generate_text(prompt= evaluation_prompt)
     evaluation=response.result
     start_idx = evaluation.find('{')
@@ -169,6 +180,7 @@ def evaluation(description,criteria1,criteria2,criteria3,criteria4,criteria5,que
     evaluation_dict = ast.literal_eval(evaluation)
 
     return evaluation_dict
+
 
 
 ## VIDEO ANALYSIS
@@ -239,27 +251,35 @@ def video_analysis():
 
             # Store output in the dictionary
             video_outputs[filename] = {
-                "Combined Angry_Fear": combined_percentage_angry_fear,
-                "Combined Sad_Disgust": combined_percentage_sad_disgust,
+                "Anxiety": combined_percentage_angry_fear,
+                "Sad": combined_percentage_sad_disgust,
                 "Confidence": (emotion_counts['Confidence'] / total_frames) * 100,
                 "Surprise": (emotion_counts['Surprise'] / total_frames) * 100,
                 "Neutral": (emotion_counts['Neutral'] / total_frames) * 100
             }
+            # # Store output in the dictionary
+            # video_outputs[filename] = {
+            #     "Combined Angry_Fear": combined_percentage_angry_fear,
+            #     "Combined Sad_Disgust": combined_percentage_sad_disgust,
+            #     "Confidence": (emotion_counts['Confidence'] / total_frames) * 100,
+            #     "Surprise": (emotion_counts['Surprise'] / total_frames) * 100,
+            #     "Neutral": (emotion_counts['Neutral'] / total_frames) * 100
+            # }
 
     # Print the dictionary
     # print(video_outputs)
 
     # Initialize a dictionary to store cumulative counts for each emotion
-    cumulative_counts = {'Combined Angry_Fear': 0, 'Combined Sad_Disgust': 0, 'Confidence': 0, 'Surprise': 0, 'Neutral': 0}
+    cumulative_counts = {'Anxiety': 0, 'Sad': 0, 'Confidence': 0, 'Surprise': 0, 'Neutral': 0}
 
     # Iterate over video outputs
     for video_output in video_outputs.values():
         # Accumulate counts for each emotion
         for emotion, count in video_output.items():
-            if emotion == 'Combined Angry_Fear':
-                cumulative_counts['Combined Angry_Fear'] += count
-            elif emotion == 'Combined Sad_Disgust':
-                cumulative_counts['Combined Sad_Disgust'] += count
+            if emotion == 'Anxiety':
+                cumulative_counts['Anxiety'] += count
+            elif emotion == 'Sad':
+                cumulative_counts['Sad'] += count
             elif emotion in cumulative_counts:
                 cumulative_counts[emotion] += count
 
