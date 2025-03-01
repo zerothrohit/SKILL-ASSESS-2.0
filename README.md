@@ -116,7 +116,7 @@ _Registration page of Skill Access._
 _The mock interview interface where candidates can practice answering questions tailored to their job role._
 <div align="center">
   <img src="https://github.com/zerothrohit/SKILL-ASSESS-2.0/blob/main/screenshots/input.png?raw=true" alt="Sample Image" width="700" height="400">
-  <img src="https://github.com/zerothrohit/SKILL-ASSESS-2.0/blob/main/screenshots/input.png?raw=true" alt="Sample Image" width="700" height="400">
+  <img src="https://github.com/zerothrohit/SKILL-ASSESS-2.0/blob/main/screenshots/interview.png?raw=true" alt="Sample Image" width="700" height="400">
 </div>
 
 _The evaluation report, providing scores, suggestions for improvement, and video analysis._
