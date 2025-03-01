@@ -1,34 +1,27 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: rgb(255, 255, 255);
-    /* background: linear-gradient(90deg, rgba(3, 182, 190, 1) 29%, rgba(255, 255, 255, 1) 100%); */
-  }
-  
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: rgb(255, 255, 255);
+}
 
 /* navbar skill assess logo */
 .logo {
-  width: 300px;
+  width: 200px; /* Adjusted width for responsiveness */
   margin-top: -10px;
   margin-left: -50px;
 }
 
 .container-fluid {
-
   border-bottom: 2px solid #333;
   background-color: #3FC1C9;
-  /* Use border-bottom instead of border to create a bottom border */
   box-shadow: 0 5px 10px rgba(246, 14, 83, 0.3);
-  /* Adjust the box shadow for a more subtle effect */
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
-
 }
 
 .button1 {
-
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -58,147 +51,142 @@ body {
   transform: translateY(4px);
 }
 
-  .main-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: auto;
-  }
-  
-  .custom-div {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 1em;
-    width: 100%;
-  }
-  
-  #question-container {
-    margin-top: 40px;
-    text-align: center;
-    width: 100rem;
-    height: 300px;
-    /* background-color: #c2fafd; */
-    background-color: #3FC1C9;
-
-    box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
-    border-radius: 30px;
-
-  }
-  .question-box{
-    border-radius: 5px;
-    border: 2px solid #f60e53;
-    margin-left: 220px;
-    background-color: #ffffff;
-    width: 950px;
-    height: 80px;
-    padding: 0;
-  }
-  
-  #question {
-    color: #03045E;
-    font-size: 23px;
-    font-family: 'Arial', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    
-  }
-  
-  #question2 {
-
-    color: #03045E;
-
-    font-size: 16px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-
-    background-color: rgb(2, 2, 2);
-    border-radius: 50px;
-    border: 2px solid #f60e53;
-    text-align: justify;
-  }
-  #timer {
-    font-family: 'Arial', sans-serif;
-    font-size: 18px;
-    color: #03045E;
-    margin-top: 12px;
-    margin-left: 1250px;
-    display: inline-block; /* Ensure the timer appears in line with other elements */
-    padding: 5px 10px; /* Add padding to improve readability */
-    background-color: #f2f2f2; /* Light gray background */
-    border-radius: 5px; /* Add rounded corners */
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+.main-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
 }
 
-  
-  #audio-container {
-    margin-top: 20px;
-    text-align: center;
+.custom-div {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1em;
+  width: 100%;
+}
 
-  }
-  
-  .button-start {
-    background-color: #00ba16;
-    color: #ffffff;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 30px;
-  }
-  .button-stop {
-    background-color: #f60e53;
-    color: #ffffff;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px 20px;
-    margin: 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+#question-container {
+  margin-top: 40px;
+  text-align: center;
+  width: 90%; /* Adjusted width for responsiveness */
+  max-width: 700px; /* Set a maximum width for smaller screens */
+  margin-left: auto; /* Center the container */
+  margin-right: auto; /* Center the container */
+  background-color: #3FC1C9;
+  box-shadow: 0rem 0.2rem 0.5rem #03045E, 0rem 0.2rem 0.5rem #FFFFFF;
+  border-radius: 30px;
+}
 
-  }
-  
-  button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-  }
-  
+.question-box {
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 2px solid #f60e53;
+  margin-left: auto; /* Center the container */
+  margin-right: auto; /* Center the container */
+  background-color: #ffffff;
+  width: 90%; /* Adjusted width for responsiveness */
+  max-width: 700px; /* Set a maximum width for smaller screens */
+  height: 80px;
+  padding: 0;
+}
 
-  
+#question {
+  color: #03045E;
+  font-size: 23px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+#question2 {
+  color: #03045E;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: rgb(2, 2, 2);
+  border-radius: 50px;
+  border: 2px solid #f60e53;
+  text-align: justify;
+}
+
+#timer {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  color: #03045E;
+  margin-top: 12px;
+  margin-left: auto; /* Center the timer */
+  margin-right: auto; /* Center the timer */
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+#audio-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.button-start {
+  background-color: #00ba16;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 30px auto; /* Center the button */
+  display: block; /* Ensure the button is displayed as block element */
+}
+
+.button-stop {
+  background-color: #f60e53;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 30px auto; /* Center the button */
+  display: block; /* Ensure the button is displayed as block element */
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
 #audio-player {
-    width: 70%;
-    margin-top: 10px;
-  }
-  
-  .video-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #f60e53;
-    width: 450px; /* Removed quotes around the values */
-    height: 300px; /* Removed quotes around the values */
-    margin: 20px; /* Adjust margin as needed */
-    margin-left: 900px;
-    margin-bottom: 50px;
-    background-color: rgba(174, 172, 172, 0.429);
-    box-shadow: 0px 0px 5px rgba(246, 49, 89, 0.678);
+  width: 70%;
+  margin-top: 10px;
+  margin-left: auto; /* Center the audio player */
+  margin-right: auto; /* Center the audio player */
+}
 
-  }
-  
+.video-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f60e53;
+  width: 90%; /* Adjusted width for responsiveness */
+  max-width: 500px; /* Set a maximum width for smaller screens */
+  height: 300px;
+  margin: 20px auto; /* Center the video container */
+  background-color: rgba(174, 172, 172, 0.429);
+  box-shadow: 0px 0px 5px rgba(246, 49, 89, 0.678);
+}
+
 /* Media Queries for Responsive Design */
 @media screen and (max-width: 768px) {
-  #question-container {
-      margin-left: 5%;
-      width: 90%;
-  }
-  #timer {
-      margin-left: 5%;
+  .logo {
+      width: 150px; /* Adjusted width for smaller screens */
   }
 }
