@@ -27,7 +27,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Absolute path to media directory
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g0($g2f*qf5%sak_98x!(3-83y#ayjo8*e=$a7-)mo3w4$@d(o'
+SECRET_KEY = '' #your secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'skill_assess.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skillassessdbb',
-        'USER': 'skillassessdbb',
-        'PASSWORD': 'skillassess2024',
-        'HOST': 'skillassessdbb.cu6nfvakmh9c.ap-south-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'NAME': '', #your database name
+        'USER': '', #your user name
+        'PASSWORD': '',
+        'HOST': '', #your host
+        'PORT': '', #your port
     }
 }
 
@@ -142,11 +142,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AWS_ACCESS_KEY_ID = 'AKIAS6WVONLJBYK6O6X6'
-AWS_SECRET_ACCESS_KEY = 'gG+GjOke1e06e5Q8epx9KM6Xfp2ISbdFXLB8rkwN'
-AWS_STORAGE_BUCKET_NAME = 'skillassessbucket'
+AWS_ACCESS_KEY_ID = '' # your access key id
+AWS_SECRET_ACCESS_KEY = '' # your access key
+AWS_STORAGE_BUCKET_NAME = '' # your bucket name
 AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'ap-south-1'
+AWS_S3_REGION_NAME = '' # your region
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL =  'public-read'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
