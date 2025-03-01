@@ -1,5 +1,5 @@
 # Skill Assess - Your AI Mock Interviewer
-Job seekers often face anxiety and unpreparedness due to inadequate interview preparation, with many existing tools neglecting the development of technical skills. Our AI-powered web application, Skill Access, addresses this issue by providing tailored interview simulations based on specific job descriptions. By focusing on both skill enhancement and confidence building, our platform helps candidates excel in interviews through realistic scenarios and personalized feedback. Our goal is to empower candidates to succeed in the competitive job market by addressing the gap in technical skills and subject-specific knowledge.
+Job seekers often face anxiety and unpreparedness due to inadequate interview preparation, with many existing tools neglecting the development of technical skills. Our AI-powered web application, Skill Assess, addresses this issue by providing tailored interview simulations based on specific job descriptions. By focusing on both skill enhancement and confidence building, our platform helps candidates excel in interviews through realistic scenarios and personalized feedback. Our goal is to empower candidates to succeed in the competitive job market by addressing the gap in technical skills and subject-specific knowledge.
 
 ## Proposed System
 
@@ -95,20 +95,20 @@ Before starting the application, ensure you have the following installed:
     python manage.py runserver
     ```
     
-8.  **Access the Application**: Open your browser and navigate to `http://127.0.0.1:8000/` to access the Skill Access application.
+8.  **Access the Application**: Open your browser and navigate to `http://127.0.0.1:8000/` to access the Skill Assess application.
 
 
 ## Screenshots of Application
 
-Below are some screenshots showcasing the key features and interfaces of the Skill Access application:
+Below are some screenshots showcasing the key features and interfaces of the Skill Assess application:
 
 
-_The home page of Skill Access, featuring navigation options and an overview of the platform._
+_The home page of Skill Assess, featuring navigation options and an overview of the platform._
 <div align="center">
   <img src="https://github.com/zerothrohit/SKILL-ASSESS-2.0/blob/main/screenshots/home.png?raw=true" alt="Sample Image" width="700" height="400">
 </div>
 
-_Registration page of Skill Access._
+_Registration page of Skill Assess._
 <div align="center">
   <img src="https://github.com/zerothrohit/SKILL-ASSESS-2.0/blob/main/screenshots/register.png?raw=true" alt="Sample Image" width="700" height="400">
 </div>
